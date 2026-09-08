@@ -1,0 +1,8 @@
+build/
+dist/
+keystore/
+tools/dl/
+__pycache__/
+*.log
+.DS_Store
+uploads/

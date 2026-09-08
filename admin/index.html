@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Satlok Seva — Admin cPanel</title>
+<style>
+:root{--bg:#FAF6F0;--card:#fff;--ink:#241A12;--ink2:#6E5D4F;--line:rgba(60,35,15,.12);--acc:#E86A17;--acc2:#F59E42;--maroon:#5A2412;--red:#C0392B;--green:#2E7D4F;--r:18px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+header{background:linear-gradient(135deg,var(--maroon),#7A3418);color:#F7E7CE;padding:18px 26px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:5;box-shadow:0 6px 24px rgba(0,0,0,.2)}
+header img{width:44px;height:44px;border-radius:12px}
+header h1{font-size:18px}header .sub{font-size:11.5px;opacity:.75}
+header .right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.badge{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);padding:5px 12px;border-radius:999px;font-size:12px}
+.wrap{max-width:1080px;margin:0 auto;padding:22px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tab{padding:9px 18px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:13.5px;font-weight:600;color:var(--ink2);cursor:pointer}
+.tab.on{background:var(--acc);color:#fff;border-color:var(--acc);box-shadow:0 4px 14px rgba(232,106,23,.35)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:16px;box-shadow:0 2px 10px rgba(64,34,10,.06)}
+.card h2{font-size:16px;margin-bottom:4px}.card .desc{font-size:12.5px;color:var(--ink2);margin-bottom:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink2)}
+input,textarea,select{border:1px solid var(--line);border-radius:12px;padding:10px 13px;font-size:14px;font-family:inherit;background:#fff;color:var(--ink)}
+textarea{min-height:76px;resize:vertical}
+.btn{border:0;border-radius:999px;padding:12px 22px;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;box-shadow:0 6px 18px rgba(232,106,23,.35)}
+.btn.ghost{background:#fff;color:var(--ink2);border:1px solid var(--line);box-shadow:none}
+.btn.danger{background:rgba(192,57,43,.12);color:var(--red);box-shadow:none}
+.btn:disabled{opacity:.5;cursor:wait}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.log{background:#1d150d;color:#b8e6c0;font-family:ui-monospace,Consolas,monospace;font-size:12px;border-radius:12px;padding:12px;max-height:260px;overflow:auto;white-space:pre-wrap;margin-top:12px}
+.log .err{color:#ff9b8a}.log .ok{color:#8be29a}.log .warn{color:#ffd98a}
+.kv{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.kv b{font-weight:600}.kv span{color:var(--ink2)}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700}
+.pill.g{background:rgba(46,125,79,.12);color:var(--green)}.pill.o{background:rgba(232,106,23,.12);color:var(--acc)}.pill.r{background:rgba(192,57,43,.12);color:var(--red)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+td,th{padding:7px 8px;border-bottom:1px dashed var(--line);text-align:left}
+th{color:var(--ink2);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:var(--ink2);word-break:break-all}
+#login{max-width:420px;margin:9vh auto;padding:0 18px}
+#login .card{padding:30px}
+.hide{display:none!important}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <img src="https://raw.githubusercontent.com/glitchyapi/satlok-seva/main/assets/brand/icon_192.png" onerror="this.style.display='none'" alt="">
+  <div><h1>Satlok Seva — Admin cPanel</h1><div class="sub">OTA update server · GitHub-backed JSON storage</div></div>
+  <div class="right"><span class="badge" id="repoBadge">—</span><button class="badge" id="logoutBtn" style="cursor:pointer">logout</button></div>
+</header>
+
+<div id="login">
+  <div class="card">
+    <h2>Sign in with GitHub</h2>
+    <p class="desc">Your Personal Access Token stays in this browser tab only (sessionStorage). It is used to publish updates to the update-server repo via the GitHub API.</p>
+    <label>Personal Access Token (contents + repo rights)
+      <input type="password" id="pat" placeholder="ghp_… / github_pat_…">
+    </label>
+    <div style="height:10px"></div>
+    <label>Update-server repository (owner/name)
+      <input id="repo" value="glitchyapi/satlok-seva">
+    </label>
+    <div style="height:14px"></div>
+    <button class="btn" id="loginBtn" style="width:100%">Connect</button>
+    <div style="height:8px"></div>
+    <button class="btn ghost" id="roBtn" style="width:100%">Read-only mode (no token)</button>
+    <div class="log hide" id="loginLog"></div>
+  </div>
+</div>
+
+<div class="wrap hide" id="main">
+  <div class="tabs">
+    <button class="tab on" data-t="dash">📊 Overview</button>
+    <button class="tab" data-t="web">📦 Publish web update</button>
+    <button class="tab" data-t="apk">📱 Publish APK</button>
+    <button class="tab" data-t="notice">📣 Notice / push text</button>
+    <button class="tab" data-t="mirror">🪞 Mirrors</button>
+  </div>
+
+  <section id="t-dash">
+    <div class="card">
+      <h2>Live channel state</h2>
+      <div class="desc">What every installed app reads on launch (universal URL).</div>
+      <div id="dashKv"></div>
+      <div style="height:10px"></div>
+      <div class="row"><button class="btn ghost" id="refreshBtn">⟳ Refresh</button>
+      <span class="mono" id="manifestUrl"></span></div>
+    </div>
+    <div class="card">
+      <h2>Published files (<span id="fileCount">0</span>)</h2>
+      <div style="max-height:320px;overflow:auto"><table id="fileTable"><tr><th>path</th><th>sha256</th><th>size</th></tr></table></div>
+    </div>
+    <div class="card">
+      <h2>Release history</h2>
+      <div id="histBox" class="mono">—</div>
+    </div>
+  </section>
+
+  <section id="t-web" class="hide">
+    <div class="card">
+      <h2>Publish a web (in-app) update</h2>
+      <div class="desc">Pick the <b>app/assets/web</b> folder from your machine. Only files whose SHA-256 changed are uploaded — devices download only those changed files.</div>
+      <div class="grid">
+        <label>Version name<input id="wVer" placeholder="1.0.1"></label>
+        <label>Version code (auto)<input id="wCode" type="number"></label>
+      </div>
+      <div style="height:10px"></div>
+      <label>Changelog (one item per line)<textarea id="wLog" placeholder="• Faster dashboard&#10;• New banner template"></textarea></label>
+      <div style="height:10px"></div>
+      <label>Web folder (choose the <b>web</b> directory, all sub-files included)
+        <input type="file" id="wFiles" webkitdirectory directory multiple>
+      </label>
+      <div style="height:10px"></div>
+      <div class="row">
+        <button class="btn ghost" id="wScan">1 · Scan & diff</button>
+        <button class="btn" id="wPub" disabled>2 · Publish update</button>
+        <label class="row" style="font-weight:600"><input type="checkbox" id="wForce" style="width:auto"> force (cannot skip)</label>
+      </div>
+      <div class="log hide" id="wLogBox"></div>
+    </div>
+  </section>
+
+  <section id="t-apk" class="hide">
+    <div class="card">
+      <h2>Publish a native APK (shell) update</h2>
+      <div class="desc">Creates a GitHub Release, uploads the APK as asset, and points the manifest at it. Apps with an older shell show the “install APK” update screen.</div>
+      <div class="grid">
+        <label>APK version name<input id="aVer" placeholder="1.1.0"></label>
+        <label>APK version code<input id="aCode" type="number" value="2"></label>
+      </div>
+      <div style="height:10px"></div>
+      <label>APK file<input type="file" id="aFile" accept=".apk"></label>
+      <div style="height:10px"></div>
+      <label>Release notes<textarea id="aNotes"></textarea></label>
+      <div style="height:10px"></div>
+      <div class="row"><button class="btn" id="aPub">Publish APK release</button>
+      <label class="row" style="font-weight:600"><input type="checkbox" id="aMin" style="width:auto"> also set as minimum required shell</label></div>
+      <div class="log hide" id="aLogBox"></div>
+    </div>
+  </section>
+
+  <section id="t-notice" class="hide">
+    <div class="card">
+      <h2>Push a notice to all devices</h2>
+      <div class="desc">On next app open every device shows an in-app banner + system notification.</div>
+      <label>Title<input id="nTitle" placeholder="Bhandara on 15 Sep at Ashram"></label>
+      <div style="height:10px"></div>
+      <label>Body<textarea id="nBody"></textarea></label>
+      <div style="height:10px"></div>
+      <div class="row"><button class="btn" id="nPub">Push notice</button><button class="btn ghost" id="nClear">Clear notice</button></div>
+      <div class="log hide" id="nLogBox"></div>
+    </div>
+  </section>
+
+  <section id="t-mirror" class="hide">
+    <div class="card">
+      <h2>File mirrors (HeOnlyFiles / any direct-link host)</h2>
+      <div class="desc">Upload the changed files yourself to any host that gives direct download links, then paste one line per file: <span class="mono">path URL</span>. The app tries mirrors first, then the GitHub copy, and verifies SHA-256 of every file.</div>
+      <label>Mirror lines<textarea id="mLines" style="min-height:140px" placeholder="js/app.js https://heonlyfiles.com/dl/abc123/app.js"></textarea></label>
+      <div style="height:10px"></div>
+      <label>Extra manifest URLs (manifestMirrors, one per line)<textarea id="mManifest" placeholder="https://your.host/manifest.json"></textarea></label>
+      <div style="height:10px"></div>
+      <button class="btn" id="mPub">Save mirrors</button>
+      <div class="log hide" id="mLogBox"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+"use strict";
+var GH = "https://api.github.com";
+var S = { token: sessionStorage.getItem("ssv_tok") || "", repo: sessionStorage.getItem("ssv_repo") || "glitchyapi/satlok-seva", manifest: null, scanned: null };
+function $(id){return document.getElementById(id);}
+function log(box, msg, cls){ var b=$(box); b.classList.remove("hide"); var d=document.createElement("div"); if(cls)d.className=cls; d.textContent=msg; b.appendChild(d); b.scrollTop=b.scrollHeight; }
+function api(path, opts){
+  opts = opts || {};
+  opts.headers = Object.assign({ "Accept": "application/vnd.github+json" }, opts.headers || {});
+  if (S.token) opts.headers["Authorization"] = "Bearer " + S.token;
+  return fetch(GH + path, opts).then(function(r){
+    if (!r.ok) return r.text().then(function(t){ throw new Error("HTTP " + r.status + " " + t.slice(0,200)); });
+    return r.status===204 ? null : r.json();
+  });
+}
+function pagesBase(){ return "https://" + S.repo.split("/")[0] + ".github.io/" + S.repo.split("/")[1] + "/"; }
+function manifestUrl(){ return pagesBase() + "updates/manifest.json"; }
+function rawUrl(p){ return "https://raw.githubusercontent.com/" + S.repo + "/main/" + p; }
+async function sha256(buf){ var h = await crypto.subtle.digest("SHA-256", buf); return Array.from(new Uint8Array(h)).map(function(b){return b.toString(16).padStart(2,"0");}).join(""); }
+function b64(buf){ var u=new Uint8Array(buf), s="", CH=0x8000; for(var i=0;i<u.length;i+=CH) s+=String.fromCharCode.apply(null,u.subarray(i,i+CH)); return btoa(s); }
+async function fetchManifest(){
+  try { var r = await fetch(manifestUrl() + "?_t=" + Date.now(), {cache:"no-store"}); if(!r.ok) throw 0; return await r.json(); }
+  catch(e){ try { var r2 = await fetch(rawUrl("updates/manifest.json") + "?_t=" + Date.now(), {cache:"no-store"}); if(!r2.ok) throw 0; return await r2.json(); } catch(e2){ return null; } }
+}
+async function putFile(path, contentB64, message){
+  var cur = null;
+  try { cur = await api("/repos/" + S.repo + "/contents/" + path); } catch(e){}
+  var body = { message: message, content: contentB64, branch: "main" };
+  if (cur && cur.sha) body.sha = cur.sha;
+  return api("/repos/" + S.repo + "/contents/" + path, { method: "PUT", headers: {"Content-Type":"application/json"}, body: JSON.stringify(body) });
+}
+
+/* ---------- login ---------- */
+$("loginBtn").onclick = async function(){
+  S.token = $("pat").value.trim(); S.repo = $("repo").value.trim();
+  try {
+    var u = await api("/user");
+    sessionStorage.setItem("ssv_tok", S.token); sessionStorage.setItem("ssv_repo", S.repo);
+    enter();
+  } catch(e){ log("loginLog", "auth failed: " + e.message, "err"); }
+};
+$("roBtn").onclick = function(){ S.token=""; enter(); };
+$("logoutBtn").onclick = function(){ sessionStorage.clear(); location.reload(); };
+
+function enter(){
+  $("login").classList.add("hide"); $("main").classList.remove("hide");
+  $("repoBadge").textContent = S.repo + (S.token ? "" : " · read-only");
+  refreshDash();
+}
+
+/* ---------- tabs ---------- */
+document.querySelectorAll(".tab").forEach(function(t){
+  t.onclick = function(){
+    document.querySelectorAll(".tab").forEach(function(x){x.classList.remove("on");});
+    t.classList.add("on");
+    ["dash","web","apk","notice","mirror"].forEach(function(k){ $("t-"+k).classList.toggle("hide", k!==t.dataset.t); });
+  };
+});
+
+/* ---------- dash ---------- */
+async function refreshDash(){
+  $("manifestUrl").textContent = manifestUrl();
+  var m = await fetchManifest(); S.manifest = m;
+  var kv = $("dashKv"); kv.innerHTML = "";
+  if (!m){ kv.innerHTML = '<div class="kv"><b>status</b><span class="pill r">no manifest published yet</span></div>'; $("fileCount").textContent="0"; return; }
+  function row(k,v){ return '<div class="kv"><b>'+k+'</b><span>'+v+'</span></div>'; }
+  kv.innerHTML = row("web version", '<span class="pill o">v'+m.version+' ('+m.versionCode+')</span>')
+    + row("published at", m.ts ? new Date(m.ts).toLocaleString() : "—")
+    + row("files in channel", Object.keys(m.files||{}).length)
+    + row("apk channel", m.apk ? ('v'+m.apk.versionName+' code '+m.apk.versionCode) : "—")
+    + row("min shell", m.minShell || 1)
+    + row("force web", m.forceWeb ? '<span class="pill r">yes</span>' : "no")
+    + row("notice", m.notice ? m.notice.title : "—");
+  $("fileCount").textContent = Object.keys(m.files||{}).length;
+  var tb = $("fileTable"); tb.innerHTML = "<tr><th>path</th><th>sha256</th><th>size</th></tr>";
+  Object.keys(m.files||{}).sort().forEach(function(p){
+    var f=m.files[p]; var tr=document.createElement("tr");
+    tr.innerHTML="<td class='mono'>"+p+"</td><td class='mono'>"+f.sha256.slice(0,16)+"…</td><td>"+f.size+"</td>";
+    tb.appendChild(tr);
+  });
+  try { var h = await fetch(rawUrl("updates/history.json")+"?_t="+Date.now()); if(h.ok){ var hj=await h.json(); $("histBox").innerHTML = hj.map(function(x){return "• v"+x.version+" ("+x.versionCode+") — "+new Date(x.ts).toLocaleString()+" — "+(x.files||0)+" files";}).join("<br>"); } } catch(e){}
+}
+$("refreshBtn").onclick = refreshDash;
+
+/* ---------- web publish ---------- */
+$("wScan").onclick = async function(){
+  var fl = Array.from($("wFiles").files);
+  if (!fl.length){ alert("choose the web folder first"); return; }
+  var m = S.manifest || await fetchManifest(); S.manifest = m;
+  var local = {}; var changed = [];
+  for (var i=0;i<fl.length;i++){
+    var f = fl[i];
+    var rel = (f.webkitRelativePath || f.name);
+    rel = rel.substring(rel.indexOf("/") + 1);   // strip root folder name
+    if (!rel) continue;
+    var buf = await f.arrayBuffer();
+    var sha = await sha256(buf);
+    local[rel] = { sha256: sha, size: f.size, file: f };
+    var old = m && m.files && m.files[rel];
+    if (!old || old.sha256 !== sha) changed.push(rel);
+  }
+  S.scanned = { local: local, changed: changed };
+  var box = "wLogBox"; $(box).innerHTML="";
+  log(box, "scanned " + Object.keys(local).length + " files, " + changed.length + " changed:", "ok");
+  changed.forEach(function(p){ log(box, "  Δ " + p + "  (" + local[p].size + " B)"); });
+  if (!changed.length) log(box, "nothing to publish — channel already matches.", "warn");
+  $("wCode").value = (S.manifest && S.manifest.versionCode || 0) + 1;
+  if (!$("wVer").value && S.manifest) $("wVer").value = S.manifest.version;
+  $("wPub").disabled = !changed.length || !S.token;
+};
+$("wPub").onclick = async function(){
+  if (!S.token){ alert("read-only mode cannot publish"); return; }
+  var btn = $("wPub"); btn.disabled = true;
+  var box = "wLogBox";
+  try {
+    var sc = S.scanned, m = S.manifest || {};
+    var ver = $("wVer").value.trim() || "1.0.0";
+    var code = parseInt($("wCode").value, 10) || ((m.versionCode||0)+1);
+    for (var i=0;i<sc.changed.length;i++){
+      var p = sc.changed[i];
+      log(box, "upload updates/files/" + p + " …");
+      var buf = await sc.local[p].file.arrayBuffer();
+      await putFile("updates/files/" + p, b64(buf), "update v" + code + ": " + p);
+      log(box, "  ✔ " + p, "ok");
+    }
+    var files = {};
+    Object.keys(sc.local).forEach(function(p){ files[p] = { sha256: sc.local[p].sha256, size: sc.local[p].size }; });
+    var newM = {
+      app: "satlok-seva", version: ver, versionCode: code,
+      minShell: m.minShell || 1, apk: m.apk || null, notice: m.notice || null,
+      changelog: $("wLog").value.split("\n").filter(function(x){return x.trim();}),
+      forceWeb: $("wForce").checked,
+      baseUrl: pagesBase() + "updates/files/",
+      mirrors: m.mirrors || {}, manifestMirrors: m.manifestMirrors || [],
+      files: files, ts: Date.now()
+    };
+    log(box, "publishing manifest.json …");
+    await putFile("updates/manifest.json", b64(new TextEncoder().encode(JSON.stringify(newM, null, 1)).buffer), "publish v" + ver + " (" + code + ")");
+    var hist = [];
+    try { var hr = await fetch(rawUrl("updates/history.json")); if (hr.ok) hist = await hr.json(); } catch(e){}
+    hist.unshift({ version: ver, versionCode: code, ts: Date.now(), files: sc.changed.length });
+    hist = hist.slice(0, 40);
+    await putFile("updates/history.json", b64(new TextEncoder().encode(JSON.stringify(hist, null, 1)).buffer), "history v" + ver);
+    log(box, "✔ published v" + ver + " (" + code + ") — devices will pick it up on next open.", "ok");
+    S.manifest = newM; refreshDash();
+  } catch(e){ log(box, "✖ " + e.message, "err"); }
+  btn.disabled = false;
+};
+
+/* ---------- apk publish ---------- */
+$("aPub").onclick = async function(){
+  if (!S.token){ alert("read-only mode cannot publish"); return; }
+  var f = $("aFile").files[0]; if (!f){ alert("choose apk"); return; }
+  var btn = $("aPub"); btn.disabled = true; var box = "aLogBox"; $(box).innerHTML="";
+  try {
+    var ver = $("aVer").value.trim(), code = parseInt($("aCode").value,10);
+    var sha = await sha256(await f.arrayBuffer());
+    log(box, "sha256 " + sha);
+    var rel = await api("/repos/" + S.repo + "/releases", { method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ tag_name: "apk-v" + ver, name: "Satlok Seva APK v" + ver, body: $("aNotes").value, draft: false, prerelease: false }) });
+    log(box, "release " + rel.html_url);
+    var up = rel.upload_url.replace("{?name,label}", "?name=SatlokSeva-v" + ver + ".apk");
+    var r = await fetch(up, { method:"POST", headers:{ "Authorization":"Bearer "+S.token, "Content-Type":"application/vnd.android.package-archive" }, body: f });
+    if (!r.ok) throw new Error("upload http " + r.status);
+    var asset = await r.json();
+    log(box, "asset " + asset.browser_download_url, "ok");
+    var m = S.manifest || await fetchManifest() || { files: {} };
+    m.apk = { versionName: ver, versionCode: code, url: asset.browser_download_url, sha256: sha, size: f.size };
+    if ($("aMin").checked) m.minShell = code;
+    m.ts = Date.now();
+    await putFile("updates/manifest.json", b64(new TextEncoder().encode(JSON.stringify(m,null,1)).buffer), "apk release v" + ver);
+    log(box, "✔ manifest.apk updated — old shells will prompt install.", "ok");
+    S.manifest = m; refreshDash();
+  } catch(e){ log(box, "✖ " + e.message, "err"); }
+  btn.disabled = false;
+};
+
+/* ---------- notice ---------- */
+$("nPub").onclick = async function(){
+  if (!S.token) return alert("read-only");
+  var m = S.manifest || await fetchManifest(); if (!m) return alert("publish a web update first");
+  m.notice = { title: $("nTitle").value, body: $("nBody").value, ts: Date.now() };
+  await putFile("updates/manifest.json", b64(new TextEncoder().encode(JSON.stringify(m,null,1)).buffer), "notice: " + m.notice.title);
+  $("nLogBox").innerHTML=""; log("nLogBox", "✔ notice pushed", "ok"); S.manifest = m; refreshDash();
+};
+$("nClear").onclick = async function(){
+  if (!S.token) return alert("read-only");
+  var m = S.manifest; if (!m) return; m.notice = null;
+  await putFile("updates/manifest.json", b64(new TextEncoder().encode(JSON.stringify(m,null,1)).buffer), "clear notice");
+  $("nLogBox").innerHTML=""; log("nLogBox", "✔ notice cleared", "ok"); refreshDash();
+};
+
+/* ---------- mirrors ---------- */
+$("mPub").onclick = async function(){
+  if (!S.token) return alert("read-only");
+  var m = S.manifest || await fetchManifest(); if (!m) return alert("no manifest");
+  var mir = {};
+  $("mLines").value.split("\n").forEach(function(l){
+    l = l.trim(); if (!l) return;
+    var i = l.indexOf(" "); if (i < 0) return;
+    var p = l.slice(0, i), u = l.slice(i+1).trim();
+    (mir[p] = mir[p] || []).push(u);
+  });
+  m.mirrors = mir;
+  m.manifestMirrors = $("mManifest").value.split("\n").map(function(x){return x.trim();}).filter(function(x){return x;});
+  await putFile("updates/manifest.json", b64(new TextEncoder().encode(JSON.stringify(m,null,1)).buffer), "update mirrors");
+  $("mLogBox").innerHTML=""; log("mLogBox", "✔ mirrors saved (" + Object.keys(mir).length + " paths)", "ok"); refreshDash();
+};
+
+if (S.token) enter();
+</script>
+</body>
+</html>
