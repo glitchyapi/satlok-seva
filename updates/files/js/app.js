@@ -10,7 +10,7 @@
     document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = dark ? "#161009" : "#FAF6F0";
-    $("#themeBtn").textContent = dark ? "☀️" : "🌙";
+    $("#themeBtn").innerHTML = IC.html(dark ? "sun" : "moon", 19);
     if (Bridge.setStatusBar) Bridge.setStatusBar(!dark);
   }
   function applyI18n() {
@@ -76,9 +76,9 @@
     ["1", "2", "3", "4", "5", "6", "7", "8", "9"].forEach(function (n) {
       pad.appendChild(el("button", { text: n, onclick: function () { push(n); } }));
     });
-    pad.appendChild(el("button", { text: "⌫", onclick: function () { pin = pin.slice(0, -1); draw(); } }));
+    var bk = el("button", { onclick: function () { pin = pin.slice(0, -1); draw(); } }); bk.innerHTML = IC.html("backspace", 24); pad.appendChild(bk);
     pad.appendChild(el("button", { text: "0", onclick: function () { push("0"); } }));
-    pad.appendChild(el("button", { text: "✔", onclick: function () {} }));
+    var okb = el("button", { onclick: function () {} }); okb.innerHTML = IC.html("check", 24); pad.appendChild(okb);
     $("#lockForgot").classList.remove("hidden");
     $("#lockForgot").onclick = function () {
       UI.confirm(t("lock_forgot"), t("wipe_q"), function () { Store.removePin(); Store.wipe(); ls.classList.add("hidden"); onSuccess && onSuccess(); }, t("yes"), true);
@@ -127,6 +127,7 @@
       var next = order[(order.indexOf(I18N.getLang()) + 1) % order.length];
       Store.settings().lang = next; I18N.setLang(next); Bridge.prefsSet("lang", next); Store.save(); applyI18n();
     });
+    UI.$$("[data-icon]").forEach(function (s) { s.innerHTML = IC.html(s.getAttribute("data-icon"), s.classList.contains("fab") ? 26 : 23); });
     $("#modalBack").addEventListener("click", UI.closeSheet);
     $("#updateLaterBtn").addEventListener("click", function () { Screens2.hideUpdate(); });
 
