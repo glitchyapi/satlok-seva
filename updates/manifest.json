@@ -1,13 +1,13 @@
 {
  "app": "satlok-seva",
- "version": "1.0.1",
- "versionCode": 2,
+ "version": "1.0.0",
+ "versionCode": 1,
  "minShell": 1,
  "changelog": [
-  "New circular guru-photo app icon (adaptive + transparent)",
-  "Polished SVG icon system \u2014 all emoji removed",
-  "Bigger, cleaner icon buttons & banner vector icons",
-  "Invite texts without emoji"
+  "First release \u2014 seva diary, bhandara banner studio, stats",
+  "Encrypted + compressed on-device store (AES-256-GCM + DEFLATE)",
+  "OTA file-to-file updates, notices, reminders",
+  "\u0939\u093f\u0928\u094d\u0926\u0940 / English / \u0a2a\u0a70\u0a1c\u0a3e\u0a2c\u0a40"
  ],
  "forceWeb": false,
  "baseUrl": "https://glitchyapi.github.io/satlok-seva/updates/files/",
@@ -15,68 +15,64 @@
  "manifestMirrors": [],
  "files": {
   "index.html": {
-   "sha256": "e13e7b8ce6f526db937fd09161cb18b1058e40207f50b3ed354f3324c65b9bbc",
-   "size": 4708
+   "sha256": "60bc2c0b2cccd0d88ffcd7a6acc23b9c0b37f52eb720967ec7e6f67cbbade91f",
+   "size": 4585
   },
   "version.json": {
-   "sha256": "ff4b6d8047aaf043b808b592a77d888adceefd8121f207a6f74b84c02e696a52",
-   "size": 1251
-  },
-  "css/app.css": {
-   "sha256": "166a566f1272f6abb7ab72b99dcdfdd65a68c96f1e22c59908e51dad6a1f11f7",
-   "size": 19844
+   "sha256": "a0e3d19e8b84d9f64d00d8b560bbd5c09f1ad690f74af8479e34d014ab6a02ce",
+   "size": 1080
   },
   "img/logo.png": {
-   "sha256": "4f3c9e91cac21962987d82bbc7ed16f14e9cc9b663d392f983be52b2112fa344",
-   "size": 229671
+   "sha256": "b6bdfb85c05d0947a154e92e187acc1839eabd04720d69c0e1a6e5caa9fa2136",
+   "size": 325266
   },
-  "js/app.js": {
-   "sha256": "ede3575d482b25374d1535a5f16a48d9cd7a73ba4b36b1bec20e7df2091ebc06",
-   "size": 7672
+  "css/app.css": {
+   "sha256": "c88791d5769ca600ba9e9e66b1b4f8d7f9cf846613f2dc577ba4b001178ea5fa",
+   "size": 19682
+  },
+  "js/sha256.js": {
+   "sha256": "2da2aa178f8091011e92eb9ddc55c3f373e22eac2e23383cf593fbc50390570b",
+   "size": 2652
   },
   "js/bridge.js": {
    "sha256": "9006506e31aef7e7fa77fe73a8ff15574c0f7f4c253066c2310f1b9abeee6076",
    "size": 7745
   },
   "js/i18n.js": {
-   "sha256": "f9697364ecd0975eec405b1990abf90684ce766dce4520e6b0ba1e0767f6fc41",
-   "size": 21078
-  },
-  "js/screens.js": {
-   "sha256": "be6938965047f768e5ef5a2863b331cf914a5e761f75169de7def98e1aa5ccc3",
-   "size": 26299
-  },
-  "js/screens2.js": {
-   "sha256": "eab8fab43b16141bce679fc971d4676af7a89a68fbf8c6e137cc8f0e5ef0094f",
-   "size": 11114
-  },
-  "js/sha256.js": {
-   "sha256": "2da2aa178f8091011e92eb9ddc55c3f373e22eac2e23383cf593fbc50390570b",
-   "size": 2652
+   "sha256": "e0a0ac7b034ce17ba94e61c4d65cef8570859405c730bffabfdb6068b678fa54",
+   "size": 20880
   },
   "js/store.js": {
    "sha256": "526a7a9fa59d849b06a65893973c8afd940f9d1fc38148ac373af1e6bd6b0d1e",
    "size": 5354
   },
   "js/ui.js": {
-   "sha256": "7ec0017c973aa0073b36627a2f220354afa9b238f3b44aca6058ba36b91e1bcc",
-   "size": 3337
+   "sha256": "bfea048f87a1dabee498623cc8d3fdade06f35d99280b301019f89fbd46634ce",
+   "size": 3309
   },
   "js/updater.js": {
    "sha256": "4454183cd12db529af4c504c818c7c45fc19000ce39b6d5e460d96f4b01907d3",
    "size": 6297
   },
-  "js/icons.js": {
-   "sha256": "b43347affa145b21d601ba682f11afb66e7e7a563e2eafd41949f0a48a7d1afa",
-   "size": 6486
+  "js/screens.js": {
+   "sha256": "e4d53376f160024d4919d72644083290124e0bf214f376049afae93d29b9d539",
+   "size": 25550
+  },
+  "js/screens2.js": {
+   "sha256": "758fec175fd8ffc81a1829abaf0f2eddfcfcbda8b5566d289459535c7e63e28d",
+   "size": 10989
+  },
+  "js/app.js": {
+   "sha256": "e7b4e5b9230c1d33fd9159c0ea4d474b98bfe8789a6105fe1a0c6783a7e7e1c8",
+   "size": 7440
   }
  },
- "ts": 1788877399745,
+ "ts": 1788877449347,
  "apk": {
-  "versionName": "1.0.0",
-  "versionCode": 1,
-  "url": "https://github.com/glitchyapi/satlok-seva/releases/download/apk-v1.0.0/SatlokSeva-v1.0.0.apk",
-  "sha256": "6ae52f3b2e9ae06560c028bd29cb8cf39b6a6a6381a3769472900384f9a9f08d",
-  "size": 813115
+  "versionName": "1.0.1",
+  "versionCode": 2,
+  "url": "https://github.com/glitchyapi/satlok-seva/releases/download/apk-v1.0.1/SatlokSeva-v1.0.1.apk",
+  "sha256": "2be2c6e4b7e5ff1cb444e7189bccbd7a907ea6e2086fa8d8ee89177845358ecf",
+  "size": 628863
  }
 }
