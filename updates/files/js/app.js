@@ -131,18 +131,21 @@
     $("#modalBack").addEventListener("click", UI.closeSheet);
     $("#updateLaterBtn").addEventListener("click", function () { Screens2.hideUpdate(); });
 
+    var hideSplash = function () {
+      var sp = $("#splash");
+      sp.classList.add("out");
+      setTimeout(function () { sp.style.display = "none"; }, 350);
+    };
     var finish = function () {
       applyI18n();
       go("home");
       $("#app").classList.remove("hidden");
-      setTimeout(function () {
-        $("#splash").classList.add("out");
-        setTimeout(function () { $("#splash").style.display = "none"; }, 350);
-      }, 450);
       silentUpdateCheck();
     };
 
-    if (Store.hasPin()) showLock(finish); else finish();
+    /* splash must never cover the PIN pad: hide it first when locked */
+    if (Store.hasPin()) { hideSplash(); showLock(finish); }
+    else { setTimeout(hideSplash, 450); finish(); }
   }
 
   function silentUpdateCheck() {
@@ -173,7 +176,17 @@
   }
   window.addEventListener("error", function (e) { if (!window.__BOOTED) bootGuard(); }, true);
   document.addEventListener("DOMContentLoaded", function () {
-    try { boot(); window.__BOOTED = true; clearTimeout(window.__bootWatch); Bridge.prefsSet("bootGuard", ""); }
+    try {
+      var run = function () { boot(); window.__BOOTED = true; clearTimeout(window.__bootWatch); Bridge.prefsSet("bootGuard", ""); };
+      if (Bridge.prefsGet("welcomed", "") !== "1") {
+        Bridge.prefsSet("welcomed", "1");
+        var w = $("#welcome");
+        w.classList.remove("hidden");
+        requestAnimationFrame(function () { requestAnimationFrame(function () { w.classList.add("show"); }); });
+        setTimeout(function () { w.classList.remove("show"); }, 2000);              /* hold, then fade out */
+        setTimeout(function () { w.classList.add("hidden"); run(); }, 3000);        /* then normal boot */
+      } else run();
+    }
     catch (err) { bootGuard(); }
   });
   document.addEventListener("backbutton", function (e) {
