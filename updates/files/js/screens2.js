@@ -106,6 +106,8 @@
     c3.appendChild(setItem("download", t("check_update"), Updater.state.manifest ? t("version") + " " + Updater.state.manifest.version : "", Updater.hasUpdate() ? t("update_avail") : t("up_to_date"), function () {
       App.showUpdateScreen(false);
     }));
+    var lc = Bridge.prefsGet("lastCheck", "");
+    if (lc) c3.appendChild(el("div", { class: "tiny", style: "padding:8px 2px 0", text: t("last_check") + ": " + new Date(+lc).toLocaleString() }));
     var log = Store.db().updateLog;
     if (log.length) {
       c3.appendChild(el("div", { class: "divider" }));
@@ -125,6 +127,17 @@
         el("div", { class: "tiny", style: "margin-top:4px", text: t("shell_ver") + " " + info.versionCode + " · " + info.packageName })
       ])
     ]));
+    c4.appendChild(el("div", { class: "divider" }));
+    var apkI = Updater.apkInfo();
+    var shaShort = apkI && apkI.sha256 ? apkI.sha256.slice(0, 8) : "—";
+    var ar = el("div", { class: "set-item" });
+    var arIc = el("div", { class: "si-ic" }); arIc.appendChild(IC.el("shield", 18)); ar.appendChild(arIc);
+    ar.appendChild(el("div", { class: "si-tx" }, [
+      el("b", { text: "Jagat Guru Rampal Ji Maharaj" }),
+      el("span", { text: t("author") + " · " + t("verified") })
+    ]));
+    ar.appendChild(el("span", { class: "ver-badge", text: shaShort }));
+    c4.appendChild(ar);
     c4.appendChild(el("div", { class: "divider" }));
     c4.appendChild(el("div", { class: "tiny", style: "text-align:center", text: t("made_with") + " · " + t("community") }));
     page.appendChild(c4);
