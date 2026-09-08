@@ -42,13 +42,26 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink3)}
 
 /* ---------- splash: clean, static ---------- */
 .splash{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(180deg,var(--bg1),var(--bg2));transition:opacity .35s ease}
+  background:linear-gradient(180deg,#FDFCFA 0%,#F4F7F1 55%,#E9F0E6 100%);transition:opacity .35s ease}
+[data-theme="dark"] .splash{background:linear-gradient(180deg,#0E1512,#101B16)}
 .splash.out{opacity:0}
 .splash-inner{display:flex;flex-direction:column;align-items:center;gap:12px;animation:fadeIn .3s ease both}
-.splash-logo{width:112px;height:112px;border-radius:50%;box-shadow:0 10px 30px rgba(20,26,38,.14)}
-.splash-name{font-size:20px;font-weight:650;letter-spacing:.2px}
-.splash-sub{font-size:11px;color:var(--ink3);letter-spacing:1.2px;text-transform:uppercase}
+.splash-logo{width:112px;height:112px;border-radius:50%;object-fit:cover;object-position:center;box-shadow:0 10px 30px rgba(31,42,35,.16)}
+.splash-name{font-size:20px;font-weight:650;letter-spacing:.2px;color:#20261F}
+[data-theme="dark"] .splash-name{color:#E8EFE9}
+.splash-sub{font-size:11px;color:#8A9489;letter-spacing:1.2px;text-transform:uppercase}
+.splash-load{display:flex;gap:7px;justify-content:center;margin-top:6px}
+.splash-load i{width:7px;height:7px;border-radius:50%;background:#7C9A82;opacity:.3;animation:spulse 1.2s ease-in-out infinite}
+.splash-load i:nth-child(2){animation-delay:.15s}
+.splash-load i:nth-child(3){animation-delay:.3s}
+@keyframes spulse{0%,100%{opacity:.25;transform:scale(.9)}50%{opacity:.85;transform:scale(1.05)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ---------- first-run welcome ---------- */
+.welcome{position:fixed;inset:0;z-index:110;background:#FFFFFF;display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .9s ease}
+.welcome.show{opacity:1}
+.welcome-text{font-size:46px;font-weight:600;letter-spacing:1px;color:#22302A}
 
 /* ---------- lock ---------- */
 .lockscreen{position:fixed;inset:0;z-index:90;background:linear-gradient(180deg,var(--bg1),var(--bg2));display:flex;align-items:center;justify-content:center}
