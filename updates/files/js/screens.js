@@ -41,7 +41,7 @@
       var nc = el("div", { class: "card", style: "border-left:4px solid var(--saffron);cursor:pointer" });
       nc.appendChild(el("div", { class: "row spread" }, [
         el("div", { class: "row" }, [
-          el("span", { style: "font-size:20px", text: "⬇️" }),
+          IC.el("download", 20),
           el("div", {}, [el("b", { text: t("update_avail"), style: "font-size:14px" }),
             el("div", { class: "tiny", text: (Updater.state.manifest ? Updater.state.manifest.version : "") + " · " + Updater.state.diff.length + " " + t("upd_files") + " · " + UI.fmtBytes(Updater.diffSize()) })])
         ]),
@@ -59,7 +59,7 @@
         TYPES.slice(0, 4).concat(["daan"]).forEach(function (ty) {});
         ["jaap", "satsang", "bhandara", "prachar"].forEach(function (ty) {
           gr.appendChild(el("button", { class: "qitem", onclick: function () { openSevaForm(null, ty); } }, [
-            el("span", { text: UI.TYPE_ICON[ty] || "🙏" }), document.createTextNode(UI.sevLabel(ty))
+            IC.el(UI.TYPE_ICON[ty] || "lotus", 26), document.createTextNode(UI.sevLabel(ty))
           ]));
         });
         return gr;
@@ -97,7 +97,7 @@
     Store.db().sevas.slice(0, 40).forEach(function (s) { (days[s.date] = days[s.date] || []).push(s); });
     var keys = Object.keys(days).sort().reverse().slice(0, 4);
     if (!keys.length) {
-      return el("div", { class: "empty" }, [el("span", { text: "🪷" }), el("p", { text: t("no_seva") }), el("p", { class: "tiny", text: t("no_seva_sub") })]);
+      return el("div", { class: "empty" }, [IC.el("lotus", 46), el("p", { text: t("no_seva") }), el("p", { class: "tiny", text: t("no_seva_sub") })]);
     }
     keys.forEach(function (k, i) {
       var day = el("div", { class: "tl-day" + (i > 0 ? " past" : "") });
@@ -111,9 +111,13 @@
     return wrap;
   }
 
+  function tagI(icon, txt) { var s = el("span", { class: "tag gray" }); s.appendChild(IC.el(icon, 12)); s.appendChild(document.createTextNode(txt)); return s; }
+  function sevIco(type) { var d = el("div", { class: "seva-ico" }); d.appendChild(IC.el(UI.TYPE_ICON[type] || "lotus", 22)); return d; }
+  function btnI(cls, icon, label, fn) { var b = el("button", { class: cls }); b.appendChild(IC.el(icon, 16)); b.appendChild(document.createTextNode(label)); b.addEventListener("click", fn); return b; }
+
   function sevaRow(s) {
     var row = el("div", { class: "seva-item", onclick: function () { openSevaForm(s); } });
-    row.appendChild(el("div", { class: "seva-ico", text: UI.TYPE_ICON[s.type] || "🙏" }));
+    row.appendChild(sevIco(s.type));
     row.appendChild(el("div", { class: "seva-main" }, [
       el("b", { text: UI.sevLabel(s.type) }),
       el("span", { text: s.note || UI.fmtDate(s.date) })
@@ -193,7 +197,7 @@
       if (sevaQuery && (s.note || "").toLowerCase().indexOf(sevaQuery.toLowerCase()) < 0 && UI.sevLabel(s.type).toLowerCase().indexOf(sevaQuery.toLowerCase()) < 0) return false;
       return true;
     });
-    if (!list.length) { page.appendChild(el("div", { class: "empty" }, [el("span", { text: "📿" }), el("p", { text: t("no_seva") }), el("p", { class: "tiny", text: t("no_seva_sub") })])); return; }
+    if (!list.length) { page.appendChild(el("div", { class: "empty" }, [IC.el("mala", 46), el("p", { text: t("no_seva") }), el("p", { class: "tiny", text: t("no_seva_sub") })])); return; }
     var days = {};
     list.forEach(function (s) { (days[s.date] = days[s.date] || []).push(s); });
     var tl = el("div", { class: "tl" });
@@ -218,7 +222,7 @@
     page.appendChild(el("h3", { style: "margin:6px 2px 10px", text: t("bhandara_title") }));
     var up = Store.upcoming(), past = Store.pastB();
     if (!up.length && !past.length) {
-      page.appendChild(el("div", { class: "empty" }, [el("span", { text: "🍲" }), el("p", { text: t("bhandara_title") }), el("p", { class: "tiny", text: "＋" })]));
+      page.appendChild(el("div", { class: "empty" }, [IC.el("bowl", 46), el("p", { text: t("bhandara_title") }), el("p", { class: "tiny", text: t("new_bhandara") })]));
     }
     if (up.length) page.appendChild(el("div", { class: "pill-note", style: "margin-bottom:10px", text: t("upcoming") + " (" + up.length + ")" }));
     up.forEach(function (b) { page.appendChild(bhCard(b, false)); });
@@ -238,16 +242,14 @@
       el("span", { class: "tag" + (isPast ? " gray" : ""), text: UI.fmtDate(b.date) })
     ]));
     var meta = el("div", { class: "bh-meta" });
-    if (b.time) meta.appendChild(el("span", { class: "tag gray", text: "🕒 " + b.time }));
-    if (b.contact) meta.appendChild(el("span", { class: "tag gray", text: "📞 " + b.contact }));
+    if (b.time) meta.appendChild(tagI("clock", b.time));
+    if (b.contact) meta.appendChild(tagI("phone", b.contact));
     if (b.note) meta.appendChild(el("span", { class: "tag gray", text: b.note }));
     c.appendChild(meta);
     var acts = el("div", { class: "bh-actions" });
-    acts.appendChild(el("button", { class: "btn btn-primary", text: "🎨 " + t("make_banner"), onclick: function () { openBannerEditor(b); } }));
-    acts.appendChild(el("button", { class: "btn btn-ghost", text: "💬 " + t("share_text"), onclick: function () { shareInvite(b); } }));
-    acts.appendChild(el("button", {
-      class: "btn btn-ghost", text: "✏️", onclick: function () { openBhandaraForm(b); }
-    }));
+    acts.appendChild(btnI("btn btn-primary", "image", t("make_banner"), function () { openBannerEditor(b); }));
+    acts.appendChild(btnI("btn btn-ghost", "msg", t("share_text"), function () { shareInvite(b); }));
+    acts.appendChild(btnI("btn btn-ghost", "edit", t("edit"), function () { openBhandaraForm(b); }));
     c.appendChild(acts);
     return c;
   }
@@ -285,12 +287,12 @@
   }
 
   function shareInvite(b) {
-    var txt = t("invite_txt") + "\n\n🪔 " + b.title +
-      "\n📅 " + UI.fmtDate(b.date, true) + (b.time ? " · " + b.time : "") +
-      "\n📍 " + (b.place || "") +
-      (b.contact ? "\n📞 " + b.contact : "") +
-      (b.note ? "\n📝 " + b.note : "") +
-      "\n\n— " + t("blessing") + " 🙏";
+    var txt = t("invite_txt") + "\n\n" + b.title +
+      "\n" + t("inv_date") + ": " + UI.fmtDate(b.date, true) + (b.time ? " · " + t("inv_time") + " " + b.time : "") +
+      (b.place ? "\n" + t("inv_place") + ": " + b.place : "") +
+      (b.contact ? "\n" + t("inv_contact") + ": " + b.contact : "") +
+      (b.note ? "\n" + t("inv_note") + ": " + b.note : "") +
+      "\n\n— " + t("blessing");
     if (Bridge.shareText(txt)) UI.toast(t("shared"));
     else if (navigator.share) navigator.share({ text: txt });
     else { UI.sheet(t("share_text"), function (body, close) {
@@ -318,13 +320,11 @@
       body.appendChild(preview);
       var acts = el("div", { class: "modal-actions" });
       acts.appendChild(el("button", { class: "btn btn-ghost", text: t("close"), onclick: close }));
-      acts.appendChild(el("button", {
-        class: "btn btn-primary", text: "📤 " + t("share"), onclick: function () {
+      acts.appendChild(btnI("btn btn-primary", "share", t("share"), function () {
           var b64 = preview.toDataURL("image/png").split(",")[1];
           if (Bridge.shareImage(b64, "bhandara-" + b.date + ".png")) UI.toast(t("shared"));
           else UI.toast(t("banner_ready"));
-        }
-      }));
+        }));
       body.appendChild(acts);
       [0, 1, 2].forEach(function (i) {
         var th = el("canvas", { width: "1080", height: "1350" });
@@ -373,12 +373,12 @@
       ctx.fillStyle = "#F59E42"; ctx.font = "800 78px " + fonts;
       wrapText(ctx, b.title, W / 2, 720, W - 220, 92);
       ctx.fillStyle = "#F7E7CE"; ctx.font = "600 46px " + fonts;
-      ctx.fillText("📅 " + UI.fmtDate(b.date, true), W / 2, 900);
-      if (b.time) ctx.fillText("🕒 " + b.time, W / 2, 968);
+      IC.drawIconText(ctx, "cal", UI.fmtDate(b.date, true), W / 2, 900, 44, 14, "#F7E7CE");
+      if (b.time) IC.drawIconText(ctx, "clock", b.time, W / 2, 968, 42, 14, "#F7E7CE");
       ctx.fillStyle = "#EAD9BC"; ctx.font = "500 44px " + fonts;
-      wrapText(ctx, "📍 " + (b.place || ""), W / 2, 1040, W - 240, 58);
+      if (b.place) { if (b.place.length < 22) IC.drawIconText(ctx, "pin", b.place, W / 2, 1040, 42, 14, "#EAD9BC"); else wrapText(ctx, b.place, W / 2, 1040, W - 240, 58); }
       ctx.fillStyle = "#D9A441"; ctx.font = "600 40px " + fonts;
-      if (b.contact) ctx.fillText("📞 " + b.contact, W / 2, 1180);
+      if (b.contact) IC.drawIconText(ctx, "phone", b.contact, W / 2, 1180, 40, 14, "#D9A441");
       ctx.fillStyle = "rgba(247,231,206,.75)"; ctx.font = "500 34px " + fonts;
       ctx.fillText(t("blessing"), W / 2, 1262);
     } else if (style === 1) { /* Saffron Dawn */
@@ -395,15 +395,15 @@
       ctx.font = "800 84px " + fonts; wrapText(ctx, b.title, W / 2, 660, W - 180, 100);
       rr(ctx, 140, 760, W - 280, 380, 40); ctx.fillStyle = "rgba(255,255,255,.95)"; ctx.fill();
       ctx.fillStyle = "#5A2412"; ctx.font = "700 52px " + fonts;
-      ctx.fillText(UI.fmtDate(b.date, true), W / 2, 860);
+      IC.drawIconText(ctx, "cal", UI.fmtDate(b.date, true), W / 2, 860, 48, 14, "#5A2412");
       ctx.font = "600 46px " + fonts; ctx.fillStyle = "#7A3418";
-      if (b.time) ctx.fillText("🕒 " + b.time, W / 2, 935);
+      if (b.time) IC.drawIconText(ctx, "clock", b.time, W / 2, 935, 44, 14, "#7A3418");
       ctx.font = "500 42px " + fonts; ctx.fillStyle = "#6E5D4F";
-      wrapText(ctx, "📍 " + (b.place || ""), W / 2, 1010, W - 340, 56);
+      if (b.place) { if (b.place.length < 22) IC.drawIconText(ctx, "pin", b.place, W / 2, 1010, 42, 14, "#6E5D4F"); else wrapText(ctx, b.place, W / 2, 1010, W - 340, 56); }
       ctx.fillStyle = "#FFF3E0"; ctx.font = "700 44px " + fonts;
-      if (b.contact) ctx.fillText("📞 " + b.contact, W / 2, 1210);
+      if (b.contact) IC.drawIconText(ctx, "phone", b.contact, W / 2, 1210, 42, 14, "#FFF3E0");
       ctx.font = "500 34px " + fonts; ctx.fillStyle = "rgba(255,243,224,.85)";
-      ctx.fillText(t("blessing") + " 🙏", W / 2, 1290);
+      ctx.fillText(t("blessing"), W / 2, 1290);
     } else { /* Minimal Cream */
       ctx.fillStyle = "#FAF6F0"; ctx.fillRect(0, 0, W, H);
       ctx.fillStyle = "#5A2412"; ctx.fillRect(0, 0, W, 14);
@@ -411,7 +411,7 @@
       ctx.textAlign = "center";
       if (LOGO_IMG) ctx.drawImage(LOGO_IMG, W / 2 - 110, 110, 220, 220);
       ctx.fillStyle = "#E86A17"; ctx.font = "700 40px " + fonts;
-      ctx.fillText("— " + t("invite_txt").replace(/🙏/g, "").trim() + " —", W / 2, 420);
+      ctx.fillText("— " + t("invite_txt").trim() + " —", W / 2, 420);
       ctx.fillStyle = "#241A12"; ctx.font = "800 82px " + fonts;
       wrapText(ctx, b.title, W / 2, 530, W - 200, 98);
       ctx.strokeStyle = "#D9A441"; ctx.lineWidth = 3;
@@ -420,9 +420,9 @@
       ctx.fillText(UI.fmtDate(b.date, true), W / 2, 740);
       ctx.fillStyle = "#6E5D4F"; ctx.font = "500 46px " + fonts;
       var yy = 810;
-      if (b.time) { ctx.fillText("🕒 " + b.time, W / 2, yy); yy += 70; }
-      yy = wrapText(ctx, "📍 " + (b.place || ""), W / 2, yy + 10, W - 260, 60);
-      if (b.contact) { ctx.fillStyle = "#E86A17"; ctx.font = "700 46px " + fonts; ctx.fillText("📞 " + b.contact, W / 2, yy + 50); }
+      if (b.time) { IC.drawIconText(ctx, "clock", b.time, W / 2, yy, 44, 14, "#6E5D4F"); yy += 70; }
+      if (b.place) { if (b.place.length < 22) { IC.drawIconText(ctx, "pin", b.place, W / 2, yy + 10, 42, 14, "#6E5D4F"); yy += 70; } else yy = wrapText(ctx, b.place, W / 2, yy + 10, W - 260, 60); }
+      if (b.contact) { ctx.fillStyle = "#E86A17"; ctx.font = "700 46px " + fonts; IC.drawIconText(ctx, "phone", b.contact, W / 2, yy + 50, 44, 14, "#E86A17"); }
       ctx.fillStyle = "#9C8B7C"; ctx.font = "500 34px " + fonts;
       ctx.fillText(t("blessing"), W / 2, H - 90);
     }
@@ -470,7 +470,7 @@
       keys.forEach(function (k, i) {
         leg.appendChild(el("div", { class: "row" }, [
           el("span", { class: "dot", style: "background:" + colors[i % colors.length] }),
-          el("span", { text: (UI.TYPE_ICON[k] || "") + " " + UI.sevLabel(k) }),
+          IC.el(UI.TYPE_ICON[k] || "lotus", 15), el("span", { text: UI.sevLabel(k) }),
           el("b", { text: String(bt[k]) })
         ]));
       });
