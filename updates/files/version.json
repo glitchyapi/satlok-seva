@@ -1,18 +1,20 @@
 {
- "version": "1.0.0",
- "versionCode": 1,
+ "version": "1.0.1",
+ "versionCode": 2,
  "files": {
-  "index.html": "60bc2c0b2cccd0d88ffcd7a6acc23b9c0b37f52eb720967ec7e6f67cbbade91f",
-  "img/logo.png": "b6bdfb85c05d0947a154e92e187acc1839eabd04720d69c0e1a6e5caa9fa2136",
-  "css/app.css": "c88791d5769ca600ba9e9e66b1b4f8d7f9cf846613f2dc577ba4b001178ea5fa",
-  "js/sha256.js": "2da2aa178f8091011e92eb9ddc55c3f373e22eac2e23383cf593fbc50390570b",
+  "index.html": "e13e7b8ce6f526db937fd09161cb18b1058e40207f50b3ed354f3324c65b9bbc",
+  "version.json": "a0e3d19e8b84d9f64d00d8b560bbd5c09f1ad690f74af8479e34d014ab6a02ce",
+  "css/app.css": "166a566f1272f6abb7ab72b99dcdfdd65a68c96f1e22c59908e51dad6a1f11f7",
+  "img/logo.png": "4f3c9e91cac21962987d82bbc7ed16f14e9cc9b663d392f983be52b2112fa344",
+  "js/app.js": "ede3575d482b25374d1535a5f16a48d9cd7a73ba4b36b1bec20e7df2091ebc06",
   "js/bridge.js": "9006506e31aef7e7fa77fe73a8ff15574c0f7f4c253066c2310f1b9abeee6076",
-  "js/i18n.js": "e0a0ac7b034ce17ba94e61c4d65cef8570859405c730bffabfdb6068b678fa54",
+  "js/i18n.js": "f9697364ecd0975eec405b1990abf90684ce766dce4520e6b0ba1e0767f6fc41",
+  "js/screens.js": "be6938965047f768e5ef5a2863b331cf914a5e761f75169de7def98e1aa5ccc3",
+  "js/screens2.js": "eab8fab43b16141bce679fc971d4676af7a89a68fbf8c6e137cc8f0e5ef0094f",
+  "js/sha256.js": "2da2aa178f8091011e92eb9ddc55c3f373e22eac2e23383cf593fbc50390570b",
   "js/store.js": "526a7a9fa59d849b06a65893973c8afd940f9d1fc38148ac373af1e6bd6b0d1e",
-  "js/ui.js": "bfea048f87a1dabee498623cc8d3fdade06f35d99280b301019f89fbd46634ce",
+  "js/ui.js": "7ec0017c973aa0073b36627a2f220354afa9b238f3b44aca6058ba36b91e1bcc",
   "js/updater.js": "4454183cd12db529af4c504c818c7c45fc19000ce39b6d5e460d96f4b01907d3",
-  "js/screens.js": "bbdf47d311db625262dc62f626927c3acc828517bdf8319932f789ea6c9e678b",
-  "js/screens2.js": "758fec175fd8ffc81a1829abaf0f2eddfcfcbda8b5566d289459535c7e63e28d",
-  "js/app.js": "e7b4e5b9230c1d33fd9159c0ea4d474b98bfe8789a6105fe1a0c6783a7e7e1c8"
+  "js/icons.js": "b43347affa145b21d601ba682f11afb66e7e7a563e2eafd41949f0a48a7d1afa"
  }
 }
