@@ -1,5 +1,11 @@
 [
  {
+  "version": "1.0.4",
+  "versionCode": 5,
+  "ts": 1788884561833,
+  "files": 5
+ },
+ {
   "version": "1.0.3",
   "versionCode": 4,
   "ts": 1788882339838,
