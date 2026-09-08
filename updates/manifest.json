@@ -1,13 +1,13 @@
 {
  "app": "satlok-seva",
- "version": "1.0.1",
- "versionCode": 2,
+ "version": "1.0.2",
+ "versionCode": 3,
  "minShell": 1,
  "changelog": [
-  "First release \u2014 seva diary, bhandara banner studio, stats",
-  "Encrypted + compressed on-device store (AES-256-GCM + DEFLATE)",
-  "OTA file-to-file updates, notices, reminders",
-  "\u0939\u093f\u0928\u094d\u0926\u0940 / English / \u0a2a\u0a70\u0a1c\u0a3e\u0a2c\u0a40"
+  "Clean neutral UI exactly per reference (no glow, no yellow): white cards, ink-black pills, static modern curves",
+  "Home-screen icon fixed: full-bleed photo in adaptive + legacy icons",
+  "Boot watchdog: auto-rollback if an update ever fails to start",
+  "APK install now opens the install-from-this-source permission screen first"
  ],
  "forceWeb": false,
  "baseUrl": "https://glitchyapi.github.io/satlok-seva/updates/files/",
@@ -15,24 +15,24 @@
  "manifestMirrors": [],
  "files": {
   "index.html": {
-   "sha256": "e13e7b8ce6f526db937fd09161cb18b1058e40207f50b3ed354f3324c65b9bbc",
-   "size": 4708
+   "sha256": "1f374b1e50fa60b083f9a18535b1f7e5fd7bcaaed239473e0da28553d195be1a",
+   "size": 4911
   },
   "version.json": {
    "sha256": "ff4b6d8047aaf043b808b592a77d888adceefd8121f207a6f74b84c02e696a52",
    "size": 1251
   },
   "css/app.css": {
-   "sha256": "166a566f1272f6abb7ab72b99dcdfdd65a68c96f1e22c59908e51dad6a1f11f7",
-   "size": 19844
+   "sha256": "ce224f126e1547bc3567564684b21d97f915105b10d5cd419417333d618f80f0",
+   "size": 20037
   },
   "img/logo.png": {
    "sha256": "4f3c9e91cac21962987d82bbc7ed16f14e9cc9b663d392f983be52b2112fa344",
    "size": 229671
   },
   "js/app.js": {
-   "sha256": "ede3575d482b25374d1535a5f16a48d9cd7a73ba4b36b1bec20e7df2091ebc06",
-   "size": 7672
+   "sha256": "7acdb7db4e92b26b10c35ce4c7c3654750a05372bda174ae62ca41cbac2f556b",
+   "size": 8122
   },
   "js/bridge.js": {
    "sha256": "9006506e31aef7e7fa77fe73a8ff15574c0f7f4c253066c2310f1b9abeee6076",
@@ -42,9 +42,13 @@
    "sha256": "f9697364ecd0975eec405b1990abf90684ce766dce4520e6b0ba1e0767f6fc41",
    "size": 21078
   },
+  "js/icons.js": {
+   "sha256": "b43347affa145b21d601ba682f11afb66e7e7a563e2eafd41949f0a48a7d1afa",
+   "size": 6486
+  },
   "js/screens.js": {
-   "sha256": "be6938965047f768e5ef5a2863b331cf914a5e761f75169de7def98e1aa5ccc3",
-   "size": 26299
+   "sha256": "999c2d3b4eec715b2136cb5b173a0c737dd6ebe8d21d6faec5d4a69663c52d25",
+   "size": 26337
   },
   "js/screens2.js": {
    "sha256": "eab8fab43b16141bce679fc971d4676af7a89a68fbf8c6e137cc8f0e5ef0094f",
@@ -65,13 +69,9 @@
   "js/updater.js": {
    "sha256": "4454183cd12db529af4c504c818c7c45fc19000ce39b6d5e460d96f4b01907d3",
    "size": 6297
-  },
-  "js/icons.js": {
-   "sha256": "b43347affa145b21d601ba682f11afb66e7e7a563e2eafd41949f0a48a7d1afa",
-   "size": 6486
   }
  },
- "ts": 1788877466069,
+ "ts": 1788881180202,
  "apk": {
   "versionName": "1.0.1",
   "versionCode": 2,
