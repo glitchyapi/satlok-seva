@@ -18,7 +18,7 @@
    "size": 5003
   },
   "version.json": {
-   "sha256": "4715174e97b52587b449ff59459129d493986d720de5a48b2b90f52838c2047b",
+   "sha256": "abbccdbe62e98ea3495334ba1a7dbdaeae1c02bd1ee03b4b755c29fadca90400",
    "size": 1252
   },
   "css/app.css": {
@@ -70,7 +70,7 @@
    "size": 6297
   }
  },
- "ts": 1788885123263,
+ "ts": 1788885137416,
  "apk": {
   "versionName": "1.0.4",
   "versionCode": 5,
