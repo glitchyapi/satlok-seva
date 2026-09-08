@@ -4,7 +4,7 @@ import os
 from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "uploads", "Screenshot_20260712_183357.jpg")
+SRC = os.path.join(ROOT, "assets", "brand", "src", "logo_src.jpg")
 img = Image.open(SRC).convert("RGBA")
 W, H = img.size
 
