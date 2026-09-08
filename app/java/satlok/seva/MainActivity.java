@@ -23,8 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends Activity {
-    public static final int VERSION_CODE = 4;
-    public static final String VERSION_NAME = "1.0.3";
+    public static final int VERSION_CODE = 5;
+    public static final String VERSION_NAME = "1.0.4";
     private WebView web;
     private NativeBridge bridge;
 

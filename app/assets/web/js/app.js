@@ -137,8 +137,8 @@
       $("#app").classList.remove("hidden");
       setTimeout(function () {
         $("#splash").classList.add("out");
-        setTimeout(function () { $("#splash").style.display = "none"; }, 600);
-      }, 900);
+        setTimeout(function () { $("#splash").style.display = "none"; }, 350);
+      }, 450);
       silentUpdateCheck();
     };
 
@@ -148,6 +148,7 @@
   function silentUpdateCheck() {
     Updater.check(function (m, err) {
       if (!m) return;
+      Bridge.prefsSet("lastCheck", String(Date.now()));
       if (Updater.hasUpdate()) {
         Bridge.postNotification(t("update_notif"), (m.version || "") + " · " + Updater.state.diff.length + " " + t("upd_files"), "updates");
         showNotice({ title: t("update_avail"), body: m.version + " · " + Updater.state.diff.length + " " + t("upd_files"), ts: "upd" + m.versionCode });
