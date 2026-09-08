@@ -28,10 +28,16 @@ def api(path, token, data=None, method=None, raw=None, ctype="application/json")
 def sha256(b): return hashlib.sha256(b).hexdigest()
 
 def get_manifest(repo):
-    url = "https://raw.githubusercontent.com/%s/main/updates/manifest.json" % repo
+    # strong-consistency read via Contents API (raw CDN can be stale)
     try:
-        with urllib.request.urlopen(url) as r: return json.loads(r.read().decode())
-    except Exception: return None
+        d = api("/repos/%s/contents/updates/manifest.json" % repo, os.environ.get("GH_TOKEN", ""))
+        import base64 as _b
+        return json.loads(_b.b64decode(d["content"]).decode())
+    except Exception:
+        try:
+            url = "https://raw.githubusercontent.com/%s/main/updates/manifest.json" % repo
+            with urllib.request.urlopen(url) as r: return json.loads(r.read().decode())
+        except Exception: return None
 
 def put_file(repo, token, path, content_bytes, message):
     cur = None

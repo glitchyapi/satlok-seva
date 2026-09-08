@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="splash_bg">#331207</color>
-    <color name="cream">#FAF6F0</color>
+    <color name="splash_bg">#F7F6F3</color>
+    <color name="cream">#F7F6F3</color>
     <color name="maroon">#5A2412</color>
 </resources>

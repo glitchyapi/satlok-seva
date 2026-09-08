@@ -2,7 +2,7 @@
 # Download + unpack the minimal Android toolchain (JDK17 + build-tools 34 + platform 34)
 # Usage: AT=/tmp/at bash tools/fetch-tools.sh
 set -e
-AT=${AT:-/tmp/at}
+AT=${AT:-/var/tmp/at}
 mkdir -p $AT/dl && cd $AT/dl
 [ -f $AT/READY ] && { echo "toolchain already at $AT"; exit 0; }
 echo "downloading (~320MB)…"

@@ -38,17 +38,15 @@ def save(im, path):
     im.save(path, "PNG")
     print("wrote", path, im.size)
 
-# legacy launcher: circular photo, transparent corners
+# legacy launcher: FULL-BLEED square photo (every launcher shows the photo, any mask shape)
 for d, px in {"mdpi": 48, "hdpi": 72, "xhdpi": 96, "xxhdpi": 144, "xxxhdpi": 192}.items():
-    save(circle_cut(sq.resize((px, px), Image.LANCZOS), 0.045),
+    save(sq.resize((px, px), Image.LANCZOS),
          os.path.join(ROOT, "app", "res", f"mipmap-{d}", "ic_launcher.png"))
 
-# adaptive: foreground = circular medallion w/ gold ring on transparency; background = deep maroon
-fg = circle_cut(sq.resize((300, 300), Image.LANCZOS), 0.05)
-canvas = Image.new("RGBA", (432, 432), (0, 0, 0, 0))
-canvas.paste(fg, (66, 66), fg)
-save(canvas, os.path.join(ROOT, "app", "res", "mipmap-anydpi-v26", "ic_launcher_foreground.png"))
-save(Image.new("RGBA", (432, 432), (58, 22, 10, 255)),
+# adaptive: foreground = full-bleed photo (masked by launcher), background = plain white
+save(sq.resize((432, 432), Image.LANCZOS),
+     os.path.join(ROOT, "app", "res", "mipmap-anydpi-v26", "ic_launcher_foreground.png"))
+save(Image.new("RGBA", (432, 432), (255, 255, 255, 255)),
      os.path.join(ROOT, "app", "res", "mipmap-anydpi-v26", "ic_launcher_background.png"))
 
 # web / splash / brand: circular with alpha

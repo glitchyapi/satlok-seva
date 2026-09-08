@@ -165,7 +165,16 @@
     renderCurrent: renderCurrent
   };
 
-  document.addEventListener("DOMContentLoaded", function () { boot(); });
+  function bootGuard() {
+    if (Bridge.prefsGet("bootGuard", "") === "1") return; // avoid rollback loop
+    Bridge.prefsSet("bootGuard", "1");
+    try { Bridge.rollbackWeb(); Bridge.reloadWeb(); } catch (e) {}
+  }
+  window.addEventListener("error", function (e) { if (!window.__BOOTED) bootGuard(); }, true);
+  document.addEventListener("DOMContentLoaded", function () {
+    try { boot(); window.__BOOTED = true; clearTimeout(window.__bootWatch); Bridge.prefsSet("bootGuard", ""); }
+    catch (err) { bootGuard(); }
+  });
   document.addEventListener("backbutton", function (e) {
     if (!$("#modalRoot").classList.contains("hidden")) { UI.closeSheet(); return; }
     if (current !== "home") { go("home"); return; }

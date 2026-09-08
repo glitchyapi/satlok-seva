@@ -383,14 +383,48 @@ public class NativeBridge {
     public boolean installApk(String stagingName) {
         try {
             File f = new File(stagingDir(), sanitize(stagingName));
-            Uri u = MyFileProvider.getUri(act, f);
+            if (!f.exists()) return false;
+            if (Build.VERSION.SDK_INT >= 26) {
+                android.content.pm.PackageManager pm = act.getPackageManager();
+                if (!pm.canRequestPackageInstalls()) {
+                    // open the exact "install from this source" settings screen first
+                    prefs().edit().putString("pending_apk", sanitize(stagingName)).apply();
+                    try {
+                        Intent s = new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,
+                                Uri.parse("package:" + act.getPackageName()));
+                        s.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        act.startActivity(s);
+                        return true;
+                    } catch (Exception ignored) {}
+                }
+            }
+            return launchInstall(f);
+        } catch (Exception e) { return false; }
+    }
+    private boolean launchInstall(File f) {
+        Uri u = MyFileProvider.getUri(act, f);
+        try {
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setDataAndType(u, "application/vnd.android.package-archive");
-            i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
             act.startActivity(i);
             return true;
-        } catch (Exception e) { return false; }
+        } catch (Exception e) {
+            try {
+                Intent i2 = new Intent(Intent.ACTION_INSTALL_PACKAGE, u);
+                i2.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
+                act.startActivity(i2);
+                return true;
+            } catch (Exception e2) { return false; }
+        }
+    }
+    @JavascriptInterface
+    public void resumePendingInstall() {
+        String p = prefs().getString("pending_apk", "");
+        if (p.isEmpty()) return;
+        if (Build.VERSION.SDK_INT >= 26 && !act.getPackageManager().canRequestPackageInstalls()) return;
+        prefs().edit().remove("pending_apk").apply();
+        launchInstall(new File(stagingDir(), p));
     }
 
     /* ---------------- backup via SAF ---------------- */

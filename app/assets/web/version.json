@@ -1,20 +1,20 @@
 {
- "version": "1.0.1",
- "versionCode": 2,
+ "version": "1.0.2",
+ "versionCode": 3,
  "files": {
-  "index.html": "e13e7b8ce6f526db937fd09161cb18b1058e40207f50b3ed354f3324c65b9bbc",
-  "version.json": "a0e3d19e8b84d9f64d00d8b560bbd5c09f1ad690f74af8479e34d014ab6a02ce",
-  "css/app.css": "166a566f1272f6abb7ab72b99dcdfdd65a68c96f1e22c59908e51dad6a1f11f7",
+  "index.html": "1f374b1e50fa60b083f9a18535b1f7e5fd7bcaaed239473e0da28553d195be1a",
+  "version.json": "ff4b6d8047aaf043b808b592a77d888adceefd8121f207a6f74b84c02e696a52",
+  "css/app.css": "ce224f126e1547bc3567564684b21d97f915105b10d5cd419417333d618f80f0",
   "img/logo.png": "4f3c9e91cac21962987d82bbc7ed16f14e9cc9b663d392f983be52b2112fa344",
-  "js/app.js": "ede3575d482b25374d1535a5f16a48d9cd7a73ba4b36b1bec20e7df2091ebc06",
+  "js/app.js": "7acdb7db4e92b26b10c35ce4c7c3654750a05372bda174ae62ca41cbac2f556b",
   "js/bridge.js": "9006506e31aef7e7fa77fe73a8ff15574c0f7f4c253066c2310f1b9abeee6076",
   "js/i18n.js": "f9697364ecd0975eec405b1990abf90684ce766dce4520e6b0ba1e0767f6fc41",
-  "js/screens.js": "be6938965047f768e5ef5a2863b331cf914a5e761f75169de7def98e1aa5ccc3",
+  "js/icons.js": "b43347affa145b21d601ba682f11afb66e7e7a563e2eafd41949f0a48a7d1afa",
+  "js/screens.js": "999c2d3b4eec715b2136cb5b173a0c737dd6ebe8d21d6faec5d4a69663c52d25",
   "js/screens2.js": "eab8fab43b16141bce679fc971d4676af7a89a68fbf8c6e137cc8f0e5ef0094f",
   "js/sha256.js": "2da2aa178f8091011e92eb9ddc55c3f373e22eac2e23383cf593fbc50390570b",
   "js/store.js": "526a7a9fa59d849b06a65893973c8afd940f9d1fc38148ac373af1e6bd6b0d1e",
   "js/ui.js": "7ec0017c973aa0073b36627a2f220354afa9b238f3b44aca6058ba36b91e1bcc",
-  "js/updater.js": "4454183cd12db529af4c504c818c7c45fc19000ce39b6d5e460d96f4b01907d3",
-  "js/icons.js": "b43347affa145b21d601ba682f11afb66e7e7a563e2eafd41949f0a48a7d1afa"
+  "js/updater.js": "4454183cd12db529af4c504c818c7c45fc19000ce39b6d5e460d96f4b01907d3"
  }
 }

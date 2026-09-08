@@ -23,8 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends Activity {
-    public static final int VERSION_CODE = 2;
-    public static final String VERSION_NAME = "1.0.1";
+    public static final int VERSION_CODE = 3;
+    public static final String VERSION_NAME = "1.0.2";
     private WebView web;
     private NativeBridge bridge;
 
@@ -106,6 +106,12 @@ public class MainActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         bridge.onActivityFileResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (bridge != null) bridge.resumePendingInstall();
     }
 
     @Override
