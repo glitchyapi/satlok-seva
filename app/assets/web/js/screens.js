@@ -218,7 +218,7 @@
     page.appendChild(el("h3", { style: "margin:6px 2px 10px", text: t("bhandara_title") }));
     var up = Store.upcoming(), past = Store.pastB();
     if (!up.length && !past.length) {
-      page.appendChild(el("div", { class: "empty" }, [el("span", { text: "🍲" }), el("p", { text: t("bhandara_title") }), el("p", { class: "tiny", text: "＋" }]));
+      page.appendChild(el("div", { class: "empty" }, [el("span", { text: "🍲" }), el("p", { text: t("bhandara_title") }), el("p", { class: "tiny", text: "＋" })]));
     }
     if (up.length) page.appendChild(el("div", { class: "pill-note", style: "margin-bottom:10px", text: t("upcoming") + " (" + up.length + ")" }));
     up.forEach(function (b) { page.appendChild(bhCard(b, false)); });

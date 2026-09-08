@@ -41,7 +41,7 @@ def put_file(repo, token, path, content_bytes, message):
         cur = None
     body = {"message": message, "content": base64.b64encode(content_bytes).decode(), "branch": "main"}
     if cur and cur.get("sha"): body["sha"] = cur["sha"]
-    return api("/repos/%s/contents/%s" % (repo, path), token, data=body)
+    return api("/repos/%s/contents/%s" % (repo, path), token, data=body, method="PUT")
 
 def main():
     ap = argparse.ArgumentParser()
@@ -91,6 +91,11 @@ def main():
                        "sha256": sha256(b), "size": len(b)}
         if a.min_shell: newm["minShell"] = a.apk_code
         print("apk release published:", newm["apk"]["url"])
+        if not a.version:
+            newm["ts"] = int(__import__("time").time() * 1000)
+            if not a.dry_run:
+                put_file(a.repo, token, "updates/manifest.json", json.dumps(newm, indent=1).encode(), "apk release v%s" % a.apk_version)
+                print("manifest.apk updated")
 
     if a.version:
         for p in changed:
