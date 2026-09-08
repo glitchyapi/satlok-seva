@@ -1,12 +1,12 @@
 {
  "app": "satlok-seva",
- "version": "1.0.4",
- "versionCode": 5,
+ "version": "1.0.5",
+ "versionCode": 6,
  "minShell": 1,
  "changelog": [
-  "Fresh glass look",
-  "Simpler words",
-  "Clean splash and menu"
+  "PIN splash fix",
+  "Full logo restored",
+  "Sat Saheb welcome"
  ],
  "forceWeb": false,
  "baseUrl": "https://glitchyapi.github.io/satlok-seva/updates/files/",
@@ -14,24 +14,24 @@
  "manifestMirrors": [],
  "files": {
   "index.html": {
-   "sha256": "d1ac2364f9af0ab13f7b66fe7ab56dcfe5161f9ee92876d46f2b7bdcfdb54333",
-   "size": 4762
+   "sha256": "1f17f5dc919e8a60c4c0222f6ed078cff8670220a419b69b8f9b8134f1b62eba",
+   "size": 5003
   },
   "version.json": {
    "sha256": "4715174e97b52587b449ff59459129d493986d720de5a48b2b90f52838c2047b",
    "size": 1252
   },
   "css/app.css": {
-   "sha256": "d6a060127f74ffe9d78906b7600ec497cb70878d2e83f328ec6fc91416baf07f",
-   "size": 21247
+   "sha256": "3b620cf6ee2f245be2b9ecc419c7f76d0610c8414a28d8aa94233eb9dc54af07",
+   "size": 22148
   },
   "img/logo.png": {
-   "sha256": "4f3c9e91cac21962987d82bbc7ed16f14e9cc9b663d392f983be52b2112fa344",
-   "size": 229671
+   "sha256": "9851fe9cdde99aac759081ef944707a020ed88deafc7c8aaed7b459b883e5d36",
+   "size": 227405
   },
   "js/app.js": {
-   "sha256": "fcdd67a75415b58c3150cde84107d7a6420999ae78224bca1b2bc54b17528cfa",
-   "size": 8178
+   "sha256": "0e37705ab660c2b7554b5fbc51fc57a101e702f7aea0e3cd95517f184d0f43dd",
+   "size": 8858
   },
   "js/bridge.js": {
    "sha256": "9006506e31aef7e7fa77fe73a8ff15574c0f7f4c253066c2310f1b9abeee6076",
@@ -70,7 +70,7 @@
    "size": 6297
   }
  },
- "ts": 1788884659168,
+ "ts": 1788885123263,
  "apk": {
   "versionName": "1.0.4",
   "versionCode": 5,
