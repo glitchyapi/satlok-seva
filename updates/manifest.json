@@ -1,0 +1,67 @@
+{
+ "app": "satlok-seva",
+ "version": "1.0.0",
+ "versionCode": 1,
+ "minShell": 1,
+ "changelog": [
+  "First release \u2014 seva diary, bhandara banner studio, stats",
+  "Encrypted + compressed on-device store (AES-256-GCM + DEFLATE)",
+  "OTA file-to-file updates, notices, reminders",
+  "\u0939\u093f\u0928\u094d\u0926\u0940 / English / \u0a2a\u0a70\u0a1c\u0a3e\u0a2c\u0a40"
+ ],
+ "forceWeb": false,
+ "baseUrl": "https://glitchyapi.github.io/satlok-seva/updates/files/",
+ "mirrors": {},
+ "manifestMirrors": [],
+ "files": {
+  "index.html": {
+   "sha256": "60bc2c0b2cccd0d88ffcd7a6acc23b9c0b37f52eb720967ec7e6f67cbbade91f",
+   "size": 4585
+  },
+  "img/logo.png": {
+   "sha256": "b6bdfb85c05d0947a154e92e187acc1839eabd04720d69c0e1a6e5caa9fa2136",
+   "size": 325266
+  },
+  "css/app.css": {
+   "sha256": "c88791d5769ca600ba9e9e66b1b4f8d7f9cf846613f2dc577ba4b001178ea5fa",
+   "size": 19682
+  },
+  "js/sha256.js": {
+   "sha256": "2da2aa178f8091011e92eb9ddc55c3f373e22eac2e23383cf593fbc50390570b",
+   "size": 2652
+  },
+  "js/bridge.js": {
+   "sha256": "9006506e31aef7e7fa77fe73a8ff15574c0f7f4c253066c2310f1b9abeee6076",
+   "size": 7745
+  },
+  "js/i18n.js": {
+   "sha256": "e0a0ac7b034ce17ba94e61c4d65cef8570859405c730bffabfdb6068b678fa54",
+   "size": 20880
+  },
+  "js/store.js": {
+   "sha256": "526a7a9fa59d849b06a65893973c8afd940f9d1fc38148ac373af1e6bd6b0d1e",
+   "size": 5354
+  },
+  "js/ui.js": {
+   "sha256": "bfea048f87a1dabee498623cc8d3fdade06f35d99280b301019f89fbd46634ce",
+   "size": 3309
+  },
+  "js/updater.js": {
+   "sha256": "4454183cd12db529af4c504c818c7c45fc19000ce39b6d5e460d96f4b01907d3",
+   "size": 6297
+  },
+  "js/screens.js": {
+   "sha256": "bbdf47d311db625262dc62f626927c3acc828517bdf8319932f789ea6c9e678b",
+   "size": 25549
+  },
+  "js/screens2.js": {
+   "sha256": "758fec175fd8ffc81a1829abaf0f2eddfcfcbda8b5566d289459535c7e63e28d",
+   "size": 10989
+  },
+  "js/app.js": {
+   "sha256": "e7b4e5b9230c1d33fd9159c0ea4d474b98bfe8789a6105fe1a0c6783a7e7e1c8",
+   "size": 7440
+  }
+ },
+ "ts": 1788876376510
+}
