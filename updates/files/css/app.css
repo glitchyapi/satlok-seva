@@ -85,7 +85,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent)}
   padding:12px 14px;display:flex;gap:10px;align-items:flex-start;animation:fadeUp .4s both}
 .nb-txt{flex:1;display:flex;flex-direction:column;gap:2px;font-size:13px;color:var(--ink2)}
 .nb-txt b{color:var(--ink);font-size:14px}
-.nb-x{color:var(--ink3);font-size:13px;padding:4px}
+.nb-x{color:var(--ink3);font-size:13px;padding:4px;display:flex}
+.nb-x .ic{width:14px;height:14px}
+.tag .ic{width:12px;height:12px;margin-right:4px;vertical-align:-2px}
+.tag{display:inline-flex;align-items:center}
 
 /* ---------- shell ---------- */
 .app{position:fixed;inset:0;display:flex;flex-direction:column}
