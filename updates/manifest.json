@@ -1,12 +1,12 @@
 {
  "app": "satlok-seva",
- "version": "1.0.3",
- "versionCode": 4,
+ "version": "1.0.4",
+ "versionCode": 5,
  "minShell": 1,
  "changelog": [
-  "CRITICAL: fixed broken CSS (missing brace) that made app render unstyled",
-  "Launcher icon layers moved to drawable for OEM compatibility",
-  "Splash loader neutral"
+  "Fresh glass look",
+  "Simpler words",
+  "Clean splash and menu"
  ],
  "forceWeb": false,
  "baseUrl": "https://glitchyapi.github.io/satlok-seva/updates/files/",
@@ -14,32 +14,32 @@
  "manifestMirrors": [],
  "files": {
   "index.html": {
-   "sha256": "1f374b1e50fa60b083f9a18535b1f7e5fd7bcaaed239473e0da28553d195be1a",
-   "size": 4911
+   "sha256": "d1ac2364f9af0ab13f7b66fe7ab56dcfe5161f9ee92876d46f2b7bdcfdb54333",
+   "size": 4762
   },
   "version.json": {
    "sha256": "6f756f39cda48f97d24b0c33b1180f50c9cad3e78e33a31f74258571876ea919",
    "size": 1251
   },
   "css/app.css": {
-   "sha256": "a997471d35d6a8a341501549098617f5abdbecd69d271187a9566326ec554bb5",
-   "size": 20035
+   "sha256": "d6a060127f74ffe9d78906b7600ec497cb70878d2e83f328ec6fc91416baf07f",
+   "size": 21247
   },
   "img/logo.png": {
    "sha256": "4f3c9e91cac21962987d82bbc7ed16f14e9cc9b663d392f983be52b2112fa344",
    "size": 229671
   },
   "js/app.js": {
-   "sha256": "7acdb7db4e92b26b10c35ce4c7c3654750a05372bda174ae62ca41cbac2f556b",
-   "size": 8122
+   "sha256": "fcdd67a75415b58c3150cde84107d7a6420999ae78224bca1b2bc54b17528cfa",
+   "size": 8178
   },
   "js/bridge.js": {
    "sha256": "9006506e31aef7e7fa77fe73a8ff15574c0f7f4c253066c2310f1b9abeee6076",
    "size": 7745
   },
   "js/i18n.js": {
-   "sha256": "f9697364ecd0975eec405b1990abf90684ce766dce4520e6b0ba1e0767f6fc41",
-   "size": 21078
+   "sha256": "73f6641bf71789e5dd7d6d0633b2ea731c1ac7d8c14049a753d871db407bbc60",
+   "size": 19729
   },
   "js/icons.js": {
    "sha256": "b43347affa145b21d601ba682f11afb66e7e7a563e2eafd41949f0a48a7d1afa",
@@ -50,8 +50,8 @@
    "size": 26337
   },
   "js/screens2.js": {
-   "sha256": "eab8fab43b16141bce679fc971d4676af7a89a68fbf8c6e137cc8f0e5ef0094f",
-   "size": 11114
+   "sha256": "18fa6dd237a542ebc6f9d053a28f08b308610df8f38680b770884cf5ebe6e2f3",
+   "size": 11903
   },
   "js/sha256.js": {
    "sha256": "2da2aa178f8091011e92eb9ddc55c3f373e22eac2e23383cf593fbc50390570b",
@@ -70,7 +70,7 @@
    "size": 6297
   }
  },
- "ts": 1788882347330,
+ "ts": 1788884561833,
  "apk": {
   "versionName": "1.0.3",
   "versionCode": 4,
