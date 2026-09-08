@@ -1,0 +1,18 @@
+{
+ "version": "1.0.0",
+ "versionCode": 1,
+ "files": {
+  "index.html": "60bc2c0b2cccd0d88ffcd7a6acc23b9c0b37f52eb720967ec7e6f67cbbade91f",
+  "img/logo.png": "b6bdfb85c05d0947a154e92e187acc1839eabd04720d69c0e1a6e5caa9fa2136",
+  "css/app.css": "c88791d5769ca600ba9e9e66b1b4f8d7f9cf846613f2dc577ba4b001178ea5fa",
+  "js/sha256.js": "2da2aa178f8091011e92eb9ddc55c3f373e22eac2e23383cf593fbc50390570b",
+  "js/bridge.js": "9006506e31aef7e7fa77fe73a8ff15574c0f7f4c253066c2310f1b9abeee6076",
+  "js/i18n.js": "e0a0ac7b034ce17ba94e61c4d65cef8570859405c730bffabfdb6068b678fa54",
+  "js/store.js": "526a7a9fa59d849b06a65893973c8afd940f9d1fc38148ac373af1e6bd6b0d1e",
+  "js/ui.js": "bfea048f87a1dabee498623cc8d3fdade06f35d99280b301019f89fbd46634ce",
+  "js/updater.js": "4454183cd12db529af4c504c818c7c45fc19000ce39b6d5e460d96f4b01907d3",
+  "js/screens.js": "bbdf47d311db625262dc62f626927c3acc828517bdf8319932f789ea6c9e678b",
+  "js/screens2.js": "758fec175fd8ffc81a1829abaf0f2eddfcfcbda8b5566d289459535c7e63e28d",
+  "js/app.js": "e7b4e5b9230c1d33fd9159c0ea4d474b98bfe8789a6105fe1a0c6783a7e7e1c8"
+ }
+}
