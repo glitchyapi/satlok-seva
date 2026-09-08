@@ -45,9 +45,9 @@ for d, px in {"mdpi": 48, "hdpi": 72, "xhdpi": 96, "xxhdpi": 144, "xxxhdpi": 192
 
 # adaptive: foreground = full-bleed photo (masked by launcher), background = plain white
 save(sq.resize((432, 432), Image.LANCZOS),
-     os.path.join(ROOT, "app", "res", "mipmap-anydpi-v26", "ic_launcher_foreground.png"))
+     os.path.join(ROOT, "app", "res", "drawable", "ic_launcher_foreground.png"))
 save(Image.new("RGBA", (432, 432), (255, 255, 255, 255)),
-     os.path.join(ROOT, "app", "res", "mipmap-anydpi-v26", "ic_launcher_background.png"))
+     os.path.join(ROOT, "app", "res", "drawable", "ic_launcher_background.png"))
 
 # web / splash / brand: circular with alpha
 web = circle_cut(sq.resize((512, 512), Image.LANCZOS), 0.035)
