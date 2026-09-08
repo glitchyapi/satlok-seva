@@ -23,8 +23,8 @@
       (function () {
         var wrap = el("div", { class: "h-ring" });
         var r = 31, c = 2 * Math.PI * r;
-        wrap.innerHTML = '<svg width="74" height="74"><circle cx="37" cy="37" r="' + r + '" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="7"/>' +
-          '<circle cx="37" cy="37" r="' + r + '" fill="none" stroke="#F59E42" stroke-width="7" stroke-linecap="round" stroke-dasharray="' + c + '" stroke-dashoffset="' + (c - c * pct / 100) + '"/></svg>';
+        wrap.innerHTML = '<svg width="74" height="74"><circle cx="37" cy="37" r="' + r + '" fill="none" stroke="rgba(23,23,26,.10)" stroke-width="7"/>' +
+          '<circle cx="37" cy="37" r="' + r + '" fill="none" stroke="#17171A" stroke-width="7" stroke-linecap="round" stroke-dasharray="' + c + '" stroke-dashoffset="' + (c - c * pct / 100) + '"/></svg>';
         wrap.appendChild(el("b", { text: pct + "%" }));
         return wrap;
       })()
@@ -359,71 +359,71 @@
     var fonts = '"Noto Sans Devanagari","Noto Sans Gurmukhi",sans-serif';
     if (style === 0) { /* Maroon Utsav */
       var g0 = ctx.createLinearGradient(0, 0, W, H);
-      g0.addColorStop(0, "#4A1A0C"); g0.addColorStop(1, "#6B2A12");
+      g0.addColorStop(0, "#17171A"); g0.addColorStop(1, "#26262B");
       ctx.fillStyle = g0; ctx.fillRect(0, 0, W, H);
-      ctx.strokeStyle = "rgba(217,164,65,.55)"; ctx.lineWidth = 5;
+      ctx.strokeStyle = "rgba(255,255,255,.4)"; ctx.lineWidth = 4;
       ctx.strokeRect(46, 46, W - 92, H - 92);
-      ctx.strokeStyle = "rgba(217,164,65,.25)"; ctx.lineWidth = 2;
+      ctx.strokeStyle = "rgba(255,255,255,.16)"; ctx.lineWidth = 2;
       ctx.strokeRect(66, 66, W - 132, H - 132);
-      ctx.fillStyle = "#D9A441"; ctx.textAlign = "center";
+      ctx.fillStyle = "#E8E8EC"; ctx.textAlign = "center";
       ctx.font = "600 44px " + fonts; ctx.fillText("॥ ਸ਼੍ਰੀ ਗੁਰੂ ਦੇਵ ਨਮਹ ॥", W / 2, 170);
-      ctx.font = "700 64px " + fonts; ctx.fillStyle = "#F7E7CE";
+      ctx.font = "700 64px " + fonts; ctx.fillStyle = "#F5F5F7";
       ctx.fillText(t("bhandara_title"), W / 2, 268);
       if (LOGO_IMG) ctx.drawImage(LOGO_IMG, W / 2 - 150, 320, 300, 300);
-      ctx.fillStyle = "#F59E42"; ctx.font = "800 78px " + fonts;
+      ctx.fillStyle = "#FFFFFF"; ctx.font = "800 78px " + fonts;
       wrapText(ctx, b.title, W / 2, 720, W - 220, 92);
-      ctx.fillStyle = "#F7E7CE"; ctx.font = "600 46px " + fonts;
-      IC.drawIconText(ctx, "cal", UI.fmtDate(b.date, true), W / 2, 900, 44, 14, "#F7E7CE");
-      if (b.time) IC.drawIconText(ctx, "clock", b.time, W / 2, 968, 42, 14, "#F7E7CE");
-      ctx.fillStyle = "#EAD9BC"; ctx.font = "500 44px " + fonts;
-      if (b.place) { if (b.place.length < 22) IC.drawIconText(ctx, "pin", b.place, W / 2, 1040, 42, 14, "#EAD9BC"); else wrapText(ctx, b.place, W / 2, 1040, W - 240, 58); }
-      ctx.fillStyle = "#D9A441"; ctx.font = "600 40px " + fonts;
-      if (b.contact) IC.drawIconText(ctx, "phone", b.contact, W / 2, 1180, 40, 14, "#D9A441");
-      ctx.fillStyle = "rgba(247,231,206,.75)"; ctx.font = "500 34px " + fonts;
+      ctx.fillStyle = "#F5F5F7"; ctx.font = "600 46px " + fonts;
+      IC.drawIconText(ctx, "cal", UI.fmtDate(b.date, true), W / 2, 900, 44, 14, "#F5F5F7");
+      if (b.time) IC.drawIconText(ctx, "clock", b.time, W / 2, 968, 42, 14, "#F5F5F7");
+      ctx.fillStyle = "#C9C9CF"; ctx.font = "500 44px " + fonts;
+      if (b.place) { if (b.place.length < 22) IC.drawIconText(ctx, "pin", b.place, W / 2, 1040, 42, 14, "#C9C9CF"); else wrapText(ctx, b.place, W / 2, 1040, W - 240, 58); }
+      ctx.fillStyle = "#FFFFFF"; ctx.font = "600 40px " + fonts;
+      if (b.contact) IC.drawIconText(ctx, "phone", b.contact, W / 2, 1180, 40, 14, "#FFFFFF");
+      ctx.fillStyle = "rgba(245,245,247,.7)"; ctx.font = "500 34px " + fonts;
       ctx.fillText(t("blessing"), W / 2, 1262);
     } else if (style === 1) { /* Saffron Dawn */
       var g1 = ctx.createLinearGradient(0, 0, 0, H);
-      g1.addColorStop(0, "#F59E42"); g1.addColorStop(.55, "#E86A17"); g1.addColorStop(1, "#B4470E");
+      g1.addColorStop(0, "#FFFFFF"); g1.addColorStop(.6, "#F7F6F3"); g1.addColorStop(1, "#EDECE9");
       ctx.fillStyle = g1; ctx.fillRect(0, 0, W, H);
-      ctx.fillStyle = "rgba(255,255,255,.14)";
+      ctx.fillStyle = "rgba(23,23,26,.05)";
       ctx.beginPath(); ctx.arc(W / 2, 330, 260, 0, 7); ctx.fill();
       if (LOGO_IMG) {
         ctx.save(); ctx.beginPath(); ctx.arc(W / 2, 330, 190, 0, 7); ctx.clip();
         ctx.drawImage(LOGO_IMG, W / 2 - 190, 140, 380, 380); ctx.restore();
       }
-      ctx.fillStyle = "#FFFFFF"; ctx.textAlign = "center";
+      ctx.fillStyle = "#17171A"; ctx.textAlign = "center";
       ctx.font = "800 84px " + fonts; wrapText(ctx, b.title, W / 2, 660, W - 180, 100);
-      rr(ctx, 140, 760, W - 280, 380, 40); ctx.fillStyle = "rgba(255,255,255,.95)"; ctx.fill();
-      ctx.fillStyle = "#5A2412"; ctx.font = "700 52px " + fonts;
-      IC.drawIconText(ctx, "cal", UI.fmtDate(b.date, true), W / 2, 860, 48, 14, "#5A2412");
-      ctx.font = "600 46px " + fonts; ctx.fillStyle = "#7A3418";
-      if (b.time) IC.drawIconText(ctx, "clock", b.time, W / 2, 935, 44, 14, "#7A3418");
-      ctx.font = "500 42px " + fonts; ctx.fillStyle = "#6E5D4F";
-      if (b.place) { if (b.place.length < 22) IC.drawIconText(ctx, "pin", b.place, W / 2, 1010, 42, 14, "#6E5D4F"); else wrapText(ctx, b.place, W / 2, 1010, W - 340, 56); }
-      ctx.fillStyle = "#FFF3E0"; ctx.font = "700 44px " + fonts;
-      if (b.contact) IC.drawIconText(ctx, "phone", b.contact, W / 2, 1210, 42, 14, "#FFF3E0");
-      ctx.font = "500 34px " + fonts; ctx.fillStyle = "rgba(255,243,224,.85)";
+      rr(ctx, 140, 760, W - 280, 380, 40); ctx.fillStyle = "#FFFFFF"; ctx.fill(); ctx.strokeStyle = "rgba(20,20,24,.10)"; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = "#17171A"; ctx.font = "700 52px " + fonts;
+      IC.drawIconText(ctx, "cal", UI.fmtDate(b.date, true), W / 2, 860, 48, 14, "#17171A");
+      ctx.font = "600 46px " + fonts; ctx.fillStyle = "#3A3A40";
+      if (b.time) IC.drawIconText(ctx, "clock", b.time, W / 2, 935, 44, 14, "#3A3A40");
+      ctx.font = "500 42px " + fonts; ctx.fillStyle = "#5F5F66";
+      if (b.place) { if (b.place.length < 22) IC.drawIconText(ctx, "pin", b.place, W / 2, 1010, 42, 14, "#5F5F66"); else wrapText(ctx, b.place, W / 2, 1010, W - 340, 56); }
+      ctx.fillStyle = "#5F5F66"; ctx.font = "700 44px " + fonts;
+      if (b.contact) IC.drawIconText(ctx, "phone", b.contact, W / 2, 1210, 42, 14, "#5F5F66");
+      ctx.font = "500 34px " + fonts; ctx.fillStyle = "#9A9AA1";
       ctx.fillText(t("blessing"), W / 2, 1290);
     } else { /* Minimal Cream */
-      ctx.fillStyle = "#FAF6F0"; ctx.fillRect(0, 0, W, H);
-      ctx.fillStyle = "#5A2412"; ctx.fillRect(0, 0, W, 14);
-      ctx.fillRect(0, H - 14, W, 14);
+      ctx.fillStyle = "#F7F6F3"; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = "#17171A"; ctx.fillRect(0, 0, W, 10);
+      ctx.fillRect(0, H - 10, W, 10);
       ctx.textAlign = "center";
       if (LOGO_IMG) ctx.drawImage(LOGO_IMG, W / 2 - 110, 110, 220, 220);
-      ctx.fillStyle = "#E86A17"; ctx.font = "700 40px " + fonts;
+      ctx.fillStyle = "#5F5F66"; ctx.font = "700 40px " + fonts;
       ctx.fillText("— " + t("invite_txt").trim() + " —", W / 2, 420);
-      ctx.fillStyle = "#241A12"; ctx.font = "800 82px " + fonts;
+      ctx.fillStyle = "#17171A"; ctx.font = "800 82px " + fonts;
       wrapText(ctx, b.title, W / 2, 530, W - 200, 98);
-      ctx.strokeStyle = "#D9A441"; ctx.lineWidth = 3;
+      ctx.strokeStyle = "#C9C9CE"; ctx.lineWidth = 2;
       ctx.beginPath(); ctx.moveTo(W / 2 - 160, 640); ctx.lineTo(W / 2 + 160, 640); ctx.stroke();
-      ctx.fillStyle = "#5A2412"; ctx.font = "700 56px " + fonts;
+      ctx.fillStyle = "#17171A"; ctx.font = "700 56px " + fonts;
       ctx.fillText(UI.fmtDate(b.date, true), W / 2, 740);
-      ctx.fillStyle = "#6E5D4F"; ctx.font = "500 46px " + fonts;
+      ctx.fillStyle = "#5F5F66"; ctx.font = "500 46px " + fonts;
       var yy = 810;
-      if (b.time) { IC.drawIconText(ctx, "clock", b.time, W / 2, yy, 44, 14, "#6E5D4F"); yy += 70; }
-      if (b.place) { if (b.place.length < 22) { IC.drawIconText(ctx, "pin", b.place, W / 2, yy + 10, 42, 14, "#6E5D4F"); yy += 70; } else yy = wrapText(ctx, b.place, W / 2, yy + 10, W - 260, 60); }
-      if (b.contact) { ctx.fillStyle = "#E86A17"; ctx.font = "700 46px " + fonts; IC.drawIconText(ctx, "phone", b.contact, W / 2, yy + 50, 44, 14, "#E86A17"); }
-      ctx.fillStyle = "#9C8B7C"; ctx.font = "500 34px " + fonts;
+      if (b.time) { IC.drawIconText(ctx, "clock", b.time, W / 2, yy, 44, 14, "#5F5F66"); yy += 70; }
+      if (b.place) { if (b.place.length < 22) { IC.drawIconText(ctx, "pin", b.place, W / 2, yy + 10, 42, 14, "#5F5F66"); yy += 70; } else yy = wrapText(ctx, b.place, W / 2, yy + 10, W - 260, 60); }
+      if (b.contact) { ctx.fillStyle = "#17171A"; ctx.font = "700 46px " + fonts; IC.drawIconText(ctx, "phone", b.contact, W / 2, yy + 50, 44, 14, "#17171A"); }
+      ctx.fillStyle = "#9A9AA1"; ctx.font = "500 34px " + fonts;
       ctx.fillText(t("blessing"), W / 2, H - 90);
     }
   }
@@ -465,7 +465,7 @@
     if (keys.length) {
       var c2 = el("div", { class: "card" });
       c2.appendChild(el("h3", {}, [document.createTextNode(t("stats_type"))]));
-      var colors = ["#E86A17", "#D9A441", "#2E7D4F", "#7A3418", "#C0392B", "#5A7DB0", "#9C8B7C"];
+      var colors = ["#17171A", "#4B4B52", "#77777E", "#A3A3AA", "#2E2E34", "#62626A", "#C4C4CA"];
       var leg = el("div", { class: "legend" });
       keys.forEach(function (k, i) {
         leg.appendChild(el("div", { class: "row" }, [
