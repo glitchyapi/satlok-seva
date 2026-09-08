@@ -4,7 +4,7 @@
 
   function setItem(icon, title, sub, valOrNode, onclick) {
     var it = el("div", { class: "set-item" });
-    it.appendChild(el("div", { class: "si-ic", text: icon }));
+    var icw = el("div", { class: "si-ic" }); icw.appendChild(IC.el(icon, 20)); it.appendChild(icw);
     it.appendChild(el("div", { class: "si-tx" }, [el("b", { text: title }), sub ? el("span", { text: sub }) : null]));
     if (typeof valOrNode === "string") it.appendChild(el("div", { class: "si-val", text: valOrNode }));
     else if (valOrNode) it.appendChild(valOrNode);
@@ -53,7 +53,7 @@
       tr.appendChild(c);
     });
     c1.appendChild(tr);
-    c1.appendChild(setItem("⏰", t("reminder"), t("reminder_sub"), toggle(S.reminder.on, function (on) {
+    c1.appendChild(setItem("clock", t("reminder"), t("reminder_sub"), toggle(S.reminder.on, function (on) {
       S.reminder.on = on; Store.save();
       if (on) {
         Bridge.requestNotif(function () {
@@ -62,10 +62,10 @@
         });
       } else { Bridge.cancelReminder("daily"); UI.toast(t("reminder_off")); }
     })));
-    c1.appendChild(setItem("🔔", t("notif_perm"), "", el("span", { class: "si-val", text: Bridge.notifPermission() === "granted" ? t("notif_granted") : t("notif_denied") }), function () {
+    c1.appendChild(setItem("bell", t("notif_perm"), "", el("span", { class: "si-val", text: Bridge.notifPermission() === "granted" ? t("notif_granted") : t("notif_denied") }), function () {
       Bridge.requestNotif(function () { App.refresh(); });
     }));
-    c1.appendChild(setItem("🕐", t("reminder") + " — " + t("time"), "", ("0" + S.reminder.h).slice(-2) + ":" + ("0" + S.reminder.m).slice(-2), function () {
+    c1.appendChild(setItem("clock", t("reminder") + " — " + t("time"), "", ("0" + S.reminder.h).slice(-2) + ":" + ("0" + S.reminder.m).slice(-2), function () {
       UI.sheet(t("reminder"), function (body, close) {
         var ti = el("input", { type: "time", value: ("0" + S.reminder.h).slice(-2) + ":" + ("0" + S.reminder.m).slice(-2) });
         body.appendChild(ti);
@@ -84,18 +84,18 @@
     /* security */
     var c2 = el("div", { class: "card" });
     c2.appendChild(el("h3", {}, [document.createTextNode(t("security"))]));
-    c2.appendChild(el("div", { class: "pill-note", style: "margin-bottom:8px", text: "🔐 " + t("encrypted_note") }));
-    c2.appendChild(setItem("🔑", t("app_lock"), t("app_lock_sub"), Store.hasPin() ? "✔" : "—", function () { pinFlow(); }));
-    c2.appendChild(setItem("💾", t("backup"), t("export_fmt"), "", function () {
+    c2.appendChild(el("div", { class: "pill-note", style: "margin-bottom:8px" }, [IC.el("shield", 14), document.createTextNode(t("encrypted_note"))]));
+    c2.appendChild(setItem("lock", t("app_lock"), t("app_lock_sub"), Store.hasPin() ? "••••" : "—", function () { pinFlow(); }));
+    c2.appendChild(setItem("save", t("backup"), t("export_fmt"), "", function () {
       Bridge.exportBackup(Store.exportBlob(), function (p) { UI.toast(p.ok ? t("backup_done") : t("upd_fail")); });
     }));
-    c2.appendChild(setItem("📥", t("restore"), "", "", function () {
+    c2.appendChild(setItem("history", t("restore"), "", "", function () {
       Bridge.importBackup(function (p) {
         if (p.ok && p.b64) { if (Store.importBlob(p.b64)) { UI.toast(t("restore_done")); App.refresh(); } else UI.toast(t("upd_fail")); }
         else UI.toast(t("upd_fail"));
       });
     }));
-    c2.appendChild(setItem("🗑️", t("wipe"), "", "", function () {
+    c2.appendChild(setItem("trash", t("wipe"), "", "", function () {
       UI.confirm(t("wipe"), t("wipe_q"), function () { Store.wipe(); App.refresh(); UI.toast(t("deleted")); }, t("yes"), true);
     }));
     page.appendChild(c2);
@@ -103,7 +103,7 @@
     /* updates */
     var c3 = el("div", { class: "card" });
     c3.appendChild(el("h3", {}, [document.createTextNode(t("updates")), el("span", { class: "ver-badge", text: "v" + info.versionName })]));
-    c3.appendChild(setItem("⬇️", t("check_update"), Updater.state.manifest ? t("version") + " " + Updater.state.manifest.version : "", Updater.hasUpdate() ? t("update_avail") : t("up_to_date"), function () {
+    c3.appendChild(setItem("download", t("check_update"), Updater.state.manifest ? t("version") + " " + Updater.state.manifest.version : "", Updater.hasUpdate() ? t("update_avail") : t("up_to_date"), function () {
       App.showUpdateScreen(false);
     }));
     var log = Store.db().updateLog;
@@ -118,7 +118,7 @@
     /* about */
     var c4 = el("div", { class: "card" });
     c4.appendChild(el("div", { class: "row", style: "gap:14px" }, [
-      (function () { var im = el("img", { src: "img/logo.png", style: "width:56px;height:56px;border-radius:16px;box-shadow:var(--shadow-sm)" }); return im; })(),
+      (function () { var im = el("img", { src: "img/logo.png", style: "width:56px;height:56px;border-radius:50%;box-shadow:var(--shadow-sm)" }); return im; })(),
       el("div", {}, [
         el("b", { style: "font-size:16px", text: t("app_name") }),
         el("div", { class: "tiny", text: t("app_tag") }),
@@ -126,7 +126,7 @@
       ])
     ]));
     c4.appendChild(el("div", { class: "divider" }));
-    c4.appendChild(el("div", { class: "tiny", style: "text-align:center", text: t("made_with") + " · " + t("community") + " 🙏" }));
+    c4.appendChild(el("div", { class: "tiny", style: "text-align:center", text: t("made_with") + " · " + t("community") }));
     page.appendChild(c4);
   }
 
@@ -174,7 +174,7 @@
         prog: function (item, d, tot) { bar.style.width = Math.round(d / Math.max(1, tot) * 100) + "%"; },
         after: function (item, d, tot) {
           bar.style.width = Math.round(d / tot * 100) + "%";
-          fl.appendChild(el("div", { text: "✔ " + item.path + " (" + UI.fmtBytes(item.size) + ")" }));
+          fl.appendChild(el("div", {}, [IC.el("check", 12), document.createTextNode(" " + item.path + " (" + UI.fmtBytes(item.size) + ")")]));
         },
         done: function () { st.textContent = t("upd_done"); bar.style.width = "100%"; },
         fail: function (f) { st.textContent = t("upd_fail") + " (" + f + ")"; $("#updateNowBtn").disabled = false; }
@@ -182,7 +182,7 @@
     };
     if (Updater.state.apkRequired) {
       st.textContent = t("upd_apk_sub");
-      $("#updateNowBtn").textContent = "📦 " + t("upd_install");
+      $("#updateNowBtn").innerHTML = IC.html("download", 18) + t("upd_install");
     }
     function apkFlow() {
       st.textContent = t("upd_downloading") + "…";

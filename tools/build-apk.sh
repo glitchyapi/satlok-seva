@@ -20,7 +20,7 @@ $BT/aapt2 link -o $B/base.apk -I $AJAR \
   --manifest $ROOT/app/AndroidManifest.xml \
   --java $B/gen -A $ROOT/app/assets \
   --auto-add-overlay --min-sdk-version 23 --target-sdk-version 34 \
-  --version-code 1 --version-name 1.0.0 \
+  --version-code ${VCODE:-2} --version-name ${VNAME:-1.0.1} \
   $B/res.zip
 
 echo "== [3/7] javac"
@@ -53,9 +53,9 @@ if [ ! -f "$KS" ]; then
     -dname "CN=Satlok Seva, OU=Seva, O=Satlok, L=Mumbai, ST=MH, C=IN" 2>/dev/null
 fi
 $BT/apksigner sign --ks $KS --ks-pass pass:satlok123 --key-pass pass:satlok123 \
-  --ks-key-alias satlok --out $ROOT/dist/SatlokSeva-v1.0.0.apk $B/aligned.apk
+  --ks-key-alias satlok --out $ROOT/dist/SatlokSeva-v${VNAME:-1.0.1}.apk $B/aligned.apk
 
 echo "== verify"
-$BT/apksigner verify --print-certs $ROOT/dist/SatlokSeva-v1.0.0.apk | head -4
-$BT/aapt2 dump badging $ROOT/dist/SatlokSeva-v1.0.0.apk | head -6
+$BT/apksigner verify --print-certs $ROOT/dist/SatlokSeva-v${VNAME:-1.0.1}.apk | head -4
+$BT/aapt2 dump badging $ROOT/dist/SatlokSeva-v${VNAME:-1.0.1}.apk | head -6
 ls -la $ROOT/dist/

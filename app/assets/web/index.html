@@ -51,7 +51,7 @@
 </div>
 
 <!-- ============ NOTICE BANNER ============ -->
-<div id="noticeBanner" class="notice-banner hidden"><div class="nb-ico">📣</div><div class="nb-txt"><b id="nbTitle"></b><span id="nbBody"></span></div><button class="nb-x" id="nbClose">✕</button></div>
+<div id="noticeBanner" class="notice-banner hidden"><div class="nb-ico" data-icon="mega"></div><div class="nb-txt"><b id="nbTitle"></b><span id="nbBody"></span></div><button class="nb-x" id="nbClose" data-icon="x"></button></div>
 
 <!-- ============ MAIN ============ -->
 <div id="app" class="app hidden">
@@ -59,7 +59,7 @@
     <div class="tb-left"><img src="img/logo.png" class="tb-logo" alt=""><div><div class="tb-title" id="tbTitle">सतलोक सेवा</div><div class="tb-sub" id="tbSub"></div></div></div>
     <div class="tb-right">
       <button class="icon-btn" id="langPill" title="Language">हि</button>
-      <button class="icon-btn" id="themeBtn" title="Theme">🌙</button>
+      <button class="icon-btn" id="themeBtn" title="Theme"></button>
     </div>
   </header>
 
@@ -72,11 +72,11 @@
   </main>
 
   <nav class="bottomnav" id="bottomnav">
-    <button class="nb-item active" data-nav="home"><span class="nb-ic">🏠</span><span class="nb-lb" data-i18n="nav_home">होम</span></button>
-    <button class="nb-item" data-nav="seva"><span class="nb-ic">🙏</span><span class="nb-lb" data-i18n="nav_seva">सेवा</span></button>
-    <button class="nb-item fab-wrap" data-nav="add"><span class="fab">＋</span></button>
-    <button class="nb-item" data-nav="bhandara"><span class="nb-ic">🍲</span><span class="nb-lb" data-i18n="nav_bhandara">भंडारा</span></button>
-    <button class="nb-item" data-nav="more"><span class="nb-ic">⚙️</span><span class="nb-lb" data-i18n="nav_more">अधिक</span></button>
+    <button class="nb-item active" data-nav="home"><span class="nb-ic" data-icon="home"></span><span class="nb-lb" data-i18n="nav_home">होम</span></button>
+    <button class="nb-item" data-nav="seva"><span class="nb-ic" data-icon="mala"></span><span class="nb-lb" data-i18n="nav_seva">सेवा</span></button>
+    <button class="nb-item fab-wrap" data-nav="add"><span class="fab" data-icon="plus"></span></button>
+    <button class="nb-item" data-nav="bhandara"><span class="nb-ic" data-icon="bowl"></span><span class="nb-lb" data-i18n="nav_bhandara">भंडारा</span></button>
+    <button class="nb-item" data-nav="more"><span class="nb-ic" data-icon="sliders"></span><span class="nb-lb" data-i18n="nav_more">अधिक</span></button>
   </nav>
 </div>
 
@@ -85,6 +85,7 @@
 <div id="toast" class="toast hidden"></div>
 
 <script src="js/sha256.js"></script>
+<script src="js/icons.js"></script>
 <script src="js/bridge.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/store.js"></script>
