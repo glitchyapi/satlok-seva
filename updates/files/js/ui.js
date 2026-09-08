@@ -68,10 +68,10 @@
     if (n < 1048576) return (n / 1024).toFixed(1) + " KB";
     return (n / 1048576).toFixed(2) + " MB";
   }
-  var TYPE_ICON = { jaap: "📿", satsang: "🕉️", bhandara: "🍲", prachar: "📢", daan: "💝", padhna: "📖", other: "🙏" };
+  var TYPE_ICON = { jaap: "mala", satsang: "users", bhandara: "bowl", prachar: "mega", daan: "heart", padhna: "book", other: "lotus" };
 
   g.UI = {
-    $: $, $$: $$, el: el, toast: toast, sheet: sheet, closeSheet: closeSheet, confirm: confirm,
+    $: $, $$: $$, el: el, ic: IC.el, icHTML: IC.html, toast: toast, sheet: sheet, closeSheet: closeSheet, confirm: confirm,
     field: field, input: input, fmtDate: fmtDate, fmtBytes: fmtBytes, TYPE_ICON: TYPE_ICON, t: t,
     sevLabel: function (type) { return t("types." + type) || type; },
     unitLabel: function (u) { return t("units." + u) || u; }
