@@ -71,12 +71,12 @@
    "size": 6297
   }
  },
- "ts": 1788881184055,
+ "ts": 1788881191058,
  "apk": {
-  "versionName": "1.0.1",
-  "versionCode": 2,
-  "url": "https://github.com/glitchyapi/satlok-seva/releases/download/apk-v1.0.1/SatlokSeva-v1.0.1.apk",
-  "sha256": "2be2c6e4b7e5ff1cb444e7189bccbd7a907ea6e2086fa8d8ee89177845358ecf",
-  "size": 628863
+  "versionName": "1.0.2",
+  "versionCode": 3,
+  "url": "https://github.com/glitchyapi/satlok-seva/releases/download/apk-v1.0.2/SatlokSeva-v1.0.2.apk",
+  "sha256": "437f4f41af4230f8650d3efdee4c57de5eda7c1069df46cadd3e2d720d818002",
+  "size": 661631
  }
 }
