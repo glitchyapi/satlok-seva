@@ -19,8 +19,8 @@
    "size": 4708
   },
   "version.json": {
-   "sha256": "a0e3d19e8b84d9f64d00d8b560bbd5c09f1ad690f74af8479e34d014ab6a02ce",
-   "size": 1080
+   "sha256": "ff4b6d8047aaf043b808b592a77d888adceefd8121f207a6f74b84c02e696a52",
+   "size": 1251
   },
   "css/app.css": {
    "sha256": "166a566f1272f6abb7ab72b99dcdfdd65a68c96f1e22c59908e51dad6a1f11f7",
@@ -71,7 +71,7 @@
    "size": 6486
   }
  },
- "ts": 1788877386202,
+ "ts": 1788877399745,
  "apk": {
   "versionName": "1.0.0",
   "versionCode": 1,
