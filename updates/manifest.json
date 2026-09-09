@@ -1,11 +1,12 @@
 {
  "app": "satlok-seva",
- "version": "1.0.6",
- "versionCode": 7,
+ "version": "1.0.7",
+ "versionCode": 8,
  "minShell": 1,
  "changelog": [
-  "Full logo as app icon",
-  "New icon everywhere"
+  "Premium UI pass",
+  "Varshik Krikram calendar",
+  "Round icons"
  ],
  "forceWeb": false,
  "baseUrl": "https://glitchyapi.github.io/satlok-seva/updates/files/",
@@ -13,16 +14,16 @@
  "manifestMirrors": [],
  "files": {
   "index.html": {
-   "sha256": "1f17f5dc919e8a60c4c0222f6ed078cff8670220a419b69b8f9b8134f1b62eba",
-   "size": 5003
+   "sha256": "e40237c6b76e6b5eabc90c6567f08e748ab35ad1dc4ab17a66943d02475ac22c",
+   "size": 5041
   },
   "version.json": {
    "sha256": "2f0f2d80aabe89313dad6200f2d921400962c37cf85f4008ddfe719b3064a5d4",
    "size": 1252
   },
   "css/app.css": {
-   "sha256": "3b620cf6ee2f245be2b9ecc419c7f76d0610c8414a28d8aa94233eb9dc54af07",
-   "size": 22148
+   "sha256": "a83faf279b7947ee0f04b7b7272c73aad2fde81ce53fb026cfbc785c26c1ed67",
+   "size": 31023
   },
   "img/logo.png": {
    "sha256": "9851fe9cdde99aac759081ef944707a020ed88deafc7c8aaed7b459b883e5d36",
@@ -37,16 +38,16 @@
    "size": 7745
   },
   "js/i18n.js": {
-   "sha256": "73f6641bf71789e5dd7d6d0633b2ea731c1ac7d8c14049a753d871db407bbc60",
-   "size": 19729
+   "sha256": "ddd405b49285ead21730d58cc7a800c1e62477e4c778f95d1ae6d6f553ca6e48",
+   "size": 20286
   },
   "js/icons.js": {
    "sha256": "b43347affa145b21d601ba682f11afb66e7e7a563e2eafd41949f0a48a7d1afa",
    "size": 6486
   },
   "js/screens.js": {
-   "sha256": "999c2d3b4eec715b2136cb5b173a0c737dd6ebe8d21d6faec5d4a69663c52d25",
-   "size": 26337
+   "sha256": "a02458242245ac576125adad2f7c1e3a68f40830e742f4eb0788812e4d33af17",
+   "size": 26390
   },
   "js/screens2.js": {
    "sha256": "18fa6dd237a542ebc6f9d053a28f08b308610df8f38680b770884cf5ebe6e2f3",
@@ -67,9 +68,13 @@
   "js/updater.js": {
    "sha256": "4454183cd12db529af4c504c818c7c45fc19000ce39b6d5e460d96f4b01907d3",
    "size": 6297
+  },
+  "js/krikram.js": {
+   "sha256": "6738d9e83dd18f0b0c04ea4722d09146cbd2ebfae44e9d4f3be1ad563d0a15fd",
+   "size": 4029
   }
  },
- "ts": 1788948680709,
+ "ts": 1788950537027,
  "apk": {
   "versionName": "1.0.6",
   "versionCode": 7,
