@@ -1,12 +1,11 @@
 {
  "app": "satlok-seva",
- "version": "1.0.5",
- "versionCode": 6,
+ "version": "1.0.6",
+ "versionCode": 7,
  "minShell": 1,
  "changelog": [
-  "PIN splash fix",
-  "Full logo restored",
-  "Sat Saheb welcome"
+  "Full logo as app icon",
+  "New icon everywhere"
  ],
  "forceWeb": false,
  "baseUrl": "https://glitchyapi.github.io/satlok-seva/updates/files/",
@@ -70,7 +69,7 @@
    "size": 6297
   }
  },
- "ts": 1788885153018,
+ "ts": 1788948637386,
  "apk": {
   "versionName": "1.0.5",
   "versionCode": 6,
