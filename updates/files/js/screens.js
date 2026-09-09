@@ -220,6 +220,7 @@
   function renderBhandara(page) {
     page.innerHTML = "";
     page.appendChild(el("h3", { style: "margin:6px 2px 10px", text: t("bhandara_title") }));
+    if (window.Krikram) window.Krikram.render(page);
     var up = Store.upcoming(), past = Store.pastB();
     if (!up.length && !past.length) {
       page.appendChild(el("div", { class: "empty" }, [IC.el("bowl", 46), el("p", { text: t("bhandara_title") }), el("p", { class: "tiny", text: t("new_bhandara") })]));
