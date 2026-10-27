@@ -1,106 +1,83 @@
 {
- "version": "1.0.0",
  "build": 10,
  "files": {
-  "_lock.json": {
-   "path": "_lock.json",
-   "sha256": "0298d15f822737d1f22f9ff6a5ee848797f5a708bf691173dc33032abc4d825d",
-   "size": 2459
-  },
-  "index.html": {
-   "path": "index.html",
-   "sha256": "32c6f4cd654439cd226fb495bb99aded4682bf449c4028935c17c8f5865559c3",
-   "size": 19032
-  },
-  "ota-pubkey.txt": {
-   "path": "ota-pubkey.txt",
-   "sha256": "3815ab8e35a160f1c690332798ddf07d955a528a69f92a20f992fd967b4bcaa9",
-   "size": 392
+  "css/app.css": {
+   "sha256": "11bbd32b1852b52a7f583ea01425d025c9ec7720ef99df9b304f3898171f0f7a",
+   "size": 29511
   },
   "img/glyph-saffron.png": {
-   "path": "img/glyph-saffron.png",
    "sha256": "bd22d4f9c9bbd1aeb981fb7a3f2bdc9812af5df81e563db21ac1ba4e6821a280",
    "size": 18385
   },
   "img/glyph.png": {
-   "path": "img/glyph.png",
    "sha256": "362662698e71a53066c9dee1bf619c27ad29632da0f88ff34d4216f8794936e4",
    "size": 20130
   },
   "img/hero_jaap-sm.jpg": {
-   "path": "img/hero_jaap-sm.jpg",
    "sha256": "0abb05749bceeef2be2b33c6877bc4fe697a37db0988eeec7ee6ed91ce249a67",
    "size": 16936
   },
   "img/hero_jaap.jpg": {
-   "path": "img/hero_jaap.jpg",
    "sha256": "05a87fd84fc094f6300885383c910b67a456909fb358f99170df47f7c41f9da5",
    "size": 95834
   },
   "img/hero_satsang-sm.jpg": {
-   "path": "img/hero_satsang-sm.jpg",
    "sha256": "626d3b65b52b2969bf5f4cfa167c8abab47c84ce5fe4a42c28465de9e99a42b2",
    "size": 29213
   },
   "img/hero_satsang.jpg": {
-   "path": "img/hero_satsang.jpg",
    "sha256": "58229796334298df962b93e45eb981580012ce447251c912056536738987e36b",
    "size": 173367
   },
   "img/hero_seva-sm.jpg": {
-   "path": "img/hero_seva-sm.jpg",
    "sha256": "1a8468c3617217b720a5085a9835875b63c748e100ef623ca161d5111542323c",
    "size": 25385
   },
   "img/hero_seva.jpg": {
-   "path": "img/hero_seva.jpg",
    "sha256": "066a700534b5c97118d2b0ea345c9abe687361535ef72f76183af9e28659a360",
    "size": 137218
   },
   "img/logo.png": {
-   "path": "img/logo.png",
    "sha256": "820b62e820e09eaf58f6c9afaac7603af5716b3d53cefc567fa712a061a02fdc",
    "size": 28798
   },
-  "css/app.css": {
-   "path": "css/app.css",
-   "sha256": "11bbd32b1852b52a7f583ea01425d025c9ec7720ef99df9b304f3898171f0f7a",
-   "size": 29511
+  "index.html": {
+   "sha256": "32c6f4cd654439cd226fb495bb99aded4682bf449c4028935c17c8f5865559c3",
+   "size": 19032
   },
   "js/app.js": {
-   "path": "js/app.js",
    "sha256": "e9397517e396020f8bb232ff00a2ab49a07a7cdb95780fc82437bc8db3e70d72",
    "size": 68483
   },
   "js/banners.js": {
-   "path": "js/banners.js",
    "sha256": "d23b3697d5320a2ee0fa42638f1ae66e37a0982119d0f8a17aa74b44e7fe9ada",
    "size": 12655
   },
   "js/i18n.js": {
-   "path": "js/i18n.js",
    "sha256": "c869cd668d70e17568a69e9082c2c0d26cbd4774eee6b73a1eb621ed44f3d004",
    "size": 66886
   },
   "js/native.js": {
-   "path": "js/native.js",
    "sha256": "130e8ecf3529e1910999f84882ebd3c8059f3c24fa55397389e2fdef18f420f9",
    "size": 7706
   },
   "js/store.js": {
-   "path": "js/store.js",
    "sha256": "980f485be8f52fa9f9ccf3c69f08d7abe3dc0eb86b51555452330c681578917d",
    "size": 13937
   },
   "js/updater.js": {
-   "path": "js/updater.js",
    "sha256": "1a1dfbd2c88824521ce21120077120fe98dbca64b4166d0c52d89abe2958a6b9",
    "size": 17282
   },
   "js/version.js": {
-   "path": "js/version.js",
    "sha256": "1813e98dcef1ecf43fb9eefc4178061c2a6c74b91962ff8213465b6600f741d4",
    "size": 48
+  },
+  "ota-pubkey.txt": {
+   "sha256": "3815ab8e35a160f1c690332798ddf07d955a528a69f92a20f992fd967b4bcaa9",
+   "size": 392
   }
- }
+ },
+ "totalBytes": 781198,
+ "version": "1.0.0"
 }
