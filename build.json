@@ -1,0 +1,13 @@
+{
+  "appId": "org.satlok.seva",
+  "appName": "Satlok Seva",
+  "versionName": "1.0.0",
+  "versionCode": 10,
+  "webVersion": "1.0.0",
+  "webBuild": 10,
+  "channel": "stable",
+  "owner": "glitchyapi",
+  "repo": "satlok-seva",
+  "manifestUrl": "https://glitchyapi.github.io/satlok-seva/ota/manifest.json",
+  "otaBaseUrl": "https://glitchyapi.github.io/satlok-seva/ota/"
+}

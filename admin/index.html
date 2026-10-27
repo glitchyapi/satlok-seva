@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Satlok Seva · Release Console</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23E8730C'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#FBF8F5;--bg2:#F4F0EB;--sf:#fff;--sf2:#FAF7F4;--ink:#16131A;--ink2:#4A444E;--mu:#8C8590;
+--ln:#EDE7E1;--ln2:#E2DAD2;--ac:#E8730C;--ac2:#FF9436;--acs:#FFF1E2;--aci:#A9500A;
+--ok:#128A5A;--oks:#E4F5EC;--wn:#B8730A;--wns:#FFF4DC;--bd:#C6362F;--bds:#FDEBE9;--inf:#2F6BD8;--infs:#E9F0FD;
+--r:18px;--sh:0 1px 2px rgba(22,19,26,.04),0 2px 8px rgba(22,19,26,.04);--sh2:0 8px 24px rgba(22,19,26,.1),0 24px 64px rgba(22,19,26,.1)}
+html[data-theme=dark]{--bg:#121014;--bg2:#1A171D;--sf:#1C1920;--sf2:#232028;--ink:#F6F2EE;--ink2:#C9C2CC;--mu:#8E8794;
+--ln:#2C2833;--ln2:#3A3542;--ac:#FF9436;--ac2:#FFAE63;--acs:#33220F;--aci:#FFB273;
+--ok:#4FD69C;--oks:#102A20;--wn:#F0B54A;--wns:#2E2411;--bd:#FF7B72;--bds:#331917;--inf:#7FA9F5;--infs:#161F33}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+a{color:var(--aci)}
+.wrap{max-width:1120px;margin:0 auto;padding:20px 18px 80px}
+header.top{display:flex;align-items:center;gap:14px;padding:14px 0 22px;flex-wrap:wrap}
+.mark{width:44px;height:44px;border-radius:13px;background:linear-gradient(140deg,var(--ac2),var(--ac));display:grid;place-items:center;box-shadow:0 6px 18px rgba(232,115,12,.3);flex:none}
+.mark svg{width:26px;height:26px;color:#fff}
+h1{font-size:21px;font-weight:760;letter-spacing:-.025em;margin:0}
+.sub{font-size:12.5px;color:var(--mu)}
+.grow{flex:1}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:18px;box-shadow:var(--sh)}
+.card+.card{margin-top:16px}
+.card h2{font-size:16px;font-weight:730;letter-spacing:-.015em;margin:0 0 4px}
+.card .hint{font-size:12.5px;color:var(--mu);margin-bottom:14px;line-height:1.55}
+.grid{display:grid;gap:16px}
+@media(min-width:900px){.cols{grid-template-columns:1fr 1fr}}
+label{display:block;font-size:12.5px;font-weight:680;color:var(--ink2);margin:0 0 6px}
+input,textarea,select{width:100%;padding:11px 14px;border-radius:13px;background:var(--sf);border:1.5px solid var(--ln2);
+font:inherit;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus,select:focus{border-color:var(--ac);box-shadow:0 0 0 4px var(--acs)}
+textarea{min-height:88px;resize:vertical;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;line-height:1.55}
+.field{margin-bottom:14px}
+.row{display:flex;gap:12px}.row>*{flex:1;min-width:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:999px;
+font-size:14px;font-weight:700;background:var(--ink);color:var(--bg);transition:transform .16s,opacity .2s;box-shadow:var(--sh)}
+.btn:active{transform:scale(.97)}.btn[disabled]{opacity:.4;pointer-events:none}
+.btn.ac{background:linear-gradient(135deg,var(--ac2),var(--ac));color:#fff;box-shadow:0 6px 20px rgba(232,115,12,.3)}
+.btn.gh{background:var(--sf);color:var(--ink);border:1px solid var(--ln2)}
+.btn.sm{padding:8px 15px;font-size:12.5px}
+.btn.block{width:100%}
+.btn.dg{background:var(--bds);color:var(--bd);box-shadow:none}
+.tag{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:999px;font-size:11.5px;font-weight:750;background:var(--bg2);color:var(--ink2)}
+.tag.ok{background:var(--oks);color:var(--ok)}.tag.wn{background:var(--wns);color:var(--wn)}
+.tag.bd{background:var(--bds);color:var(--bd)}.tag.ac{background:var(--acs);color:var(--aci)}.tag.inf{background:var(--infs);color:var(--inf)}
+.between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tabs{display:flex;gap:4px;background:var(--bg2);padding:4px;border-radius:999px;margin-bottom:18px;overflow-x:auto}
+.tabs button{flex:1;padding:9px 14px;border-radius:999px;font-size:13px;font-weight:680;color:var(--mu);white-space:nowrap;transition:all .2s}
+.tabs button.on{background:var(--sf);color:var(--ink);box-shadow:var(--sh)}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:7px 0;font-size:13px;border-bottom:1px dashed var(--ln)}
+.kv:last-child{border:0}.kv span{color:var(--mu)}.kv b{font-weight:700;text-align:right;word-break:break-all}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:12px}
+.log{background:var(--sf2);border:1px solid var(--ln);border-radius:13px;padding:12px;max-height:280px;overflow:auto;
+font-family:ui-monospace,Menlo,monospace;font-size:11.5px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.log .ok{color:var(--ok)}.log .er{color:var(--bd)}.log .wn{color:var(--wn)}.log .mu{color:var(--mu)}
+.drop{border:2px dashed var(--ln2);border-radius:var(--r);padding:28px 18px;text-align:center;transition:all .2s;background:var(--sf2)}
+.drop.hot{border-color:var(--ac);background:var(--acs)}
+.drop b{display:block;font-size:14px;margin-bottom:5px}.drop span{font-size:12.5px;color:var(--mu)}
+.files{max-height:230px;overflow:auto;margin-top:12px}
+.files div{display:flex;gap:8px;padding:6px 0;border-bottom:1px dashed var(--ln);font-size:12px;font-family:ui-monospace,Menlo,monospace}
+.files div span{margin-left:auto;color:var(--mu);flex:none}
+.files div.new{color:var(--ok)}.files div.chg{color:var(--wn)}
+.prog{height:7px;border-radius:4px;background:var(--bg2);overflow:hidden;margin-top:12px}
+.prog i{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,var(--ac2),var(--ac));transition:width .3s}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:var(--bg);
+padding:12px 20px;border-radius:999px;font-size:13.5px;font-weight:650;box-shadow:var(--sh2);z-index:99;max-width:90vw}
+.toast.ok{background:var(--ok);color:#fff}.toast.bd{background:var(--bd);color:#fff}
+.sw{width:44px;height:26px;border-radius:999px;background:var(--ln2);position:relative;flex:none;cursor:pointer;transition:background .2s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .22s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.sw.on{background:var(--ac)}.sw.on::after{transform:translateX(18px)}
+.note{background:var(--acs);border-radius:13px;padding:13px 15px;font-size:12.5px;color:var(--aci);line-height:1.6}
+.note.ok{background:var(--oks);color:var(--ok)}.note.wn{background:var(--wns);color:var(--wn)}
+.hide{display:none!important}
+.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mb12{margin-bottom:12px}
+.stat{background:var(--sf2);border:1px solid var(--ln);border-radius:14px;padding:13px}
+.stat .k{font-size:10.5px;font-weight:750;color:var(--mu);text-transform:uppercase;letter-spacing:.06em}
+.stat .v{font-size:19px;font-weight:760;letter-spacing:-.025em;margin-top:3px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 3c-2 2.2-3 4-3 5.6a3 3 0 0 0 6 0C15 7 14 5.2 12 3z"/><path d="M5 12c0 4 3.2 7 7 7s7-3 7-7"/><path d="M8.5 11.5C6.5 10.5 4.5 11 3.5 12c1 1.6 3 2.6 5 2"/><path d="M15.5 11.5c2-1 4-.5 5 .5-1 1.6-3 2.6-5 2"/></svg></div>
+    <div class="grow"><h1>Release Console</h1><div class="sub">Satlok Seva · signed delta OTA</div></div>
+    <span class="tag" id="connTag">Not connected</span>
+    <button class="btn gh sm" id="themeBtn">◐</button>
+  </header>
+
+  <div class="tabs" id="tabs">
+    <button class="on" data-tab="dash">Dashboard</button>
+    <button data-tab="web">Publish content</button>
+    <button data-tab="apk">Publish APK</button>
+    <button data-tab="notes">Announcement</button>
+    <button data-tab="keys">Keys &amp; source</button>
+  </div>
+
+  <!-- ══════════ DASHBOARD ══════════ -->
+  <section id="tab-dash">
+    <div class="card">
+      <div class="between mb12"><div><h2>Connect to GitHub</h2>
+        <div class="hint">A personal access token with <b>repo</b> scope. It is kept in this browser only and is sent to api.github.com and nowhere else.</div></div></div>
+      <div class="row">
+        <div class="field"><label>Owner</label><input id="ghOwner" value="glitchyapi"></div>
+        <div class="field"><label>Repository</label><input id="ghRepo" value="satlok-seva"></div>
+        <div class="field"><label>Branch</label><input id="ghBranch" value="main"></div>
+      </div>
+      <div class="field"><label>Personal access token</label><input id="ghToken" type="password" placeholder="ghp_… or github_pat_…" autocomplete="off"></div>
+      <div class="row">
+        <button class="btn ac" id="btnConnect">Connect</button>
+        <button class="btn gh" id="btnForget">Forget token</button>
+      </div>
+      <div class="note mt12">The token never leaves your device except in direct calls to GitHub. For a shared machine, use a fine-grained token scoped to this one repository with <b>Contents: read &amp; write</b>.</div>
+    </div>
+
+    <div class="card" id="liveCard">
+      <div class="between mb12"><h2>Live release</h2><button class="btn gh sm" id="btnRefresh">Refresh</button></div>
+      <div class="stats" id="liveStats"></div>
+      <div class="mt16" id="liveKv"></div>
+      <div class="mt16 between">
+        <a id="manifestLink" target="_blank" class="btn gh sm">Open manifest ↗</a>
+        <a id="pagesLink" target="_blank" class="btn gh sm">Download page ↗</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>How “notify all users” works</h2>
+      <div class="hint">There is no push server and no user database — that is deliberate, so no bhagat's data is ever collected.</div>
+      <div class="note">
+        1. You publish a release here. It writes one signed <span class="mono">manifest.json</span> to GitHub Pages.<br>
+        2. Every installed app reads that universal URL on launch (and on manual check).<br>
+        3. If the build number is higher, the app raises a system notification on that device: <i>“New update available”</i>.<br>
+        4. Tapping it opens the update sheet, which downloads <b>only the files whose SHA-256 changed</b>, verifies the signature, swaps them in and reloads.<br>
+        5. If the release also carries a new APK, the app downloads it, verifies its hash and hands it to the Android installer.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PUBLISH WEB ══════════ -->
+  <section id="tab-web" class="hide">
+    <div class="card">
+      <h2>Publish a content update</h2>
+      <div class="hint">Drop the whole <span class="mono">www</span> folder (or the files you changed). Only files whose hash differs from the live release get uploaded — the rest are left untouched, and phones download only the delta.</div>
+      <div class="drop" id="webDrop">
+        <b>Drop the www folder or files here</b>
+        <span>index.html · css/ · js/ · img/ — or use the pickers below</span>
+        <div class="row mt12" style="max-width:420px;margin-inline:auto">
+          <button class="btn gh sm" id="pickFolder">Choose folder</button>
+          <button class="btn gh sm" id="pickFiles">Choose files</button>
+        </div>
+      </div>
+      <input type="file" id="webFolder" webkitdirectory directory multiple class="hide">
+      <input type="file" id="webFiles" multiple class="hide">
+      <div class="files" id="webList"></div>
+      <div class="row mt16">
+        <div class="field"><label>Web version</label><input id="webVer" placeholder="1.0.1"></div>
+        <div class="field"><label>Web build number</label><input id="webBuild" type="number" placeholder="11"></div>
+        <div class="field"><label>Channel</label><select id="webChannel"><option>stable</option><option>beta</option></select></div>
+      </div>
+      <div class="field"><label>Release notes — one line per bullet</label>
+        <textarea id="webNotes" placeholder="नए बैनर टेम्पलेट&#10;तेज़ सेवा खोज&#10;Bug fixes"></textarea></div>
+      <div class="row">
+        <div class="between card" style="padding:12px 14px;box-shadow:none"><div><b style="font-size:13px">Mandatory update</b><div class="sub">Blocks older content until updated</div></div><div class="sw" id="webMandatory"></div></div>
+        <div class="field" style="max-width:180px"><label>Minimum shell code</label><input id="webMinShell" type="number" placeholder="10"></div>
+      </div>
+      <div class="prog"><i id="webProg"></i></div>
+      <button class="btn ac block mt16" id="btnPublishWeb" disabled>Sign &amp; publish content update</button>
+    </div>
+    <div class="card"><h2>Publish log</h2><div class="log" id="webLog">Waiting…</div></div>
+  </section>
+
+  <!-- ══════════ PUBLISH APK ══════════ -->
+  <section id="tab-apk" class="hide">
+    <div class="card">
+      <h2>Publish a new APK (shell update)</h2>
+      <div class="hint">Only needed when native code or permissions change. Content updates never require a new APK.</div>
+      <div class="drop" id="apkDrop">
+        <b>Drop the signed .apk here</b><span>Signed with the same release keystore as the installed app</span>
+        <div class="mt12"><button class="btn gh sm" id="pickApk">Choose APK</button></div>
+      </div>
+      <input type="file" id="apkFile" accept=".apk" class="hide">
+      <div id="apkInfo" class="mt12"></div>
+      <div class="row mt16">
+        <div class="field"><label>Version name</label><input id="apkVer" placeholder="1.0.1"></div>
+        <div class="field"><label>Version code</label><input id="apkCode" type="number" placeholder="11"></div>
+      </div>
+      <div class="field"><label>Release notes</label><textarea id="apkNotes" placeholder="Android 15 support&#10;Faster reminders"></textarea></div>
+      <div class="between card" style="padding:12px 14px;box-shadow:none"><div><b style="font-size:13px">Mandatory</b><div class="sub">Force the install before continuing</div></div><div class="sw" id="apkMandatory"></div></div>
+      <div class="prog"><i id="apkProg"></i></div>
+      <button class="btn ac block mt16" id="btnPublishApk" disabled>Upload APK &amp; publish</button>
+      <div class="note wn mt12">GitHub Pages serves files up to 100 MB. Our APK is under 1 MB, so it is served directly. For larger builds, upload elsewhere and paste a direct link in <b>Keys &amp; source → APK mirror URL</b>.</div>
+    </div>
+    <div class="card"><h2>Publish log</h2><div class="log" id="apkLog">Waiting…</div></div>
+  </section>
+
+  <!-- ══════════ ANNOUNCEMENT ══════════ -->
+  <section id="tab-notes" class="hide">
+    <div class="card">
+      <h2>Broadcast an announcement</h2>
+      <div class="hint">Shown inside every app on next launch, and raised as a device notification. Does not require an app update.</div>
+      <div class="field"><label>Title</label><input id="annTitle" placeholder="विशाल भंडारा — 2 नवम्बर"></div>
+      <div class="field"><label>Message</label><textarea id="annBody" placeholder="सतलोक आश्रम, बड़वाला में विशाल भंडारा। समस्त संगत सपरिवार सादर आमंत्रित।"></textarea></div>
+      <div class="row">
+        <div class="field"><label>Link (optional)</label><input id="annUrl" placeholder="https://…"></div>
+        <div class="field"><label>Severity</label><select id="annLevel"><option value="info">Info</option><option value="event">Event</option><option value="urgent">Urgent</option></select></div>
+      </div>
+      <div class="between card" style="padding:12px 14px;box-shadow:none"><div><b style="font-size:13px">Also notify on device</b><div class="sub">Raise a system notification, not just an in-app card</div></div><div class="sw on" id="annNotify"></div></div>
+      <button class="btn ac block mt16" id="btnAnn">Sign &amp; broadcast</button>
+      <button class="btn dg block mt12" id="btnAnnClear">Clear announcement</button>
+    </div>
+    <div class="card"><h2>Log</h2><div class="log" id="annLog">Waiting…</div></div>
+  </section>
+
+  <!-- ══════════ KEYS ══════════ -->
+  <section id="tab-keys" class="hide">
+    <div class="card">
+      <h2>Release signing key</h2>
+      <div class="hint">The manifest is signed with RSA-2048 / SHA-256. The matching public key is pinned inside the APK, so even if someone takes over the file host they cannot push code to your users.</div>
+      <div class="between mb12"><span class="tag" id="keyTag">No key loaded</span><button class="btn gh sm" id="btnGenKey">Generate new key pair</button></div>
+      <div class="field"><label>Private key (JWK JSON) — stays in this browser</label>
+        <textarea id="keyJwk" placeholder='{"kty":"RSA","n":"…","d":"…"}' style="min-height:120px"></textarea></div>
+      <div class="row"><button class="btn ac" id="btnLoadKey">Load key</button><button class="btn gh" id="btnExportKey">Download private JWK</button></div>
+      <div class="field mt16"><label>Public key (SPKI base64) — pin this in the APK at <span class="mono">www/ota-pubkey.txt</span></label>
+        <textarea id="keyPub" readonly style="min-height:80px"></textarea></div>
+      <div class="note wn">Keep the private JWK offline and backed up. If you rotate it, you must ship a new APK with the new public key pinned, otherwise devices will reject your manifests.</div>
+    </div>
+
+    <div class="card">
+      <h2>Universal source &amp; mirrors</h2>
+      <div class="hint">The app reads one universal manifest URL. File mirrors are tried in order if the primary host fails — this is where a OnlyFiles-style direct-link host plugs in.</div>
+      <div class="field"><label>Manifest URL (what the app reads)</label><input id="srcManifest"></div>
+      <div class="field"><label>OTA base URL (where bundle files live)</label><input id="srcBase"></div>
+      <div class="field"><label>Mirror base URLs — one per line</label><textarea id="srcMirrors" placeholder="https://cdn.jsdelivr.net/gh/glitchyapi/satlok-seva@main/ota/&#10;https://your-file-host.example/d/abc/"></textarea></div>
+      <div class="field"><label>APK mirror URL (optional, overrides the Pages copy)</label><input id="srcApkMirror" placeholder="https://…/SatlokSeva.apk"></div>
+      <div class="between card" style="padding:12px 14px;box-shadow:none"><div><b style="font-size:13px">Require a valid signature</b><div class="sub">Recommended. Unsigned manifests are refused by the app.</div></div><div class="sw on" id="srcRequireSig"></div></div>
+      <button class="btn ac block mt16" id="btnSaveSource">Save source settings</button>
+    </div>
+
+    <div class="card">
+      <h2>Danger zone</h2>
+      <div class="hint">Rolling back republishes the previous manifest. Devices that already applied a newer patch will roll back on their next check.</div>
+      <button class="btn dg block" id="btnRollback">Republish previous manifest</button>
+    </div>
+  </section>
+</div>
+
+<script>
+/* ═══════════════ helpers ═══════════════ */
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const enc = new TextEncoder();
+const S = {
+  get(k, d){ try{ const v = localStorage.getItem("ssc_"+k); return v===null?d:JSON.parse(v);}catch(e){return d;} },
+  set(k, v){ localStorage.setItem("ssc_"+k, JSON.stringify(v)); },
+  del(k){ localStorage.removeItem("ssc_"+k); }
+};
+function toast(msg, kind){ const t=document.createElement("div"); t.className="toast "+(kind||""); t.textContent=msg;
+  document.body.appendChild(t); setTimeout(()=>t.remove(),3200); }
+function logTo(id, msg, cls){ const el=$(id); if(el.innerHTML==="Waiting…") el.innerHTML="";
+  el.innerHTML += `<span class="${cls||''}">${new Date().toLocaleTimeString()}  ${msg.replace(/[<>]/g,c=>({'<':'&lt;','>':'&gt;'}[c]))}</span>\n`;
+  el.scrollTop = el.scrollHeight; }
+function fmtBytes(n){ if(!n) return "0 B"; if(n<1024) return n+" B";
+  if(n<1048576) return (n/1024).toFixed(1)+" KB"; return (n/1048576).toFixed(2)+" MB"; }
+async function sha256Hex(buf){ const h=await crypto.subtle.digest("SHA-256",buf);
+  return Array.from(new Uint8Array(h)).map(b=>b.toString(16).padStart(2,"0")).join(""); }
+function bufToB64(buf){ const b=new Uint8Array(buf); let s=""; const CH=0x8000;
+  for(let i=0;i<b.length;i+=CH) s+=String.fromCharCode.apply(null,b.subarray(i,i+CH)); return btoa(s); }
+function b64ToBuf(s){ const bin=atob(s); const b=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) b[i]=bin.charCodeAt(i); return b; }
+
+/* ═══════════════ state ═══════════════ */
+let cfg = Object.assign({
+  owner:"glitchyapi", repo:"satlok-seva", branch:"main",
+  mirrors:[], apkMirror:"", requireSig:true
+}, S.get("cfg",{}));
+let token = S.get("token","");
+let live = null;            // parsed live manifest
+let livePayload = null;
+let prevManifestRaw = null;
+let webFiles = new Map();   // path -> {file, sha, size}
+let apkPick = null;
+let signingKey = null;
+
+$("#ghOwner").value=cfg.owner; $("#ghRepo").value=cfg.repo; $("#ghBranch").value=cfg.branch;
+$("#ghToken").value=token;
+function pagesBase(){ return `https://${cfg.owner}.github.io/${cfg.repo}/`; }
+function manifestUrl(){ return pagesBase()+"ota/manifest.json"; }
+function otaBase(){ return pagesBase()+"ota/"; }
+$("#srcManifest").value = manifestUrl(); $("#srcBase").value = otaBase();
+$("#srcMirrors").value = (cfg.mirrors||[]).join("\n"); $("#srcApkMirror").value = cfg.apkMirror||"";
+$("#srcRequireSig").classList.toggle("on", cfg.requireSig!==false);
+
+/* ═══════════════ GitHub API ═══════════════ */
+async function gh(path, opts){
+  opts = opts||{};
+  const r = await fetch("https://api.github.com"+path, {
+    method: opts.method||"GET",
+    headers: Object.assign({"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json",
+      "X-GitHub-Api-Version":"2022-11-28"}, opts.body?{"Content-Type":"application/json"}:{}),
+    body: opts.body?JSON.stringify(opts.body):undefined
+  });
+  const txt = await r.text();
+  let j; try{ j = JSON.parse(txt); }catch(e){ j = txt; }
+  if(!r.ok) throw new Error((j && j.message) || ("HTTP "+r.status));
+  return j;
+}
+const repoPath = p => `/repos/${cfg.owner}/${cfg.repo}${p}`;
+
+/** One atomic commit containing every file — never a half-published release. */
+async function commitFiles(files, message, logId){
+  const ref = await gh(repoPath(`/git/ref/heads/${cfg.branch}`));
+  const baseSha = ref.object.sha;
+  const baseCommit = await gh(repoPath(`/git/commits/${baseSha}`));
+  logTo(logId, `base commit ${baseSha.slice(0,7)}`, "mu");
+  const tree = [];
+  let i=0;
+  for(const [path, bytes] of files){
+    i++;
+    const blob = await gh(repoPath("/git/blobs"), {method:"POST", body:{content:bufToB64(bytes), encoding:"base64"}});
+    tree.push({path, mode:"100644", type:"blob", sha:blob.sha});
+    logTo(logId, `[${i}/${files.length}] blob ${path} (${fmtBytes(bytes.length||bytes.byteLength)})`, "ok");
+  }
+  const newTree = await gh(repoPath("/git/trees"), {method:"POST", body:{base_tree:baseCommit.tree.sha, tree}});
+  const commit = await gh(repoPath("/git/commits"), {method:"POST", body:{message, tree:newTree.sha, parents:[baseSha]}});
+  await gh(repoPath(`/git/refs/heads/${cfg.branch}`), {method:"PATCH", body:{sha:commit.sha, force:false}});
+  logTo(logId, `published commit ${commit.sha.slice(0,7)}`, "ok");
+  return commit;
+}
+
+/* ═══════════════ signing ═══════════════ */
+async function loadKeyFromJwk(jwk){
+  signingKey = await crypto.subtle.importKey("jwk", jwk,
+    {name:"RSASSA-PKCS1-v1_5", hash:"SHA-256"}, true, ["sign"]);
+  const pub = Object.assign({}, jwk); ["d","p","q","dp","dq","qi"].forEach(k=>delete pub[k]);
+  pub.key_ops=["verify"]; pub.ext=true;
+  const spki = await crypto.subtle.exportKey("spki", await crypto.subtle.importKey("jwk", pub,
+    {name:"RSASSA-PKCS1-v1_5", hash:"SHA-256"}, true, ["verify"]));
+  $("#keyPub").value = bufToB64(spki);
+  $("#keyTag").className="tag ok"; $("#keyTag").textContent="Signing key loaded · RSA-2048";
+  S.set("jwk", jwk);
+  return signingKey;
+}
+async function signManifest(payloadObj){
+  if(!signingKey) throw new Error("Load the release signing key first (Keys & source tab).");
+  const payload = JSON.stringify(payloadObj);
+  const sig = await crypto.subtle.sign("RSASSA-PKCS1-v1_5", signingKey, enc.encode(payload));
+  return { schema:1, app:"satlok-seva", publishedAt:new Date().toISOString(),
+           payload, signature: bufToB64(sig) };
+}
+
+/* ═══════════════ live manifest ═══════════════ */
+async function refreshLive(){
+  try{
+    const r = await fetch(manifestUrl()+"?t="+Date.now(), {cache:"no-store"});
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    const raw = await r.text();
+    live = JSON.parse(raw);
+    livePayload = typeof live.payload==="string" ? JSON.parse(live.payload) : live.payload;
+    $("#connTag").className="tag ok"; $("#connTag").textContent="Live · "+(livePayload.channel||"stable");
+    renderLive();
+  }catch(e){
+    live=null; livePayload=null;
+    $("#liveStats").innerHTML = `<div class="note wn">No live manifest yet (${e.message}). Publish your first release from the “Publish content” tab.</div>`;
+    $("#liveKv").innerHTML="";
+  }
+  // previous copy for rollback
+  try{
+    const r = await fetch(pagesBase()+"ota/manifest.previous.json?t="+Date.now(), {cache:"no-store"});
+    prevManifestRaw = r.ok ? await r.text() : null;
+  }catch(e){ prevManifestRaw=null; }
+}
+function renderLive(){
+  const p = livePayload||{}, w = p.web||{}, s = p.shell||{};
+  $("#liveStats").innerHTML = `
+    <div class="stat"><div class="k">Content version</div><div class="v">${w.version||"—"}</div><div class="sub">build ${w.build||"—"}</div></div>
+    <div class="stat"><div class="k">APK version</div><div class="v">${s.versionName||"—"}</div><div class="sub">code ${s.versionCode||"—"}</div></div>
+    <div class="stat"><div class="k">Bundle files</div><div class="v">${(w.files||[]).length}</div><div class="sub">${fmtBytes(w.fullSize||0)}</div></div>
+    <div class="stat"><div class="k">Signature</div><div class="v" style="font-size:15px">${live.signature?"Present":"None"}</div><div class="sub">${live.publishedAt?new Date(live.publishedAt).toLocaleString():""}</div></div>`;
+  $("#liveKv").innerHTML = [
+    ["Channel", p.channel||"stable"],
+    ["Mandatory", w.mandatory?"Yes":"No"],
+    ["Minimum shell", w.minShell||"—"],
+    ["APK size", s.size?fmtBytes(s.size):"—"],
+    ["APK SHA-256", s.sha256?s.sha256.slice(0,32)+"…":"—"],
+    ["Announcement", p.announcement?p.announcement.title:"None"],
+    ["Mirrors", (w.mirrors||[]).length]
+  ].map(([k,v])=>`<div class="kv"><span>${k}</span><b>${String(v)}</b></div>`).join("");
+  $("#manifestLink").href = manifestUrl();
+  $("#pagesLink").href = pagesBase();
+  if(!$("#webVer").value){
+    const parts=String(w.version||"1.0.0").split("."); parts[2]=String(Number(parts[2]||0)+1);
+    $("#webVer").value = parts.join(".");
+    $("#webBuild").value = Number(w.build||10)+1;
+    $("#webMinShell").value = w.minShell||s.versionCode||10;
+  }
+}
+
+/* ═══════════════ tabs ═══════════════ */
+$$("#tabs button").forEach(b=>b.onclick=()=>{
+  $$("#tabs button").forEach(x=>x.classList.toggle("on",x===b));
+  ["dash","web","apk","notes","keys"].forEach(k=>$("#tab-"+k).classList.toggle("hide",k!==b.dataset.tab));
+});
+$("#themeBtn").onclick=()=>{
+  const d=document.documentElement.getAttribute("data-theme")==="dark";
+  document.documentElement.setAttribute("data-theme",d?"light":"dark"); S.set("theme",d?"light":"dark");
+};
+document.documentElement.setAttribute("data-theme", S.get("theme","light"));
+$$(".sw").forEach(sw=>sw.onclick=()=>sw.classList.toggle("on"));
+
+/* ═══════════════ connect ═══════════════ */
+$("#btnConnect").onclick=async()=>{
+  cfg.owner=$("#ghOwner").value.trim(); cfg.repo=$("#ghRepo").value.trim(); cfg.branch=$("#ghBranch").value.trim()||"main";
+  token=$("#ghToken").value.trim();
+  if(!token){ toast("Paste a token first","bd"); return; }
+  try{
+    const u = await gh("/user");
+    S.set("token",token); S.set("cfg",cfg);
+    $("#connTag").className="tag ok"; $("#connTag").textContent="@"+u.login;
+    toast("Connected as @"+u.login,"ok");
+    $("#srcManifest").value=manifestUrl(); $("#srcBase").value=otaBase();
+    await refreshLive();
+  }catch(e){ $("#connTag").className="tag bd"; $("#connTag").textContent="Failed"; toast(e.message,"bd"); }
+};
+$("#btnForget").onclick=()=>{ S.del("token"); token=""; $("#ghToken").value="";
+  $("#connTag").className="tag"; $("#connTag").textContent="Not connected"; toast("Token forgotten"); };
+$("#btnRefresh").onclick=refreshLive;
+
+/* ═══════════════ file picking ═══════════════ */
+function stripRoot(name){
+  const parts=name.split("/");
+  if(parts[0]==="www"||parts[0]==="dist") parts.shift();
+  return parts.join("/");
+}
+async function addWebFiles(list){
+  for(const f of list){
+    const rel = stripRoot(f.webkitRelativePath || f.name);
+    if(!rel || rel.startsWith(".") || rel.includes("/.")) continue;
+    if(rel==="_lock.json") continue;
+    const buf = new Uint8Array(await f.arrayBuffer());
+    webFiles.set(rel, {bytes:buf, sha:await sha256Hex(buf), size:buf.length});
+  }
+  renderWebList();
+}
+function liveFileMap(){
+  const m={}; ((livePayload&&livePayload.web&&livePayload.web.files)||[]).forEach(f=>m[f.path]=f.sha256); return m;
+}
+function renderWebList(){
+  const lm=liveFileMap();
+  let changed=0,bytes=0;
+  $("#webList").innerHTML = Array.from(webFiles.entries()).sort().map(([p,f])=>{
+    const isNew=!lm[p], chg=isNew||lm[p]!==f.sha;
+    if(chg){changed++;bytes+=f.size;}
+    return `<div class="${isNew?'new':chg?'chg':''}">${chg?'●':'○'} ${p}<span>${fmtBytes(f.size)} ${isNew?'new':chg?'changed':'same'}</span></div>`;
+  }).join("") || `<div class="sub">No files selected.</div>`;
+  $("#btnPublishWeb").disabled = !(webFiles.size && changed);
+  $("#btnPublishWeb").textContent = changed
+    ? `Sign & publish ${changed} changed file${changed>1?'s':''} (${fmtBytes(bytes)})`
+    : "Sign & publish content update";
+}
+$("#pickFolder").onclick=e=>{e.stopPropagation();$("#webFolder").click();};
+$("#pickFiles").onclick=e=>{e.stopPropagation();$("#webFiles").click();};
+$("#webFolder").onchange=e=>addWebFiles(Array.from(e.target.files));
+$("#webFiles").onchange=e=>addWebFiles(Array.from(e.target.files));
+["webDrop","apkDrop"].forEach(id=>{
+  const el=$("#"+id);
+  el.ondragover=e=>{e.preventDefault();el.classList.add("hot");};
+  el.ondragleave=()=>el.classList.remove("hot");
+  el.ondrop=async e=>{
+    e.preventDefault(); el.classList.remove("hot");
+    const items=e.dataTransfer.items;
+    const out=[];
+    async function walk(entry, prefix){
+      if(entry.isFile){ await new Promise(r=>entry.file(f=>{ Object.defineProperty(f,"webkitRelativePath",{value:prefix+f.name}); out.push(f); r(); })); }
+      else if(entry.isDirectory){ const rd=entry.createReader();
+        let batch; do{ batch=await new Promise(r=>rd.readEntries(r)); for(const c of batch) await walk(c, prefix+entry.name+"/"); }while(batch.length); }
+    }
+    if(items && items.length && items[0].webkitGetAsEntry){
+      for(const it of items){ const en=it.webkitGetAsEntry(); if(en) await walk(en,""); }
+    } else out.push(...Array.from(e.dataTransfer.files));
+    if(id==="webDrop") addWebFiles(out);
+    else { const apk=out.find(f=>f.name.endsWith(".apk")); if(apk) setApk(apk); }
+  };
+});
+
+/* ═══════════════ publish content ═══════════════ */
+$("#btnPublishWeb").onclick=async()=>{
+  const logId="#webLog";
+  try{
+    if(!token) throw new Error("Connect to GitHub first.");
+    if(!signingKey) throw new Error("Load the release signing key (Keys & source tab).");
+    const version=$("#webVer").value.trim(), build=Number($("#webBuild").value);
+    if(!version||!build) throw new Error("Version and build number are required.");
+    if(livePayload && livePayload.web && build <= Number(livePayload.web.build))
+      throw new Error(`Build must be greater than the live build (${livePayload.web.build}).`);
+
+    const lm=liveFileMap();
+    const all=Array.from(webFiles.entries()).sort();
+    const changed=all.filter(([p,f])=>lm[p]!==f.sha);
+    logTo(logId,`${all.length} files scanned · ${changed.length} changed`,"mu");
+
+    const files=[];
+    for(const [p,f] of changed) files.push(["ota/"+p, f.bytes]);
+
+    const fileList=all.map(([p,f])=>({path:p,sha256:f.sha,size:f.size}));
+    const notes=$("#webNotes").value.split("\n").map(s=>s.trim()).filter(Boolean);
+    const base=$("#srcBase").value.trim()||otaBase();
+    const mirrors=$("#srcMirrors").value.split("\n").map(s=>s.trim()).filter(Boolean);
+
+    const payload = Object.assign({}, livePayload||{});
+    payload.schema=1; payload.app="satlok-seva"; payload.channel=$("#webChannel").value;
+    payload.requireSignature = $("#srcRequireSig").classList.contains("on");
+    payload.updatedAt=new Date().toISOString();
+    payload.web={ version, build, releasedAt:payload.updatedAt, baseUrl:base, mirrors,
+      files:fileList, fullSize:fileList.reduce((s,f)=>s+f.size,0),
+      mandatory:$("#webMandatory").classList.contains("on"),
+      minShell:Number($("#webMinShell").value)||0,
+      notes:{ hi:notes, en:notes, pa:notes, hr:notes } };
+
+    const manifest=await signManifest(payload);
+    logTo(logId,"manifest signed (RSA-2048 / SHA-256)","ok");
+    const raw=JSON.stringify(manifest,null,1);
+    files.push(["ota/manifest.json", enc.encode(raw)]);
+    if(live) files.push(["ota/manifest.previous.json", enc.encode(JSON.stringify(live,null,1))]);
+    files.push(["ota/version.json", enc.encode(JSON.stringify({version,build,channel:payload.channel,
+      updatedAt:payload.updatedAt,apk:payload.shell||null},null,1))]);
+
+    $("#webProg").style.width="15%";
+    await commitFiles(files, `release: content ${version} (${build}) — ${changed.length} file(s)`, logId);
+    $("#webProg").style.width="100%";
+    logTo(logId,"GitHub Pages will rebuild in ~30–60s. Devices pick it up on next launch.","wn");
+    toast("Content "+version+" published","ok");
+    webFiles.clear(); renderWebList();
+    setTimeout(refreshLive, 45000);
+  }catch(e){ logTo(logId,"ERROR "+e.message,"er"); toast(e.message,"bd"); $("#webProg").style.width="0%"; }
+};
+
+/* ═══════════════ publish APK ═══════════════ */
+$("#pickApk").onclick=e=>{e.stopPropagation();$("#apkFile").click();};
+$("#apkFile").onchange=e=>{ if(e.target.files[0]) setApk(e.target.files[0]); };
+async function setApk(file){
+  const buf=new Uint8Array(await file.arrayBuffer());
+  const sha=await sha256Hex(buf);
+  apkPick={name:file.name,bytes:buf,sha,size:buf.length};
+  $("#apkInfo").innerHTML=`<div class="kv"><span>File</span><b>${file.name}</b></div>
+    <div class="kv"><span>Size</span><b>${fmtBytes(buf.length)}</b></div>
+    <div class="kv"><span>SHA-256</span><b class="mono">${sha}</b></div>`;
+  $("#btnPublishApk").disabled=false;
+  if(!$("#apkVer").value){ const m=file.name.match(/(\d+\.\d+\.\d+)/); if(m) $("#apkVer").value=m[1]; }
+  if(!$("#apkCode").value){ const m=file.name.match(/-(\d+)\.apk$/); $("#apkCode").value=m?m[1]:String(Number((livePayload&&livePayload.shell&&livePayload.shell.versionCode)||10)+1); }
+}
+$("#btnPublishApk").onclick=async()=>{
+  const logId="#apkLog";
+  try{
+    if(!token) throw new Error("Connect to GitHub first.");
+    if(!signingKey) throw new Error("Load the release signing key first.");
+    if(!apkPick) throw new Error("Choose an APK.");
+    const versionName=$("#apkVer").value.trim(), versionCode=Number($("#apkCode").value);
+    if(!versionName||!versionCode) throw new Error("Version name and code are required.");
+    const path="ota/apk/SatlokSeva-"+versionName+"-"+versionCode+".apk";
+    const files=[[path, apkPick.bytes]];
+    const mirror=$("#srcApkMirror").value.trim();
+    const notes=$("#apkNotes").value.split("\n").map(s=>s.trim()).filter(Boolean);
+    const payload=Object.assign({}, livePayload||{});
+    payload.schema=1; payload.app="satlok-seva"; payload.channel=payload.channel||"stable";
+    payload.requireSignature=$("#srcRequireSig").classList.contains("on");
+    payload.updatedAt=new Date().toISOString();
+    payload.shell={ versionName, versionCode, apkUrl: mirror || (pagesBase()+path),
+      sha256:apkPick.sha, size:apkPick.size, releasedAt:payload.updatedAt,
+      mandatory:$("#apkMandatory").classList.contains("on"),
+      notes:{hi:notes,en:notes,pa:notes,hr:notes} };
+    if(!payload.web) throw new Error("Publish a content release first so the manifest has a web block.");
+    const manifest=await signManifest(payload);
+    files.push(["ota/manifest.json", enc.encode(JSON.stringify(manifest,null,1))]);
+    if(live) files.push(["ota/manifest.previous.json", enc.encode(JSON.stringify(live,null,1))]);
+    files.push(["ota/version.json", enc.encode(JSON.stringify({version:payload.web.version,build:payload.web.build,
+      channel:payload.channel,updatedAt:payload.updatedAt,apk:payload.shell},null,1))]);
+    files.push(["release/latest.json", enc.encode(JSON.stringify({versionName,versionCode,
+      url:payload.shell.apkUrl,sha256:apkPick.sha,size:apkPick.size,releasedAt:payload.updatedAt},null,1))]);
+    $("#apkProg").style.width="20%";
+    await commitFiles(files, `release: APK ${versionName} (${versionCode})`, logId);
+    $("#apkProg").style.width="100%";
+    logTo(logId,"APK published. Devices on an older shell will be prompted to install.","ok");
+    toast("APK "+versionName+" published","ok");
+    setTimeout(refreshLive, 45000);
+  }catch(e){ logTo(logId,"ERROR "+e.message,"er"); toast(e.message,"bd"); $("#apkProg").style.width="0%"; }
+};
+
+/* ═══════════════ announcement ═══════════════ */
+async function pushAnnouncement(ann){
+  const logId="#annLog";
+  if(!token) throw new Error("Connect to GitHub first.");
+  if(!signingKey) throw new Error("Load the release signing key first.");
+  if(!livePayload) throw new Error("No live manifest to amend.");
+  const payload=Object.assign({}, livePayload);
+  payload.updatedAt=new Date().toISOString();
+  if(ann) payload.announcement=ann; else delete payload.announcement;
+  const manifest=await signManifest(payload);
+  const files=[["ota/manifest.json", enc.encode(JSON.stringify(manifest,null,1))]];
+  if(live) files.push(["ota/manifest.previous.json", enc.encode(JSON.stringify(live,null,1))]);
+  await commitFiles(files, ann?`announce: ${ann.title}`:"clear announcement", logId);
+  logTo(logId, ann?"Broadcast published. Every device shows it on next launch.":"Announcement cleared.","ok");
+  setTimeout(refreshLive, 40000);
+}
+$("#btnAnn").onclick=async()=>{ try{
+  const title=$("#annTitle").value.trim(); if(!title) throw new Error("Title is required.");
+  await pushAnnouncement({ id:"ann-"+Date.now(), title, body:$("#annBody").value.trim(),
+    url:$("#annUrl").value.trim(), level:$("#annLevel").value,
+    notify:$("#annNotify").classList.contains("on"), at:new Date().toISOString() });
+  toast("Announcement broadcast","ok");
+}catch(e){ logTo("#annLog","ERROR "+e.message,"er"); toast(e.message,"bd"); } };
+$("#btnAnnClear").onclick=async()=>{ try{ await pushAnnouncement(null); toast("Announcement cleared","ok"); }
+catch(e){ toast(e.message,"bd"); } };
+
+/* ═══════════════ keys ═══════════════ */
+$("#btnLoadKey").onclick=async()=>{ try{
+  const jwk=JSON.parse($("#keyJwk").value.trim());
+  await loadKeyFromJwk(jwk); toast("Signing key loaded","ok");
+}catch(e){ toast("Invalid JWK: "+e.message,"bd"); } };
+$("#btnGenKey").onclick=async()=>{
+  if(!confirm("Generate a NEW key pair? You must ship a new APK with the new public key pinned, or existing installs will reject your updates.")) return;
+  const kp=await crypto.subtle.generateKey({name:"RSASSA-PKCS1-v1_5",modulusLength:2048,publicExponent:new Uint8Array([1,0,1])},true,["sign","verify"]);
+  const jwk=await crypto.subtle.exportKey("jwk",kp.privateKey);
+  $("#keyJwk").value=JSON.stringify(jwk);
+  await loadKeyFromJwk(jwk);
+  toast("New key pair generated — download the private JWK now","ok");
+};
+$("#btnExportKey").onclick=()=>{
+  const v=$("#keyJwk").value.trim(); if(!v){ toast("No key","bd"); return; }
+  const a=document.createElement("a"); a.href="data:application/json;base64,"+btoa(unescape(encodeURIComponent(v)));
+  a.download="satlok-seva-release-private.jwk.json"; a.click();
+};
+$("#btnSaveSource").onclick=()=>{
+  cfg.mirrors=$("#srcMirrors").value.split("\n").map(s=>s.trim()).filter(Boolean);
+  cfg.apkMirror=$("#srcApkMirror").value.trim();
+  cfg.requireSig=$("#srcRequireSig").classList.contains("on");
+  S.set("cfg",cfg); toast("Source settings saved","ok");
+};
+$("#btnRollback").onclick=async()=>{
+  if(!prevManifestRaw){ toast("No previous manifest stored","bd"); return; }
+  if(!confirm("Republish the previous manifest? Devices will roll back on their next check.")) return;
+  try{
+    await commitFiles([["ota/manifest.json", enc.encode(prevManifestRaw)]], "rollback: republish previous manifest", "#webLog");
+    toast("Previous manifest republished","ok"); setTimeout(refreshLive,40000);
+  }catch(e){ toast(e.message,"bd"); }
+};
+
+/* ═══════════════ init ═══════════════ */
+(async()=>{
+  const jwk=S.get("jwk",null);
+  if(jwk){ $("#keyJwk").value=JSON.stringify(jwk); try{ await loadKeyFromJwk(jwk); }catch(e){} }
+  if(token){ try{ const u=await gh("/user"); $("#connTag").className="tag ok"; $("#connTag").textContent="@"+u.login; }catch(e){} }
+  await refreshLive();
+})();
+</script>
+</body>
+</html>

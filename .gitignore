@@ -1,0 +1,7 @@
+keys/
+.build/
+dist/*.apk
+dist/*.idsig
+node_modules/
+*.keystore
+.env

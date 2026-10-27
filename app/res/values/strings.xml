@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Satlok Seva</string>
+
+    <color name="saffron">#E8730C</color>
+    <color name="saffron_deep">#C25A05</color>
+    <color name="cream">#FFF6EA</color>
+    <color name="splash_bg">#FFF7F0</color>
+    <color name="splash_bg_night">#121014</color>
+    <color name="ink">#141216</color>
+
+    <style name="AppTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/saffron</item>
+        <item name="android:colorPrimaryDark">@color/splash_bg</item>
+        <item name="android:colorAccent">@color/saffron</item>
+        <item name="android:statusBarColor">@color/splash_bg</item>
+        <item name="android:navigationBarColor">@color/splash_bg</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@color/splash_bg</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- Android 12+ system splash + our own animated in-WebView splash -->
+    <style name="AppTheme.Splash" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash_window</item>
+    </style>
+</resources>
