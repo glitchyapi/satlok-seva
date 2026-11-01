@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- rays -->
+    <group android:name="rays" android:pivotX="54" android:pivotY="47">
+        <path android:strokeColor="#FFF0DA" android:strokeWidth="2.1" android:strokeLineCap="round"
+              android:fillColor="#00000000"
+              android:pathData="M54,20.5 L54,25.5 M54,68.5 L54,73.5 M27.5,47 L32.5,47 M75.5,47 L80.5,47
+                                M35.3,28.3 L38.8,31.8 M69.2,62.2 L72.7,65.7 M72.7,28.3 L69.2,31.8 M38.8,62.2 L35.3,65.7"/>
+    </group>
+    <!-- flame -->
+    <path android:pathData="M54,29.5 C60.6,37.1 65,42.8 65,49.1 C65,55.4 60.1,59.9 54,59.9 C47.9,59.9 43,55.4 43,49.1 C43,42.8 47.4,37.1 54,29.5 Z">
+        <aapt:attr xmlns:aapt="http://schemas.android.com/aapt" name="android:fillColor">
+            <gradient android:type="linear" android:startX="43" android:startY="60"
+                      android:endX="65" android:endY="29">
+                <item android:offset="0" android:color="#FFDCB0"/>
+                <item android:offset="1" android:color="#FFFAF2"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- inner flame -->
+    <path android:fillColor="#FFFDF8" android:fillAlpha="0.85"
+          android:pathData="M54,40 C57.4,44.2 59.4,47.2 59.4,50.3 C59.4,53.4 57,55.7 54,55.7 C51,55.7 48.6,53.4 48.6,50.3 C48.6,47.2 50.6,44.2 54,40 Z"/>
+    <!-- lamp bowl -->
+    <path android:fillColor="#FFF8EE"
+          android:pathData="M31.5,63.5 C38.7,60.8 46,59.5 54,59.5 C62,59.5 69.3,60.8 76.5,63.5 C73.8,74.8 65.2,82 54,82 C42.8,82 34.2,74.8 31.5,63.5 Z"/>
+    <path android:fillColor="#FFE7C6" android:fillAlpha="0.9"
+          android:pathData="M54,59.5 C62,59.5 69.3,60.8 76.5,63.5 C75.7,66.9 74.2,70 72.1,72.6 C66.7,69.9 60.6,68.5 54,68.5 C47.4,68.5 41.3,69.9 35.9,72.6 C33.8,70 32.3,66.9 31.5,63.5 C38.7,60.8 46,59.5 54,59.5 Z"/>
+</vector>

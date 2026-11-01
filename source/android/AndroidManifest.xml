@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.satlok.seva"
+    android:versionCode="1"
+    android:versionName="1.0.0"
+    android:installLocation="auto">
+
+    <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="34" />
+
+    <!-- ── networking: manifest + delta files + APK ── -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- ── notifications (Android 13+ runtime prompt) ── -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- ── reminders: reschedule after reboot, fire on time ── -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+
+    <!-- ── in-app self update ── -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <!-- ── gallery save on legacy Android only.
+         API 29+ uses MediaStore; backups use the Storage Access
+         Framework, so no broad storage permission is needed. ── -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <uses-feature android:name="android.hardware.touchscreen" android:required="true" />
+    <uses-feature android:name="android.software.webview" android:required="true" />
+
+    <supports-screens
+        android:smallScreens="true" android:normalScreens="true"
+        android:largeScreens="true" android:xlargeScreens="true"
+        android:anyDensity="true" />
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/AppTheme"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:hardwareAccelerated="true"
+        android:largeHeap="false"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="false"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:enableOnBackInvokedCallback="false"
+        android:appCategory="productivity">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode|smallestScreenSize|density|fontScale"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/AppTheme.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Own zero-dependency provider: serves the update APK and
+             generated banners as content:// URIs with temporary grants. -->
+        <provider
+            android:name=".ShareProvider"
+            android:authorities="org.satlok.seva.files"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+
+        <receiver android:name=".ReminderReceiver" android:exported="false" />
+
+        <receiver android:name=".BootReceiver" android:exported="true" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+</manifest>

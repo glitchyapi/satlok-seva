@@ -1,161 +1,132 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" data-theme="light">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>सतलोक सेवा · Satlok Seva — सेवा डायरी</title>
-<meta name="description" content="Offline-first seva diary for the sangat of Sant Rampal Ji Maharaj. Naam jaap counter, bhandara banner studio, AES-256 encrypted vault. No account, no tracking.">
-<meta name="theme-color" content="#FBF8F5">
-<meta property="og:title" content="सतलोक सेवा · Satlok Seva">
-<meta property="og:description" content="सेवा · सिमरन · संगत — a private, offline seva diary.">
-<link rel="icon" href="assets/logo.png">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>सतलोक सेवा — Satlok Seva</title>
+<meta name="description" content="Daily seva tracker, Bhandara banner maker and encrypted offline storage for the Sant Rampal Ji Maharaj sangat.">
+<link rel="icon" href="assets/logo-192.png">
 <style>
-:root{--bg:#FBF8F5;--sf:#fff;--ink:#16131A;--ink2:#4A444E;--mu:#8C8590;--ln:#EDE7E1;--ln2:#E2DAD2;
---ac:#E8730C;--ac2:#FF9436;--acs:#FFF1E2;--aci:#A9500A;--ok:#128A5A;--oks:#E4F5EC}
-@media(prefers-color-scheme:dark){:root{--bg:#121014;--sf:#1C1920;--ink:#F6F2EE;--ink2:#C9C2CC;--mu:#8E8794;
---ln:#2C2833;--ln2:#3A3542;--ac:#FF9436;--ac2:#FFAE63;--acs:#33220F;--aci:#FFB273;--ok:#4FD69C;--oks:#102A20}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1000px;margin:0 auto;padding:28px 20px 70px}
-a{color:var(--aci);text-decoration:none}
-.hero{text-align:center;padding:22px 0 8px}
-.mark{width:104px;height:104px;border-radius:29px;margin:0 auto 22px;background:linear-gradient(150deg,#FF9436,#E8730C 60%,#C25A05);
-display:grid;place-items:center;box-shadow:0 16px 44px rgba(232,115,12,.34)}
-.mark img{width:66px;height:66px}
-h1{font-size:clamp(30px,6vw,44px);font-weight:800;letter-spacing:-.035em;margin:0 0 8px;line-height:1.1}
-.tagline{font-size:16px;color:var(--mu);font-weight:600;margin:0 0 6px}
-.for{font-size:14px;color:var(--mu);margin:0 auto;max-width:520px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:16px 30px;border-radius:999px;
-font-size:16px;font-weight:750;background:linear-gradient(135deg,var(--ac2),var(--ac));color:#fff;
-box-shadow:0 8px 26px rgba(232,115,12,.32);border:0;cursor:pointer;transition:transform .18s}
-.btn:active{transform:scale(.97)}
-.btn.gh{background:var(--sf);color:var(--ink);border:1.5px solid var(--ln2);box-shadow:none}
-.btn svg{width:19px;height:19px}
-.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:26px 0 10px}
-.meta{font-size:13px;color:var(--mu);text-align:center}
-.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:999px;background:var(--oks);color:var(--ok);font-size:12.5px;font-weight:750}
-.card{background:var(--sf);border:1px solid var(--ln);border-radius:22px;padding:22px;box-shadow:0 1px 2px rgba(22,19,26,.04),0 4px 16px rgba(22,19,26,.04)}
-.grid{display:grid;gap:16px;margin-top:34px}
-@media(min-width:720px){.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1fr 1fr}}
-.feat .ic{width:44px;height:44px;border-radius:14px;background:var(--acs);color:var(--aci);display:grid;place-items:center;margin-bottom:14px}
-.feat .ic svg{width:22px;height:22px}
-.feat h3{margin:0 0 6px;font-size:16px;font-weight:730;letter-spacing:-.015em}
-.feat p{margin:0;font-size:13.5px;color:var(--mu);line-height:1.65}
-h2{font-size:24px;font-weight:770;letter-spacing:-.03em;margin:46px 0 16px}
-.shots{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 16px;scroll-snap-type:x mandatory}
-.shots img{height:440px;border-radius:24px;border:1px solid var(--ln);box-shadow:0 8px 30px rgba(22,19,26,.1);scroll-snap-align:center;flex:none}
-ol,ul{padding-left:20px;font-size:14.5px;color:var(--ink2);line-height:1.85}
-code{background:var(--acs);color:var(--aci);padding:2px 7px;border-radius:6px;font-size:12.5px;font-family:ui-monospace,Menlo,monospace;word-break:break-all}
-.kv{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--ln);font-size:13.5px}
-.kv:last-child{border:0}.kv span{color:var(--mu)}.kv b{font-weight:700;text-align:right;word-break:break-all}
-footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--ln);text-align:center;font-size:13px;color:var(--mu)}
-.note{background:var(--acs);color:var(--aci);border-radius:16px;padding:16px 18px;font-size:13.5px;line-height:1.7}
+*,*::before,*::after{box-sizing:border-box}
+:root{--bg:#F4F5F7;--surface:#fff;--ink:#0D1117;--ink2:#3F4650;--muted:#8A929E;--line:#E7E9EE;
+--brand:#F97316;--brand-d:#E0530B;--soft:#FFF1E3;--dark:#12161C;--r:24px;
+--sh:0 12px 32px rgba(16,24,40,.10),0 2px 8px rgba(16,24,40,.05)}
+[data-theme=dark]{--bg:#0A0C10;--surface:#14181F;--ink:#F2F4F7;--ink2:#C3C9D4;--muted:#7D8794;--line:#252C36;--soft:#2A1B0E;--dark:#F2F4F7}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:34px 20px 60px}
+h1,h2,h3,p{margin:0}
+.hero{text-align:center;padding:22px 0 34px}
+.logo{width:104px;height:104px;border-radius:30px;box-shadow:0 14px 34px rgba(249,115,22,.4);margin-bottom:20px}
+.hero h1{font-size:34px;font-weight:800;letter-spacing:-1px}
+.hero .sub{color:var(--muted);font-size:15px;font-weight:600;margin-top:6px}
+.greet{display:inline-block;margin-top:14px;padding:7px 16px;border-radius:999px;background:var(--soft);color:var(--brand-d);font-size:13px;font-weight:700}
+[data-theme=dark] .greet{color:var(--brand)}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;font-size:15px;font-weight:700;
+text-decoration:none;border:0;cursor:pointer;transition:.2s cubic-bezier(.22,1,.36,1);font-family:inherit}
+.btn:active{transform:scale(.96)}
+.btn-dark{background:var(--dark);color:var(--surface);box-shadow:var(--sh)}
+[data-theme=dark] .btn-dark{color:#0A0C10}
+.btn-brand{background:linear-gradient(135deg,#FB923C,#E0530B);color:#fff;box-shadow:0 8px 22px rgba(249,115,22,.4)}
+.btn-outline{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.meta{font-size:12px;color:var(--muted);margin-top:14px;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:34px 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:0 4px 16px rgba(16,24,40,.06)}
+.card .ico{font-size:27px;margin-bottom:10px;display:block}
+.card h3{font-size:16px;font-weight:800;letter-spacing:-.3px;margin-bottom:6px}
+.card p{font-size:13.5px;color:var(--muted)}
+.shots{display:flex;gap:14px;overflow-x:auto;padding:6px 0 20px;scroll-snap-type:x mandatory}
+.shots img{height:430px;border-radius:22px;box-shadow:var(--sh);scroll-snap-align:center;flex:none;border:1px solid var(--line)}
+.sec{margin-top:40px}
+.sec h2{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.sec>p{color:var(--muted);font-size:14px;margin-bottom:18px}
+.steps{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
+.steps ol{margin:0;padding-left:20px}
+.steps li{margin-bottom:10px;font-size:14px;color:var(--ink2)}
+.steps li:last-child{margin:0}
+code{background:#F0F1F4;padding:2px 7px;border-radius:6px;font-size:12.5px;font-family:ui-monospace,monospace;word-break:break-all}
+[data-theme=dark] code{background:#222831}
+.note{background:var(--soft);border-radius:16px;padding:16px 18px;font-size:13px;color:var(--ink2);margin-top:16px;border:1px solid rgba(249,115,22,.2)}
+.ftr{text-align:center;margin-top:46px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+.ftr a{color:var(--brand);text-decoration:none;font-weight:700}
+.thm{position:fixed;top:16px;right:16px;width:42px;height:42px;border-radius:999px;background:var(--surface);
+border:1px solid var(--line);cursor:pointer;font-size:17px;box-shadow:0 2px 8px rgba(0,0,0,.08);z-index:10}
+@media(max-width:600px){.hero h1{font-size:27px}.shots img{height:340px}}
 </style>
 </head>
 <body>
+<button class="thm" id="thm">🌙</button>
 <div class="wrap">
+
   <div class="hero">
-    <div class="mark"><img src="assets/glyph.png" alt="Satlok Seva"></div>
+    <img class="logo" src="assets/logo-512.png" alt="Satlok Seva" width="104" height="104">
     <h1>सतलोक सेवा</h1>
-    <p class="tagline">सेवा · सिमरन · संगत</p>
-    <p class="for">संत रामपाल जी महाराज की संगत हेतु एक विनम्र, ऑफ़लाइन सेवा डायरी<br>
-      <span style="font-size:13px">A private, offline-first seva diary — no account, no cloud, no tracking.</span></p>
+    <p class="sub">सेवा • भक्ति • भंडारा</p>
+    <div class="greet">सत साहिब जी 🙏</div>
     <div class="cta">
-      <a class="btn" id="dl" href="release/latest.json">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
-        <span id="dlText">Download APK</span>
+      <a class="btn btn-brand" id="dl" href="apk/SatlokSeva-latest.apk" download>
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2"/></svg>
+        ऐप डाउनलोड करें
       </a>
-      <a class="btn gh" href="admin/">Release console</a>
+      <a class="btn btn-outline" href="admin/">Release Console ↗</a>
     </div>
-    <div class="meta"><span class="pill" id="verPill">v—</span> <span id="sizeTxt"></span></div>
+    <p class="meta" id="ver">Loading version…</p>
   </div>
 
-  <div class="grid g3">
-    <div class="card feat">
-      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-      <h3>Sealed on your phone</h3>
-      <p>Every record is compressed, then encrypted with AES-256-GCM. The key lives in your phone's secure hardware and never touches disk.</p>
-    </div>
-    <div class="card feat">
-      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.6 3.4"/><circle cx="12" cy="12" r="3"/></svg></div>
-      <h3>Jaap · Seva · Bhandara</h3>
-      <p>A tap counter with mala tracking, a full seva diary, bhandara events with reminders, and a banner studio that makes share-ready posters.</p>
-    </div>
-    <div class="card feat">
-      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg></div>
-      <h3>Tiny signed updates</h3>
-      <p>The app reads one universal manifest and downloads only the files whose hash changed — usually a few KB, not a whole APK.</p>
-    </div>
+  <div class="grid">
+    <div class="card"><span class="ico">🪔</span><h3>दैनिक सेवा</h3><p>नाम जप, सत्संग, पाठ और सेवा का हिसाब रखें। स्ट्रीक, लक्ष्य और आँकड़े।</p></div>
+    <div class="card"><span class="ico">🎪</span><h3>भंडारा बैनर</h3><p>6 डिज़ाइन, 4 आकार। सेकंडों में सुंदर बैनर बनाकर संगत में साझा करें।</p></div>
+    <div class="card"><span class="ico">🔐</span><h3>पूर्णतः निजी</h3><p>AES-256-GCM एन्क्रिप्शन + DEFLATE संपीड़न। डेटा कभी फ़ोन से बाहर नहीं जाता।</p></div>
+    <div class="card"><span class="ico">⚡</span><h3>डेल्टा अपडेट</h3><p>केवल बदली हुई फ़ाइलें डाउनलोड होंगी — पूरा ऐप दोबारा नहीं।</p></div>
+    <div class="card"><span class="ico">🔔</span><h3>रिमाइंडर</h3><p>दैनिक सेवा रिमाइंडर, भंडारा अलर्ट और अपडेट सूचनाएँ।</p></div>
+    <div class="card"><span class="ico">🌐</span><h3>तीन भाषाएँ</h3><p>हिन्दी, English ਅਤੇ ਪੰਜਾਬੀ। लाइट और डार्क थीम।</p></div>
   </div>
 
-  <h2> Screenshots</h2>
-  <div class="shots">
-    <img src="assets/screens/home.jpg" alt="Home">
-    <img src="assets/screens/jaap.jpg" alt="Jaap counter">
-    <img src="assets/screens/studio.jpg" alt="Banner studio">
-    <img src="assets/screens/stats.jpg" alt="Statistics">
-    <img src="assets/screens/dark.jpg" alt="Dark theme">
+  <div class="sec">
+    <h2>स्क्रीनशॉट</h2>
+    <p>Real renders from the shipped build.</p>
+    <div class="shots" id="shots"></div>
   </div>
 
-  <div class="grid g2">
-    <div class="card">
-      <h3 style="margin:0 0 12px;font-size:17px">Install on Android</h3>
+  <div class="sec">
+    <h2>इंस्टॉल कैसे करें</h2>
+    <div class="steps">
       <ol>
-        <li>Tap <b>Download APK</b> above.</li>
-        <li>Open the downloaded file. Android will say the source is unknown — that is normal for an app outside the Play Store.</li>
-        <li>Tap <b>Settings → Allow from this source</b>, then <b>Install</b>.</li>
-        <li>Open the app. Future updates arrive inside the app itself.</li>
+        <li>ऊपर <b>ऐप डाउनलोड करें</b> दबाएँ — <code>.apk</code> फ़ाइल सेव होगी।</li>
+        <li>फ़ाइल खोलें। Android पूछेगा तो <b>“इस स्रोत से अनुमति दें”</b> चुनें।</li>
+        <li><b>Install</b> दबाएँ। Play Protect पूछे तो <b>Install anyway</b> चुनें (ऐप Play Store पर नहीं है)।</li>
+        <li>ऐप खोलें, नाम और भाषा चुनें — बस। 🙏</li>
       </ol>
-      <div class="note">Requires Android 6.0 (Marshmallow) or newer. The APK is under 1 MB and works fully offline after install.</div>
+      <div class="note"><b>ध्यान दें:</b> अगर पहले कोई पुराना build इंस्टॉल है तो उसे पहले uninstall करें — यह build अलग signing key से signed है, इसलिए सीधे update नहीं होगा।</div>
     </div>
+  </div>
+
+  <div class="sec">
+    <h2>ऐप के बारे में</h2>
     <div class="card">
-      <h3 style="margin:0 0 12px;font-size:17px">This release</h3>
-      <div id="relInfo"><div class="kv"><span>Loading…</span><b></b></div></div>
-      <div style="margin-top:16px;font-size:13px;color:var(--mu)">
-        Universal version API:<br><code id="apiUrl">ota/manifest.json</code>
-      </div>
+      <p style="font-size:14px;color:var(--ink2)">यह ऐप संत रामपाल जी महाराज की संगत के भगतों के लिए एक स्वतंत्र सेवा-प्रोजेक्ट है। कोई विज्ञापन नहीं, कोई ट्रैकिंग नहीं, कोई सर्वर पर डेटा नहीं। गुप्त नाम/मंत्र ऐप में दर्ज या प्रदर्शित नहीं किया जाता — वह गुरु जी से दीक्षा में प्राप्त करें।</p>
+      <p style="font-size:12.5px;color:var(--muted);margin-top:14px">Update manifest: <code id="mu">manifest.json</code></p>
     </div>
   </div>
 
-  <h2>Privacy</h2>
-  <div class="card">
-    <ul style="margin:0">
-      <li><b>No account.</b> Nothing to sign up for, nothing to verify.</li>
-      <li><b>No server storage.</b> Your seva is written only to your own device.</li>
-      <li><b>No analytics, no ads, no trackers.</b> The only network request the app makes is checking the update manifest.</li>
-      <li><b>Encrypted backups.</b> Export a single <code>.ssvb</code> file locked with a PIN you choose; restore it on any phone.</li>
-      <li><b>Signed releases.</b> Every update manifest is RSA-2048 signed and verified against a key pinned inside the app.</li>
-    </ul>
+  <div class="ftr">
+    सतलोक सेवा · <a href="admin/">Release Console</a> · <a id="repo" href="https://github.com/glitchyapi/satlok-seva">GitHub</a>
+    <p style="margin-top:8px">सत साहिब जी 🙏</p>
   </div>
-
-  <footer>
-    सतलोक सेवा · Made with devotion for the sangat<br>
-    <span style="font-size:12px">जय सत साहिब जी 🙏</span>
-  </footer>
 </div>
-
 <script>
-(async () => {
-  try {
-    const r = await fetch("release/latest.json?t=" + Date.now(), { cache: "no-store" });
-    const j = await r.json();
-    const url = j.url && j.url.startsWith("http") ? j.url : "release/" + (j.fileName || "");
-    document.getElementById("dl").href = url || "#";
-    document.getElementById("dlText").textContent = "Download APK · v" + j.versionName;
-    document.getElementById("verPill").textContent = "v" + j.versionName + " (" + j.versionCode + ")";
-    document.getElementById("sizeTxt").textContent = "· " + (j.size / 1048576).toFixed(2) + " MB · Android 6.0+";
-    document.getElementById("relInfo").innerHTML = [
-      ["Version", j.versionName + " (" + j.versionCode + ")"],
-      ["Size", (j.size / 1024).toFixed(0) + " KB"],
-      ["Released", new Date(j.releasedAt).toLocaleDateString()],
-      ["SHA-256", j.sha256.slice(0, 24) + "…"]
-    ].map(([k, v]) => `<div class="kv"><span>${k}</span><b>${v}</b></div>`).join("");
-    document.getElementById("apiUrl").textContent = location.origin + location.pathname.replace(/\/$/, "") + "/ota/manifest.json";
-  } catch (e) {
-    document.getElementById("dlText").textContent = "Download APK";
-    document.getElementById("relInfo").innerHTML = '<div class="kv"><span>No release published yet</span><b></b></div>';
-  }
-})();
+const thm=document.getElementById('thm');
+const setT=t=>{document.documentElement.setAttribute('data-theme',t);thm.textContent=t==='dark'?'☀️':'🌙';localStorage.setItem('sl.theme',t)};
+setT(localStorage.getItem('sl.theme')||'light');
+thm.onclick=()=>setT(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+document.getElementById('mu').textContent=new URL('manifest.json',location.href).href;
+['04-home-with-seva','05-seva-today','09-banner-saffron','12-stats','16-home-dark','18-home-punjabi-dark']
+ .forEach(n=>{const i=new Image();i.src='assets/'+n+'.png';i.alt=n;i.loading='lazy';document.getElementById('shots').appendChild(i)});
+fetch('manifest.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(m=>{
+  const L=m.latest||{};
+  document.getElementById('ver').textContent=`v${L.versionName||'1.0.0'} · ${L.apk?(L.apk.size/1024).toFixed(0)+' KB':'—'} · Android 6.0+`;
+  if(L.apk&&L.apk.url){const a=document.getElementById('dl');a.href=L.apk.url;}
+}).catch(()=>{document.getElementById('ver').textContent='Android 6.0+'});
 </script>
 </body>
 </html>

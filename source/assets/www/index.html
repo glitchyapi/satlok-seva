@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#F5F5F7">
+<meta name="color-scheme" content="light dark">
+<title>Satlok Seva</title>
+<link rel="icon" href="img/logo-192.png">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<!-- ══════════════ SPLASH ══════════════ -->
+<div id="splash" class="splash">
+  <div class="splash-glow"></div>
+  <div class="splash-mark">
+    <svg viewBox="0 0 120 120" class="logo-svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="sgA" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#FFB25C"/><stop offset=".55" stop-color="#F97316"/><stop offset="1" stop-color="#E0530B"/>
+        </linearGradient>
+        <linearGradient id="sgB" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stop-color="#FFD9A8"/><stop offset="1" stop-color="#FFF6E8"/>
+        </linearGradient>
+      </defs>
+      <circle cx="60" cy="60" r="56" fill="url(#sgA)"/>
+      <g class="logo-rays" opacity=".5">
+        <g stroke="#FFF3E0" stroke-width="2.4" stroke-linecap="round">
+          <path d="M60 12v9"/><path d="M60 99v9"/><path d="M12 60h9"/><path d="M99 60h9"/>
+          <path d="M26 26l6.4 6.4"/><path d="M87.6 87.6l6.4 6.4"/><path d="M94 26l-6.4 6.4"/><path d="M32.4 87.6L26 94"/>
+        </g>
+      </g>
+      <path class="logo-flame" d="M60 27c7.6 8.7 12.6 15.2 12.6 22.4 0 7.2-5.6 12.4-12.6 12.4s-12.6-5.2-12.6-12.4C47.4 42.2 52.4 35.7 60 27z" fill="url(#sgB)"/>
+      <path d="M31 68c8.6-3.2 18-4.8 29-4.8S80.4 64.8 89 68c-3.2 13.4-14.6 22.2-29 22.2S34.2 81.4 31 68z" fill="#FFF8EE"/>
+      <path d="M60 63.2c11 0 20.4 1.6 29 4.8-1 4.2-2.9 7.9-5.5 11.1-6.6-3.3-14.6-5.1-23.5-5.1s-16.9 1.8-23.5 5.1c-2.6-3.2-4.5-6.9-5.5-11.1 8.6-3.2 18-4.8 29-4.8z" fill="#FFE7C6" opacity=".85"/>
+    </svg>
+  </div>
+  <h1 class="splash-title" data-i18n="app.name">सतलोक सेवा</h1>
+  <p class="splash-sub" data-i18n="app.tagline">सेवा • भक्ति • भंडारा</p>
+  <div class="splash-bar"><i></i></div>
+  <p class="splash-foot" data-i18n="app.greeting">सत साहिब जी 🙏</p>
+</div>
+
+<!-- ══════════════ ONBOARDING ══════════════ -->
+<div id="onboarding" class="onboarding hidden">
+  <div class="ob-slides">
+    <section class="ob-slide active" data-slide="0">
+      <div class="ob-art ob-art-1"><span>🪔</span></div>
+      <h2 data-i18n="ob.t1">आपकी सेवा, सुरक्षित</h2>
+      <p data-i18n="ob.d1">रोज़ की सेवा, नाम जप और सत्संग का हिसाब रखें। सब कुछ आपके फ़ोन में, एन्क्रिप्टेड।</p>
+    </section>
+    <section class="ob-slide" data-slide="1">
+      <div class="ob-art ob-art-2"><span>🎪</span></div>
+      <h2 data-i18n="ob.t2">भंडारा बैनर बनाएँ</h2>
+      <p data-i18n="ob.d2">सुंदर बैनर सेकंडों में बनाएँ और संगत में साझा करें।</p>
+    </section>
+    <section class="ob-slide" data-slide="2">
+      <div class="ob-art ob-art-3"><span>🔔</span></div>
+      <h2 data-i18n="ob.t3">कभी न चूकें</h2>
+      <p data-i18n="ob.d3">सेवा रिमाइंडर और भंडारा सूचनाएँ सीधे आपके फ़ोन पर।</p>
+    </section>
+  </div>
+  <div class="ob-dots"><i class="on"></i><i></i><i></i></div>
+  <div class="ob-form">
+    <label class="field">
+      <span data-i18n="ob.yourName">आपका नाम</span>
+      <input id="obName" type="text" maxlength="40" data-i18n-ph="ob.namePh" placeholder="जैसे — राम कुमार">
+    </label>
+    <div class="lang-row" id="obLangs">
+      <button class="lang-chip on" data-lang="hi">हिन्दी</button>
+      <button class="lang-chip" data-lang="en">English</button>
+      <button class="lang-chip" data-lang="pa">ਪੰਜਾਬੀ</button>
+    </div>
+  </div>
+  <div class="ob-actions">
+    <button class="btn btn-ghost" id="obSkip" data-i18n="common.skip">छोड़ें</button>
+    <button class="btn btn-dark" id="obNext"><span data-i18n="common.next">आगे</span> <svg viewBox="0 0 24 24" class="ico"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+</div>
+
+<!-- ══════════════ APP SHELL ══════════════ -->
+<div id="app" class="app hidden">
+
+  <!-- ░░░ HOME ░░░ -->
+  <main class="screen active" id="scr-home">
+    <header class="topbar">
+      <div class="tb-left">
+        <p class="tb-eyebrow" id="homeGreet" data-i18n="app.greeting">सत साहिब जी 🙏</p>
+        <h1 class="tb-title" id="homeName">भगत जी</h1>
+      </div>
+      <div class="tb-right">
+        <button class="icon-btn" id="btnNotif" aria-label="Notifications">
+          <svg viewBox="0 0 24 24" class="ico"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          <i class="dot hidden" id="notifDot"></i>
+        </button>
+        <button class="avatar" id="btnAvatar" aria-label="Profile"><span id="avatarLetter">भ</span></button>
+      </div>
+    </header>
+
+    <div class="scroll-area">
+      <!-- hero progress -->
+      <section class="hero-card" id="heroCard">
+        <div class="hero-bg"></div>
+        <div class="hero-inner">
+          <div class="hero-top">
+            <span class="chip chip-glass" id="todayDate">—</span>
+            <span class="chip chip-glass" id="streakChip">🔥 0</span>
+          </div>
+          <div class="hero-mid">
+            <div class="ring-wrap">
+              <svg viewBox="0 0 120 120" class="ring">
+                <circle cx="60" cy="60" r="52" class="ring-bg"/>
+                <circle cx="60" cy="60" r="52" class="ring-fg" id="ringFg"/>
+              </svg>
+              <div class="ring-txt"><b id="ringPct">0%</b><small data-i18n="home.today">आज</small></div>
+            </div>
+            <div class="hero-meta">
+              <h2 data-i18n="home.dailyGoal">दैनिक लक्ष्य</h2>
+              <p id="goalLine" data-i18n="home.noSeva">आज अभी कोई सेवा दर्ज नहीं</p>
+              <button class="btn btn-light btn-sm" id="heroAdd"><svg viewBox="0 0 24 24" class="ico"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="home.addSeva">सेवा जोड़ें</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- quick add -->
+      <div class="section-head"><h3 data-i18n="home.quickAdd">तुरंत जोड़ें</h3></div>
+      <div class="quick-grid" id="quickGrid"></div>
+
+      <!-- stats strip -->
+      <div class="stat-strip">
+        <div class="stat-card"><b id="stTotal">0</b><span data-i18n="home.totalSeva">कुल सेवाएँ</span></div>
+        <div class="stat-card"><b id="stStreak">0</b><span data-i18n="home.streak">दिन लगातार</span></div>
+        <div class="stat-card"><b id="stJaap">0</b><span data-i18n="home.malas">माला</span></div>
+      </div>
+
+      <!-- upcoming bhandara -->
+      <div class="section-head">
+        <h3 data-i18n="home.upcoming">आगामी भंडारा</h3>
+        <button class="link-btn" data-goto="bhandara" data-i18n="common.seeAll">सभी देखें</button>
+      </div>
+      <div id="upcomingWrap"></div>
+
+      <!-- recent -->
+      <div class="section-head">
+        <h3 data-i18n="home.recent">हाल की सेवा</h3>
+        <button class="link-btn" data-goto="seva" data-i18n="common.seeAll">सभी देखें</button>
+      </div>
+      <div id="recentList" class="list"></div>
+
+      <!-- verse -->
+      <section class="verse-card">
+        <svg viewBox="0 0 24 24" class="verse-q"><path d="M7 7h4v4c0 3-1.6 5-4 6v-2c1.2-.7 2-1.8 2-3H7V7zm8 0h4v4c0 3-1.6 5-4 6v-2c1.2-.7 2-1.8 2-3h-2V7z"/></svg>
+        <p id="verseText">—</p>
+        <small id="verseSrc">—</small>
+      </section>
+      <div class="bottom-pad"></div>
+    </div>
+  </main>
+
+  <!-- ░░░ SEVA ░░░ -->
+  <main class="screen" id="scr-seva">
+    <header class="topbar">
+      <div class="tb-left"><p class="tb-eyebrow" data-i18n="seva.eyebrow">सेवा डायरी</p><h1 class="tb-title" data-i18n="nav.seva">सेवा</h1></div>
+      <div class="tb-right">
+        <button class="icon-btn" id="btnSearch" aria-label="Search"><svg viewBox="0 0 24 24" class="ico"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+        <button class="icon-btn" id="btnFilter" aria-label="Filter"><svg viewBox="0 0 24 24" class="ico"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
+      </div>
+    </header>
+    <div class="search-bar hidden" id="searchBar">
+      <svg viewBox="0 0 24 24" class="ico"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="searchInput" type="search" data-i18n-ph="seva.searchPh" placeholder="सेवा खोजें…">
+    </div>
+    <div class="seg-wrap"><div class="seg" id="sevaSeg">
+      <button class="on" data-range="today" data-i18n="range.today">आज</button>
+      <button data-range="week" data-i18n="range.week">सप्ताह</button>
+      <button data-range="month" data-i18n="range.month">महीना</button>
+      <button data-range="all" data-i18n="range.all">सभी</button>
+    </div></div>
+    <div class="scroll-area">
+      <div class="range-summary" id="rangeSummary"></div>
+      <div id="sevaList" class="list"></div>
+      <div class="bottom-pad"></div>
+    </div>
+    <button class="fab" id="fabAdd" aria-label="Add"><svg viewBox="0 0 24 24" class="ico"><path d="M12 5v14M5 12h14"/></svg></button>
+  </main>
+
+  <!-- ░░░ BHANDARA ░░░ -->
+  <main class="screen" id="scr-bhandara">
+    <header class="topbar">
+      <div class="tb-left"><p class="tb-eyebrow" data-i18n="bhan.eyebrow">संगत और आयोजन</p><h1 class="tb-title" data-i18n="nav.bhandara">भंडारा</h1></div>
+      <div class="tb-right"><button class="icon-btn" id="btnNewBhan" aria-label="New"><svg viewBox="0 0 24 24" class="ico"><path d="M12 5v14M5 12h14"/></svg></button></div>
+    </header>
+    <div class="seg-wrap"><div class="seg" id="bhanSeg">
+      <button class="on" data-tab="events" data-i18n="bhan.events">आयोजन</button>
+      <button data-tab="banner" data-i18n="bhan.banner">बैनर बनाएँ</button>
+    </div></div>
+    <div class="scroll-area">
+      <div id="bhanEvents"><div id="bhanList" class="list"></div></div>
+
+      <div id="bhanBanner" class="hidden">
+        <div class="banner-stage">
+          <canvas id="bannerCanvas" width="1080" height="1350"></canvas>
+          <div class="banner-badge" data-i18n="bhan.livePreview">लाइव प्रीव्यू</div>
+        </div>
+        <div class="tpl-row" id="tplRow"></div>
+        <div class="form-card">
+          <label class="field"><span data-i18n="bhan.fTitle">शीर्षक</span><input id="bTitle" type="text" maxlength="60"></label>
+          <label class="field"><span data-i18n="bhan.fSubtitle">उपशीर्षक</span><input id="bSub" type="text" maxlength="80"></label>
+          <div class="field-row">
+            <label class="field"><span data-i18n="bhan.fDate">तारीख़</span><input id="bDate" type="date"></label>
+            <label class="field"><span data-i18n="bhan.fTime">समय</span><input id="bTime" type="time"></label>
+          </div>
+          <label class="field"><span data-i18n="bhan.fVenue">स्थान</span><input id="bVenue" type="text" maxlength="90"></label>
+          <label class="field"><span data-i18n="bhan.fOrg">आयोजक</span><input id="bOrg" type="text" maxlength="60"></label>
+          <label class="field"><span data-i18n="bhan.fPhone">संपर्क</span><input id="bPhone" type="tel" maxlength="24"></label>
+          <label class="field"><span data-i18n="bhan.fRatio">आकार</span>
+            <select id="bRatio"><option value="4:5">4:5 — Post</option><option value="1:1">1:1 — Square</option><option value="9:16">9:16 — Status</option><option value="16:9">16:9 — Wide</option></select>
+          </label>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-dark flex1" id="btnShareBanner"><svg viewBox="0 0 24 24" class="ico"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 3v13M8 7l4-4 4 4"/></svg><span data-i18n="common.share">साझा करें</span></button>
+          <button class="btn btn-outline" id="btnSaveBanner"><svg viewBox="0 0 24 24" class="ico"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 17v3h16v-3"/></svg></button>
+        </div>
+      </div>
+      <div class="bottom-pad"></div>
+    </div>
+  </main>
+
+  <!-- ░░░ STATS ░░░ -->
+  <main class="screen" id="scr-stats">
+    <header class="topbar">
+      <div class="tb-left"><p class="tb-eyebrow" data-i18n="stats.eyebrow">आपकी प्रगति</p><h1 class="tb-title" data-i18n="nav.stats">आँकड़े</h1></div>
+      <div class="tb-right"><button class="icon-btn" id="btnExport" aria-label="Export"><svg viewBox="0 0 24 24" class="ico"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg></button></div>
+    </header>
+    <div class="scroll-area">
+      <div class="big-stat-grid">
+        <div class="big-stat"><span class="bs-ico">🪔</span><b id="bsTotal">0</b><small data-i18n="home.totalSeva">कुल सेवाएँ</small></div>
+        <div class="big-stat"><span class="bs-ico">🔥</span><b id="bsBest">0</b><small data-i18n="stats.bestStreak">सर्वश्रेष्ठ स्ट्रीक</small></div>
+        <div class="big-stat"><span class="bs-ico">📿</span><b id="bsMala">0</b><small data-i18n="home.malas">माला</small></div>
+        <div class="big-stat"><span class="bs-ico">⏱️</span><b id="bsHours">0</b><small data-i18n="stats.hours">घंटे</small></div>
+      </div>
+      <div class="section-head"><h3 data-i18n="stats.last7">पिछले 7 दिन</h3></div>
+      <div class="card chart-card"><div class="bars" id="bars7"></div></div>
+      <div class="section-head"><h3 data-i18n="stats.byType">सेवा अनुसार</h3></div>
+      <div class="card"><div class="donut-row">
+        <div class="donut-wrap"><svg viewBox="0 0 42 42" class="donut" id="donut"></svg><div class="donut-center"><b id="donutTotal">0</b></div></div>
+        <div class="legend" id="legend"></div>
+      </div></div>
+      <div class="section-head"><h3 data-i18n="stats.achievements">उपलब्धियाँ</h3></div>
+      <div class="ach-grid" id="achGrid"></div>
+      <div class="bottom-pad"></div>
+    </div>
+  </main>
+
+  <!-- ░░░ SETTINGS ░░░ -->
+  <main class="screen" id="scr-settings">
+    <header class="topbar">
+      <div class="tb-left"><p class="tb-eyebrow" data-i18n="set.eyebrow">ऐप सेटिंग</p><h1 class="tb-title" data-i18n="nav.settings">सेटिंग</h1></div>
+    </header>
+    <div class="scroll-area">
+      <div class="profile-card">
+        <div class="avatar avatar-lg" id="setAvatar"><span>भ</span></div>
+        <div class="pc-info"><b id="setName">भगत जी</b><small data-i18n="app.greeting">सत साहिब जी 🙏</small></div>
+        <button class="icon-btn" id="btnEditName"><svg viewBox="0 0 24 24" class="ico"><path d="M4 20h4l10-10-4-4L4 16v4z"/><path d="M14 6l4 4"/></svg></button>
+      </div>
+
+      <!-- UPDATE CARD -->
+      <div class="card update-card" id="updateCard">
+        <div class="uc-head">
+          <div class="uc-ico"><svg viewBox="0 0 24 24" class="ico"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2"/></svg></div>
+          <div class="uc-txt"><b data-i18n="upd.title">ऐप अपडेट</b><small id="updStatus" data-i18n="upd.checking">जाँच हो रही है…</small></div>
+          <span class="ver-pill" id="verPill">v1.0.0</span>
+        </div>
+        <div class="uc-body hidden" id="updBody">
+          <p id="updNotes"></p>
+          <div class="upd-meta" id="updMeta"></div>
+          <div class="progress hidden" id="updProgress"><i id="updBar"></i></div>
+          <div class="btn-row">
+            <button class="btn btn-dark flex1" id="btnDoUpdate" data-i18n="upd.updateNow">अभी अपडेट करें</button>
+            <button class="btn btn-ghost" id="btnLater" data-i18n="common.later">बाद में</button>
+          </div>
+        </div>
+        <button class="btn btn-outline btn-block" id="btnCheckUpdate"><svg viewBox="0 0 24 24" class="ico"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg><span data-i18n="upd.check">अपडेट जाँचें</span></button>
+        <div class="uc-foot"><span data-i18n="upd.channel">चैनल</span><b id="updChannel">stable</b><span class="sep">•</span><span data-i18n="upd.delta">डेल्टा अपडेट चालू</span></div>
+      </div>
+
+      <div class="set-group">
+        <p class="sg-title" data-i18n="set.general">सामान्य</p>
+        <button class="set-row" id="rowLang"><span class="sr-ico">🌐</span><span class="sr-label" data-i18n="set.language">भाषा</span><span class="sr-val" id="valLang">हिन्दी</span><svg viewBox="0 0 24 24" class="ico chev"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="set-row" id="rowTheme"><span class="sr-ico">🎨</span><span class="sr-label" data-i18n="set.theme">थीम</span><span class="sr-val" id="valTheme">लाइट</span><svg viewBox="0 0 24 24" class="ico chev"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="set-row" id="rowGoal"><span class="sr-ico">🎯</span><span class="sr-label" data-i18n="set.goal">दैनिक लक्ष्य</span><span class="sr-val" id="valGoal">3</span><svg viewBox="0 0 24 24" class="ico chev"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+
+      <div class="set-group">
+        <p class="sg-title" data-i18n="set.notifications">सूचनाएँ</p>
+        <div class="set-row"><span class="sr-ico">🔔</span><span class="sr-label" data-i18n="set.pushNotif">सूचना अनुमति</span><label class="switch"><input type="checkbox" id="swNotif"><i></i></label></div>
+        <div class="set-row"><span class="sr-ico">⏰</span><span class="sr-label" data-i18n="set.dailyReminder">दैनिक रिमाइंडर</span><label class="switch"><input type="checkbox" id="swReminder"><i></i></label></div>
+        <button class="set-row" id="rowRemTime"><span class="sr-ico">🕗</span><span class="sr-label" data-i18n="set.remTime">रिमाइंडर समय</span><span class="sr-val" id="valRemTime">20:00</span><svg viewBox="0 0 24 24" class="ico chev"><path d="M9 6l6 6-6 6"/></svg></button>
+        <div class="set-row"><span class="sr-ico"></span><span class="sr-label" data-i18n="set.updNotif">अपडेट सूचनाएँ</span><label class="switch"><input type="checkbox" id="swUpdNotif" checked><i></i></label></div>
+      </div>
+
+      <div class="set-group">
+        <p class="sg-title" data-i18n="set.dataSec">डेटा और सुरक्षा</p>
+        <div class="storage-meter">
+          <div class="sm-top"><span data-i18n="set.storage">संग्रहण</span><b id="smSize">—</b></div>
+          <div class="sm-bar"><i class="sm-raw" id="smRaw"></i><i class="sm-enc" id="smEnc"></i></div>
+          <div class="sm-legend"><span><i class="lg lg-raw"></i><span data-i18n="set.raw">मूल</span> <b id="smRawTxt">—</b></span><span><i class="lg lg-enc"></i><span data-i18n="set.stored">संग्रहीत</span> <b id="smEncTxt">—</b></span></div>
+          <p class="sm-note"><span data-i18n="set.saved">बचत</span> <b id="smSaved">—</b> · AES-256-GCM + DEFLATE</p>
+        </div>
+        <button class="set-row" id="rowBackup"><span class="sr-ico">💾</span><span class="sr-label" data-i18n="set.backup">एन्क्रिप्टेड बैकअप</span><svg viewBox="0 0 24 24" class="ico chev"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="set-row" id="rowRestore"><span class="sr-ico">📥</span><span class="sr-label" data-i18n="set.restore">बैकअप पुनर्स्थापित</span><svg viewBox="0 0 24 24" class="ico chev"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="set-row" id="rowPerms"><span class="sr-ico">🛡️</span><span class="sr-label" data-i18n="set.perms">अनुमतियाँ</span><span class="sr-val" id="valPerms">—</span><svg viewBox="0 0 24 24" class="ico chev"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="set-row danger" id="rowWipe"><span class="sr-ico">🗑️</span><span class="sr-label" data-i18n="set.wipe">सारा डेटा मिटाएँ</span><svg viewBox="0 0 24 24" class="ico chev"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+
+      <div class="set-group">
+        <p class="sg-title" data-i18n="set.about">जानकारी</p>
+        <button class="set-row" id="rowAbout"><span class="sr-ico">ℹ️</span><span class="sr-label" data-i18n="set.aboutApp">ऐप के बारे में</span><svg viewBox="0 0 24 24" class="ico chev"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="set-row" id="rowDiag"><span class="sr-ico">🧪</span><span class="sr-label" data-i18n="set.diag">डायग्नोस्टिक्स</span><svg viewBox="0 0 24 24" class="ico chev"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+      <p class="foot-note" id="footNote">सतलोक सेवा · v1.0.0</p>
+      <div class="bottom-pad"></div>
+    </div>
+  </main>
+
+  <!-- ░░░ BOTTOM NAV ░░░ -->
+  <nav class="tabbar" id="tabbar">
+    <button class="tab on" data-goto="home"><svg viewBox="0 0 24 24" class="ico"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg><span data-i18n="nav.home">होम</span></button>
+    <button class="tab" data-goto="seva"><svg viewBox="0 0 24 24" class="ico"><path d="M5 4h11l3 3v13H5z"/><path d="M8.5 10h7M8.5 14h5"/></svg><span data-i18n="nav.seva">सेवा</span></button>
+    <button class="tab tab-mid" data-goto="add"><span class="tab-plus"><svg viewBox="0 0 24 24" class="ico"><path d="M12 5v14M5 12h14"/></svg></span></button>
+    <button class="tab" data-goto="bhandara"><svg viewBox="0 0 24 24" class="ico"><path d="M3 10l9-6 9 6"/><path d="M4 10v10h16V10"/><path d="M9 20v-6h6v6"/></svg><span data-i18n="nav.bhandara">भंडारा</span></button>
+    <button class="tab" data-goto="stats"><svg viewBox="0 0 24 24" class="ico"><path d="M5 20V11M12 20V4M19 20v-6"/></svg><span data-i18n="nav.stats">आँकड़े</span></button>
+  </nav>
+</div>
+
+<!-- ══════════════ SHEETS & MODALS ══════════════ -->
+<div id="scrim" class="scrim"></div>
+
+<div id="sheetAdd" class="sheet">
+  <div class="sheet-grip"></div>
+  <div class="sheet-head"><h3 data-i18n="add.title">सेवा दर्ज करें</h3><button class="icon-btn sheet-x" data-close><svg viewBox="0 0 24 24" class="ico"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="sheet-body">
+    <p class="lbl" data-i18n="add.type">सेवा का प्रकार</p>
+    <div class="type-grid" id="typeGrid"></div>
+    <div class="field-row">
+      <label class="field"><span data-i18n="add.date">तारीख़</span><input id="aDate" type="date"></label>
+      <label class="field"><span id="aQtyLbl" data-i18n="add.qty">मात्रा</span><input id="aQty" type="number" min="0" step="1" value="1" inputmode="numeric"></label>
+    </div>
+    <div class="field-row">
+      <label class="field"><span data-i18n="add.minutes">मिनट</span><input id="aMin" type="number" min="0" step="5" value="15" inputmode="numeric"></label>
+      <label class="field"><span data-i18n="add.place">स्थान</span><input id="aPlace" type="text" maxlength="40" data-i18n-ph="add.placePh" placeholder="घर / आश्रम"></label>
+    </div>
+    <label class="field"><span data-i18n="add.note">टिप्पणी</span><textarea id="aNote" rows="2" maxlength="240" data-i18n-ph="add.notePh" placeholder="कुछ लिखें…"></textarea></label>
+    <div class="stepper-row" id="stepperRow">
+      <span data-i18n="add.quickCount">त्वरित गिनती</span>
+      <div class="stepper"><button id="stMinus">−</button><b id="stVal">1</b><button id="stPlus">+</button></div>
+    </div>
+  </div>
+  <div class="sheet-foot"><button class="btn btn-dark btn-block" id="btnSaveSeva"><svg viewBox="0 0 24 24" class="ico"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="common.save">सहेजें</span></button></div>
+</div>
+
+<div id="sheetBhan" class="sheet">
+  <div class="sheet-grip"></div>
+  <div class="sheet-head"><h3 data-i18n="bhan.newEvent">नया भंडारा</h3><button class="icon-btn sheet-x" data-close><svg viewBox="0 0 24 24" class="ico"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="sheet-body">
+    <label class="field"><span data-i18n="bhan.fTitle">शीर्षक</span><input id="eTitle" type="text" maxlength="60"></label>
+    <div class="field-row">
+      <label class="field"><span data-i18n="bhan.fDate">तारीख़</span><input id="eDate" type="date"></label>
+      <label class="field"><span data-i18n="bhan.fTime">समय</span><input id="eTime" type="time"></label>
+    </div>
+    <label class="field"><span data-i18n="bhan.fVenue">स्थान</span><input id="eVenue" type="text" maxlength="90"></label>
+    <label class="field"><span data-i18n="bhan.fOrg">आयोजक</span><input id="eOrg" type="text" maxlength="60"></label>
+    <label class="field"><span data-i18n="bhan.fPhone">संपर्क</span><input id="ePhone" type="tel" maxlength="24"></label>
+    <label class="field"><span data-i18n="bhan.fNote">विवरण</span><textarea id="eNote" rows="2" maxlength="240"></textarea></label>
+    <div class="set-row compact"><span class="sr-ico">🔔</span><span class="sr-label" data-i18n="bhan.remind">रिमाइंडर</span><label class="switch"><input type="checkbox" id="eRemind" checked><i></i></label></div>
+  </div>
+  <div class="sheet-foot"><button class="btn btn-dark btn-block" id="btnSaveBhan"><span data-i18n="common.save">सहेजें</span></button></div>
+</div>
+
+<div id="sheetPick" class="sheet sheet-sm">
+  <div class="sheet-grip"></div>
+  <div class="sheet-head"><h3 id="pickTitle">—</h3><button class="icon-btn sheet-x" data-close><svg viewBox="0 0 24 24" class="ico"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="sheet-body"><div id="pickList" class="pick-list"></div></div>
+</div>
+
+<div id="sheetInfo" class="sheet">
+  <div class="sheet-grip"></div>
+  <div class="sheet-head"><h3 id="infoTitle">—</h3><button class="icon-btn sheet-x" data-close><svg viewBox="0 0 24 24" class="ico"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="sheet-body"><div id="infoBody" class="info-body"></div></div>
+  <div class="sheet-foot" id="infoFoot"></div>
+</div>
+
+<div id="updateModal" class="modal">
+  <div class="modal-card">
+    <div class="um-art"><svg viewBox="0 0 24 24" class="ico"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2"/></svg></div>
+    <h3 id="umTitle" data-i18n="upd.available">नया अपडेट उपलब्ध</h3>
+    <p id="umSub">—</p>
+    <div class="um-notes" id="umNotes"></div>
+    <div class="um-meta" id="umMeta"></div>
+    <div class="progress hidden" id="umProgress"><i id="umBar"></i></div>
+    <p class="um-status hidden" id="umStatus"></p>
+    <div class="btn-row">
+      <button class="btn btn-dark flex1" id="umPrimary" data-i18n="upd.updateNow">अभी अपडेट करें</button>
+      <button class="btn btn-ghost" id="umLater" data-i18n="common.later">बाद में</button>
+    </div>
+    <p class="um-force hidden" id="umForce" data-i18n="upd.required">यह अपडेट आवश्यक है</p>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+<input type="file" id="filePick" accept=".satlok,.json,application/json" class="hidden">
+
+<script src="config.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/store.js"></script>
+<script src="js/native.js"></script>
+<script src="js/update.js"></script>
+<script src="js/banner.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

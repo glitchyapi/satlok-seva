@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Satlok Seva</string>
+    <string name="ch_reminder">Seva Reminders</string>
+    <string name="ch_reminder_desc">Daily reminder to log your seva</string>
+    <string name="ch_events">Bhandara Events</string>
+    <string name="ch_events_desc">Upcoming Bhandara alerts</string>
+    <string name="ch_update">App Updates</string>
+    <string name="ch_update_desc">New version availability</string>
+</resources>

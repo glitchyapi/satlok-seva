@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "entry": "index.html",
+  "baseUrl": "https://glitchyapi.github.io/satlok-seva/web/1/",
+  "generatedAt": "2026-11-01T19:23:30.812902Z",
+  "fileCount": 12,
+  "totalBytes": 249523,
+  "files": [
+    {
+      "path": "bundle-manifest.json",
+      "sha256": "d79e82450cbd3a5dc926b6b84ad7905f900fedc6a19593e83fbd6b901066e2c7",
+      "size": 1636
+    },
+    {
+      "path": "config.js",
+      "sha256": "ab5a8a45934b56288b1931b04d4db718ca399c6f8b8593eb6efcb30d9ff5bce0",
+      "size": 1683
+    },
+    {
+      "path": "css/app.css",
+      "sha256": "ca42cb8c12b2b3fddf0365add7fd89972ca31075ae7ed05b4033c426e3731916",
+      "size": 35854
+    },
+    {
+      "path": "img/logo-192.png",
+      "sha256": "85c33e8a82f531ea66400923c4cf01e4286dc3e5e0aaca06a176a30ee80e34ea",
+      "size": 12736
+    },
+    {
+      "path": "img/logo-512.png",
+      "sha256": "f4c385dc3d724ab4550c658ca5266aaf8983595e6a404d6c53108cb9d33e29d7",
+      "size": 33006
+    },
+    {
+      "path": "index.html",
+      "sha256": "e18cd8051a6c385cd352c86ff4f3659cce5bd4304f47a3b8f1bdbd8e9b1cb206",
+      "size": 29160
+    },
+    {
+      "path": "js/app.js",
+      "sha256": "8149dba54d5a35bda0f094f4c75dbd1e45516b32cebf8ef28bbab2fbc121cfa2",
+      "size": 50031
+    },
+    {
+      "path": "js/banner.js",
+      "sha256": "6fdf230be968ae222bc6e1b3b5094db838873836c7af0256871e8d1faf717d29",
+      "size": 13718
+    },
+    {
+      "path": "js/i18n.js",
+      "sha256": "8f15bbaba0c19aa861f84739641a0fe7fafc4b912f0b7a520f8d6bd085df2c5d",
+      "size": 36746
+    },
+    {
+      "path": "js/native.js",
+      "sha256": "25a8dc8b0d292fd561d594b9eca8538c32d5bf8f44844bdd051a08d39518c3c8",
+      "size": 8132
+    },
+    {
+      "path": "js/store.js",
+      "sha256": "0591cec34c5d9628f0ed32b689cfa1b6d713f1b0fb74dfea0fd5f8595dfb90ae",
+      "size": 15820
+    },
+    {
+      "path": "js/update.js",
+      "sha256": "f67b630a1e5d4fbde697d9632abb34080ec8585347851bc05857485b00bca74e",
+      "size": 11001
+    }
+  ]
+}
